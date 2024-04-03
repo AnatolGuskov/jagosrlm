@@ -157,7 +157,7 @@ body {
      margin: 0;
   }
 
-@media (min-width: 790px) {
+@media (min-width: 500px) {
 
   .side-left {                               /* computer */
     background: black;

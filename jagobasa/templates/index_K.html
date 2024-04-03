@@ -147,8 +147,8 @@ function showSlides() {
 
      {% block side_right %}
 
-<!--         <div class = "novita" >-->
-             <p style = "font-size: 20"><b> Novità  </b></p><br>
+         <div class = "novita" >
+             <p style = "font-size: 20; text-align: center;"><b> Novità  </b></p><br>
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
                     <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
@@ -156,7 +156,7 @@ function showSlides() {
              <br><br>
              {% endfor %}
 
-<!--         </div> &lt;!&ndash; novita &ndash;&gt;-->
+         </div> <!-- novita -->
 
      {% endblock %}
 
