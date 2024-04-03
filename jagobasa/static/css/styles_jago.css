@@ -234,7 +234,7 @@ body {
 /* =============== EFFECTS ====================== */
 
 .link {
-    link: red;
+    link: rgb(220, 220, 220);
     vlink: #cecece;
     alink: #ff0000;
     color: rgb(220, 220, 220);
