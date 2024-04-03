@@ -235,8 +235,8 @@ body {
 
 .link {
     link: rgb(220, 220, 220);
-    vlink: #cecece;
-    alink: #ff0000;
+    vlink: rgb(220, 220, 220);
+    alink: rgb(220, 220, 220);
     color: rgb(220, 220, 220);
     text-decoration: none;
     font-size: 12px;
