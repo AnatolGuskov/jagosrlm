@@ -1,0 +1,325 @@
+BODY {
+    background: black; /* Цвет фона веб-страницы */
+   }
+   A {
+    color: red; /* Цвет ссылок */
+   }
+   A:visited {
+    color: #cecece; /* Цвет посещенных ссылок */
+   }
+   A:active {
+    color: #ffff00; /* Цвет активных ссылок */
+   }
+
+
+/* =============== SIDE-LEFT ====================== */
+.side-left-0 {
+    background: black;
+    border: 0px solid yellow;
+    position: absolute;
+    left: 0.0%;     top:0%;
+    width: 13.0%;   height: 100.0%;
+    padding-left: 0;
+    font-size: 12px;
+}
+.side-left {                            /* mobile */
+    background: black;
+    border: 1px solid white;
+    position: absolute;
+    left: 0.0%;     top:0%;
+    width: 100.0%;   height: 16.0%;
+    padding-left: 0;
+    font-size: 10px;
+}
+.image-logo {                           /* mobile */
+    background: none;
+    position: absolute;
+    left: 1.0;       top:0%;
+    width: 48.0%;   height: 15.0%;
+}
+.menu {                               /* mobile */
+    background: none;
+    border: 0px solid black;
+    position: absolute;
+    left:50.0%;      top:0.0%;
+    width: 50%;      height:;
+    padding-left: 2%;
+    color: rgb(220, 220, 220);
+    font-size: 10px;
+}
+.count-jago {                           /* mobile */
+    background: none;
+    position: absolute;
+    left:-24.0%;      top:-50%;
+    width: 97.0%;   height: 30.0%;
+    padding-left: 3%;
+    color: white;
+    font-size: 10px;
+}
+
+.copy-right {                           /* mobile */
+    display: ;
+    border: 0px solid white;
+    position: absolute;
+    left:0.0%;       top:0.0%;
+    width: 0%;     height:0%;
+}
+
+/* =============== CONTENT ====================== */
+.content {                             /* mobile */
+    background: black;
+    position: absolute;
+    left:0%;       top:16%;
+    width: 100.0%;   height: 84.0%;
+    border: 0px solid green;
+    padding-left: 10px;
+    color: white;
+    text-align: ;
+}
+.tytle-page {                           /* mobile */
+    background: none;
+    position: absolute;
+    left: 3%;        top: 1%;
+    width: 93.0%;   height: 10.0%;
+    padding-left: 0;
+    font-family: Anton;
+    font-size: 20px;
+    color: white;
+}
+.collezione-list {
+    display: flex;
+    flex-wrap: wrap;
+    background: none;
+    color: white;
+    text-align: left;
+    position: absolute;
+    left:0px;       top:10%;
+    width: 102%;   height: 90%;
+    border: 0px solid red;
+    padding-left: 10px;
+    overflow: auto;
+}
+
+/* =============== RIGHTSIDE ====================== */
+.side-right {                              /* mobile */
+    display: ;
+    background: black;
+    position: absolute;
+    left:0%;       top:-10%;
+    width: 0px;   height: 0px;
+    border: 0px solid red;
+    padding-left: 0px;
+    color: black;
+ }
+ .right-image-top {
+        border: 0px solid white;
+        background: none;
+        position: absolute;
+        top:1.0%;       left:3.0%;
+        height: 25.0%;  width: 90.0%;
+        padding-left: 0px;
+    }
+    h3 {
+        position: absolute;
+        top: -15px;    left: 0.0%;
+        width: 100%;
+        font-family: Anton;
+        font-size: 17px;
+        color: white;
+        text-align: center;
+        -webkit-text-stroke: 0.5px black;
+    }
+    .right-nome-top {
+        background: none;
+        position: absolute;
+        top: 0%;        left: 20px;
+        width: 90.0%;   height: 15.0%;
+        font-family: Anton;
+        font-size: 15px;
+        color: yellow
+        border: 1px solid white;
+    }
+    .right-list {
+        position: absolute;
+        left: 0%;     top: 28.0%;
+        width: 103%;   height: 67%;
+        font-family: Arial;
+        font-size: 12px;
+        line-height: 1.0;
+        margin-top: 5.0px; margin-bottom: 0.0;
+        color: white;
+        text-align: center;
+        overflow: auto;
+    }
+
+<!--   =================== MEDIA COMPUTER ======================  -->
+body {
+     margin: 0;
+  }
+
+@media (min-width: 790px) {
+
+  .side-left {                               /* computer */
+    background: black;
+    border: 0px solid red;
+    position: absolute;
+    left: 0.0%;     top:0%;
+    width: 13.0%;   height: 100.0%;
+    padding-left: 0;
+    font-size: 12px;
+}
+.image-logo {                               /* computer */
+    background: none;
+    position: absolute;
+    left: 2%;       top: 0%;
+    width: 100.0%;   height: 15.0%;
+}
+.menu {                                    /* computer */
+    background: none;
+    border: 0px solid black;
+    position: absolute;
+    left:3.0%;       top:22.0%;
+    width: 97%;      height:;
+    padding-left: 2%;
+    color: rgb(220, 220, 220);
+}
+.copy-right {                               /* computer */
+    border: 0px solid white;
+    position: absolute;
+    left: 0.0%;       top: 78.0%;
+    width: 100%;     height:18%;
+}
+.count-jago {                             /* computer */
+    background: none;
+    position: absolute;
+    left:-24.0%;      top:50%;
+    width: 97.0%;   height: 30.0%;
+    padding-left: 3%;
+    color: white;
+    font-size: 10px;
+}
+.content {                                 /* computer */
+    background: black;
+    position: absolute;
+    left:13%;       top:0px;
+    width: 74.0%;   height: 100.0%;
+    border: 0px solid green;
+    padding-left: 0px;
+    color: white;
+    text-align: ;
+}
+.tytle-page {                                /* computer */
+    background: none;
+    position: absolute;
+    left: 3%;        top: 1%;
+    width: 93.0%;   height: 10.0%;
+    padding-left: 0;
+    font-family: Anton;
+    font-size: 40px;
+    color: white;
+}
+.side-right {                                /* computer */
+    background: black;
+    position: absolute;
+    left:85%;       top:0px;
+    width: 14.0%;   height: 100.0%;
+    border: 0px solid red;
+    padding-left: 0px;
+    color: white;
+}
+}
+ <!--   =================== END of MEDIA COMPUTER ======================  -->
+
+/* =============== EFFECTS ====================== */
+
+.link {
+    link: red;
+    vlink: #cecece;
+    alink: #ff0000;
+    color: rgb(220, 220, 220);
+    text-decoration: none;
+}
+.link:hover {
+    color: white;
+    text-decoration: none;
+}
+/* -------------------------------------- */
+.scale-size {
+    transform: scale(1.0)
+}
+.scale-size:hover {
+    transition: 0.5s;         /* Время эффекта */
+    transform: scale(1.1);    /* Увеличиваем масштаб */
+}
+/* -------------------------------------- */
+.scale-size-small {
+    transform: scale(1.0)
+}
+.scale-size-small:hover {
+    transition: 0.5s;         /* Время эффекта */
+    transform: scale(1.03);    /* Увеличиваем масштаб */
+}
+/* -------------------------------------- */
+.scale-border {
+       border: 0px solid white;
+}
+.scale-border:hover {
+       transition: 0.2s;        /* Время эффекта */
+       border: 2px solid white; /* Помещаем рамку */
+}
+
+<!--   =================== SLIDE SHOW ======================  -->
+* {box-sizing:border-box}
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}
+
+.slideshow-container {
+  max-width: 1000px; hight = 100%
+  position: absolut;
+  margin: auto;
+  padding-top: 5%;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Slide text */
+.text {
+  color: #f2f2f2;
+  font-size: 13px;
+  padding: 8px 12px;
+  position: relative;
+  bottom: 24%;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {opacity: 0.3}
+  to   {opacity: 1.0}
+}
+<!--   =================== SLIDE SHOW END ======================  -->

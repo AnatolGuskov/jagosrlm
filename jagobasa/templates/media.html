@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+
+    <meta charset="utf-8" />
+    <!-- Responsibilaty -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Сompiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Сompiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Добавление дополнительного статического CSS файла -->
+
+    <link rel="stylesheet" href="{% static 'css/styles_jago.css' %}" />
+
+  </head>
+
+
+<style>
+  body {
+     margin: 0;
+  }
+  .container {
+     display: flex;
+     flex-wrap: wrap;
+  }
+  .side-left{
+    position: absolute;
+    left: 0.0%;     top:0%;
+    width: 100.0%;  height: 13.0%;
+    background: red;
+  }
+  .contain {
+     position: absolute;
+     left: 0.0%;     top:13%;
+     width: 100.0%;  height: 74.0%;
+     background: green;
+  }
+  .side-right {
+     position: absolute;
+     left: 0.0%;     top:87%;
+     width: 100.0%;  height: 13.0%;;
+     background: yellow;
+  }
+@media (min-width: 790px) {
+   .side-left {
+    position: absolute;
+    left: 0.0%;     top:0%;
+    width: 13.0%;   height: 100.0%;
+
+
+   }
+   .contain {
+     position: absolute;
+     left: 13.0%;     top:0%;
+     width: 74.0%;   height: 100.0%;
+
+
+   }
+   .side-right {
+     position: absolute;
+     left: 87.0%;     top:0%;
+     width: 13.0%;   height: 100.0%;
+
+   }
+  }
+
+  </style>
+
+
+
+<!--<div class="container">-->
+
+    <block1 class="side-left">
+       HOME<br>
+        HOME<br>
+        HOME<br>
+        HOME<br>
+            HOME<br>
+
+     </block1>
+
+     <block2 class="contain">
+       CONTAIN
+     </block2>
+
+     <block3 class="side-right">
+       MENU
+     </block3>
+
+<!--</div>-->
+

@@ -1,0 +1,169 @@
+<!--TEMPLATE INDEX-->
+
+
+<style>
+
+.list-detail {
+        background: none;
+        justify-content: space-between;
+        position: absolute;
+        left:1.5%;       top:10%;
+        width: 98.5%;     height: 90.0%;
+        overflow: auto;
+}
+
+.novita {
+        background: none;
+        position: absolute;
+        left:0.0%;       top:2%;
+        width: 96.0%;    height: 89.0%;
+        padding-left: 0;
+        text-align: center;
+}
+.tytle-home {                                /* mobile */
+    background: none;
+    font-family: Anton;
+    font-size: 15px;
+    color: rgb(150, 150, 150);
+}
+@media (min-width: 790px) {
+.tytle-home {                                /* computer */
+    font-family: Anton;
+    font-size: 35px;
+    color: rgb(150, 150, 150);
+}
+}
+
+</style>
+
+
+{% extends "base_generic_K.html" %}
+
+{% block title %}<title>JB Index</title>{% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+<div class = "tytle-page" style = "text-align: right;">
+    <p> Jago - Italian lighting </p>
+</div>
+
+<div class = "count-jago">
+  <ul>
+    <li>Catalochi: {{ num_cata }}</li>
+    <li>Collezione: {{ num_coll }}</li>
+    <li>Tipi di prodotti: {{ num_tipi }}</li>
+    <li>Prodotti: {{ num_prod }}</li>
+    <li>Progetti: {{ num_prog }}</li>
+    <li>Images: {{ num_imag }}</li>
+  </ul>
+ </div>
+
+
+<div class = "list-detail">
+<!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
+<div class = "tytle-home"> Presentazione </div>
+
+<div class="slideshow-container">
+
+   {% for coll in collezionelist %}
+       <div class="mySlides fade">
+          <img src="{% static coll.path %}" alt="{{ coll.path }}" style="width:100%">
+          <div class="text">Collezione {{ coll.nome }}</div>
+       </div>
+   {% endfor %}
+
+       <div style="text-align:center">
+           {% for coll in collezionelist %}
+               <span class="dot" onclick="currentSlide(coll.slide)"></span>
+           {% endfor %}
+       </div>
+
+</div>   <!-- slideshow-container -->
+
+<script> // JavaScript for slides
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
+// END JavaScript for slides
+</script>
+
+    <br><br> <br><br>
+
+<!--   =================== CATALOGHI ======================  -->
+    <div class = "tytle-home"> Cataloghi </div>
+
+    {% for cata in catalogolist %}
+        <a href="{% url 'catalogo-detail' cata.pk %}">
+        <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
+             style = "width:28%;  margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
+    {% endfor %}
+<br><br> <br><br>
+
+<!--   =================== PROGETTI ======================  -->
+      <div class = "tytle-home">Progetti </div>
+
+    {% for prog in progettolist %}
+      <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+        <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
+         style="width:28%; margin: 1.5%"/> </a>
+    {% endfor %}
+<br><br><br><br>
+
+<!--   =================== COLLEZIONI ======================  -->
+      <div class = "tytle-home"> Collezioni </div>
+    {% for coll in collezioni_tutti %}
+      <a href="{% url 'collezione-detail' coll.pk %}">
+        <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
+         style="width:17.5%; margin: 0.5%"/> </a>
+    {% endfor %}
+<br><br><br><br><br>
+
+</div> <!-- list-detail -->
+
+{% endblock %} <!-- content -->
+
+<!--   =================== SIDE RICHT ======================  -->
+ <div class="side-right">
+
+     {% block side_right %}
+
+<!--         <div class = "novita" >-->
+             <p style = "font-size: 20"><b> Novità  </b></p><br>
+             {% for nov in novita %}
+                 <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
+                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    style="height: 27%; text-align: center;"/>  </a>
+             <br><br>
+             {% endfor %}
+
+<!--         </div> &lt;!&ndash; novita &ndash;&gt;-->
+
+     {% endblock %}
+
+ </div>  <!-- side-right -->
+
+
+
+
+
+

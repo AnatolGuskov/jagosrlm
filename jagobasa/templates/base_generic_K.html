@@ -1,0 +1,122 @@
+<!--TEMPLATE JAGOBASA-->
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    {% block title %}<title>Jago basa</title>{% endblock %}
+    <meta charset="utf-8" />
+    <!-- Responsibilaty -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Сompiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Сompiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_jago.css' %}" />
+
+  </head>
+
+ <style>
+
+    .mobila {
+        background: black;
+        border: 1px solid red;
+        position: absolute;
+        left: 0.0%;     top:0%;
+        width: 500px;   height: 100.0%;
+
+    }
+   .mobila-top {
+        background: black;
+        border: 0px solid black;
+        position: relative;
+        left: 0.0%;     top:0%;
+        width: 100%;   height: 20.0%;
+        padding-left: 0;
+        color: white;
+        font-size: 11px;
+        list-style: none;
+    }
+
+     .mobila-content {
+        background: red;
+        position: relative;
+        left:0%;       top:20%;
+        width: max 100%;   height: 50.0%;
+        border: 1px solid white;
+        padding-left: 0px;
+        color: white;
+     }
+
+    .mobila-bottom {
+        background: black;
+        position: relative;
+        left:0%;       top:70%;
+        width: 100%;   height: 30.0%;
+
+
+    }
+
+
+    </style>
+
+ <body>
+
+<!--  ====================================================    -->
+
+{% block sidebar %}
+<!--<div class="side-left-0">-->
+<!--</div>  &lt;!&ndash; side-left-0 &ndash;&gt;-->
+
+<side-left class="side-left">
+
+    <div class = "image-logo">
+         <img src="{% static 'img_background/JAGO Logo White.jpg' %}" alt="Jago - Italian lighting"
+                     style="width:100%;"/>
+    </div>
+
+    <div class="menu">
+            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>
+            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
+            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
+            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
+            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
+    </div>  <!-- menu -->
+
+    <div class="copy-right">
+         <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
+                   style="width:100%;"/>
+    </div>  <!-- copy_right  -->
+
+
+</side-left> <!-- side_left -->
+
+
+ {% endblock %} <!-- sidebar -->
+<!--   ==========================================================  -->
+
+        <content class="content">
+          {% block content %}
+
+          {% endblock %}
+        </content>
+
+  <!--   ==========================================================  -->
+
+        <side-right class="side-right">
+          {% block side_right %}
+
+          {% endblock %}
+        </side-right>
+
+
+ </body>
+
+
+</html>

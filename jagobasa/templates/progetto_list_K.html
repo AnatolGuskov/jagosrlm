@@ -1,0 +1,95 @@
+<!--TEMPLATE COLLEZIONE-->
+
+ <style>
+
+
+
+    .progetto-list {
+        background: none;
+        color: white;
+        position: absolute;
+        overflow: auto;
+        left:0px;       top:10%;
+        width: 100%;   height: 89.5%;
+        /* Chrom */                    /* Safari  */             /* FireFox  */
+        -webkit-column-width: 100.0%; -moz-column-width: 100.0%; column-width: 100.0%;
+        -webkit-column-count: 2;      -moz-column-count: 2;      column-count: 2;
+        -webkit-column-gap: 0%;       -moz-column-gap: 0%;       column-gap: 0%;
+        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+    }
+
+    </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>Collezioni</title>{% endblock %}
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class = "tytle-page">
+        <p> {{ text_count }} di Jago </p>
+</div>
+
+<div class="collezione-list">
+<p>
+      {% for prog in progettolist %}
+      <figure style ="margin: 1.5%">
+        <p style="font-size: 12px; color: white" > {{ prog.nome }}</p>
+        <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+            <img class = "scale-border" title = "Collection of lighting {{prog.nome}}"
+             src="{% static prog.path %}" alt="{{ prog.nome }}"
+             style="width:350px"/> </a>
+      </figure>
+      {% endfor %}
+</p>
+</div>   <!-- collezione-list -->
+
+{% endblock %} <!-- content -->
+
+<!-- ===========  SIDE RIGHT ===================================== -->
+
+{% block side_right %}
+
+<div class = "right-image-top">
+
+    {% if modo == 1 %}        <!-- modo di totale stanze -->
+        <p style = "color: white; font-size: 18"><b> Stanze </b></p>
+        {% for stanza in stanzalist %}
+            {% if stanza.num_prog > 0 %}
+            <p style="text-align: left;">
+            <a class = "link" href="{% url 'progetto' stanza.id %}"
+               style = "font-size: 12; line-height: 0.8;"><b> {{ stanza.nome }} ({{ stanza.num_prog }}) </b></a></p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if modo == 2 %}         <!-- modo di progetto unico -->
+    <p style = "color: white; font-size: 18"><b> {{ progetto_nome }}</b></p>
+        <a href="{% url 'progetto' stanza_id %}">
+            <p style = "color: white; font-size: 12"> {{ progetto_stanza }}</p></a>
+        {% for prod in prodotti %}
+        <a href="{% url 'prodotto' prod.id 4 progetto_id %}">
+            <p style = "color: white; font-size: 12"><b> {{ prod.nome }} </b></p></a>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class = "right-list">
+      <p style = "font-size: 13; color: white"> <b>{{ text_count }}: {{ num_progetti }}</b> </p>
+      {% for prog in progettolist %}
+        <figure style ="margin: 1.5%">
+        <p style="font-size: 11px; color: white:">{{ prog.menu }}</p>
+        <p style=""> <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+            <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
+                 style = height:110px;"/>  </a></p>
+         </figure>
+
+      {% endfor %}
+</div>
+
+
+{% endblock %}  <!-- side-right -->
+
+

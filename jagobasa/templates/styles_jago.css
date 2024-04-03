@@ -1,0 +1,94 @@
+.tytle_jagopage {
+    background: none;
+    position: absolute;
+    left:5%;       top:1%;
+    width: 50.0%;   height: 15.0%;
+    padding-left: 0;
+    font-family: Anton;
+    font-size: 45px;
+    color: yellow
+}
+
+    .side_left {
+        background: black;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0%;
+        width: 13.0%;   height: 98.0%;
+        padding-left: 0;
+        list-style: none;
+    }
+
+     .content {
+        background: black;
+        border: 0px solid black;
+        position: absolute;
+        left:13.15%;       top:0px;
+        width: 71.70%;   height: 98.0%;
+        padding-left: 20px;
+        color: white;
+     }
+
+    .side_right {
+        background: black;
+        border: 0px solid black;
+        position: absolute;
+        left:85%;       top:0px;
+        width: 15.0%;   height: 98.0%;
+        padding-left: 10px;
+        list-style: none;
+        color: yellow;
+        overflow: auto;
+
+
+    }
+
+    .menu {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:2.0%;       top:0.0%;
+        width: 97%;   height:;
+        padding-left: 0;
+        list-style: none;
+        color: yellow;
+    }
+    .copy_right {
+        border: 0px solid black;
+        position: absolute;
+        left:4.0%;       top:81.0%;
+        line-height: 0.8;
+        color: yellow;
+    }
+
+
+
+
+
+
+    .sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 60.0%;
+        left: -17.0%;
+        width: 79.0%;
+        color: white
+    }
+
+    a.button {
+          display: inline-block;
+          background: RoyalBlue;
+          color: white;
+          padding: 1px;
+          border-radius: 10px;
+          text-decoration: none;
+          font-family: Tahoma;
+          font-size: 12px;
+          line-height: 1.0;
+          font-weight: 80;
+    }

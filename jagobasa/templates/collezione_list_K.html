@@ -1,0 +1,65 @@
+<!--TEMPLATE COLLEZIONE-->
+    <style>
+
+    </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>Collezioni</title>{% endblock %}
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class = "tytle-page">
+        <p> {{tytle_nome}} di Jago </p>
+</div>
+
+<div class="collezione-list">
+<p>
+      {% for col in collist %}
+         <figure style ="margin: 1.5%">
+         <p style="width:70.0%; font-size: 12px; color: white; text-align: left;"> {{ col.nome }} </p>
+         {% if catalogo_pk %}
+          <a href="{% url 'catalogo-detail-collezione' catalogo_pk col.pk %}">
+            <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
+            style="height: 170px"/></a>
+         {% else %}
+         <a href="{% url 'collezione-detail' col.pk %}">
+            <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
+            style="height: 120px"/></a>
+         {% endif %}
+        </figure>
+      {% endfor %}
+</p>
+</div>   <!-- collezione-list -->
+
+{% endblock %} <!-- content -->
+
+<!-- ======================================================================= -->
+{% block side_right %}
+
+<div class = "right-image-top">
+    <a href="{% url 'index' %}">
+            <img src="{% static right_img %}" alt=""
+            style="border: 1px solid white; width: 100%; height: 100%; object-fit: fill"/> </a>
+
+    <h3 style = ""><b> {{ right_text }}</b></h3>
+</div>
+
+
+<div class = "right-list">
+    <p></p>
+    <p style = "font-size: 13; text-align: left;"><b> Totale: {{num_collezione}} </b></p>
+    {% for col in collist %}
+        {% if col.prodotto_set.all.count == 0 %}
+        <p style="text-align: left;">
+           <a class = "link" href="{% url 'collezione-detail' col.pk %}"> {{ col.nome }} </a></p>
+        {% else %}
+        <p style="text-align: left;">
+           <a class = "link" href="{% url 'collezione-detail' col.pk %}"> {{ col.nome }}&nbsp;&nbsp;({{col.prodotto_set.all.count}}) </a></p>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %} <!-- site_right -->

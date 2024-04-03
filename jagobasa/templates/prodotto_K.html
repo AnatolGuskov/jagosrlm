@@ -1,0 +1,108 @@
+
+<style>
+
+  .tytle-add {
+        background: none;
+        position: absolute;
+        left:56%;       top:13.5%;
+        width: 44.0%;   height: 15.0%;
+        padding-left: 0;
+        font-family: Anton;
+        font-size: 15px;
+        color: white;
+    }
+
+   .image-prodotto {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:3.0%;       top:10.0%;
+        width: 40.0%;   height: 90.0%;
+        padding-left: 0px;
+    }
+
+    .tipi-prod {
+        position: absolute;
+        left:56%;       top:20%;
+        width: 43.0%;   height: 50.0%;
+        padding-left: 0;
+        font-size: 10;
+        color: white;
+    }
+
+    .scheda-prod {
+        position: absolute;
+        left:70%;       top:50%;
+        width: 25.0%;   height: 45.0%;
+        padding-left: 0;
+        font-size: 10;
+        color: yellow;
+    }
+
+</style>
+
+<body>
+
+{% extends "prodotti_coll_tipo_K.html" %}
+{% block title %}<title>Prodotto</title>{% endblock %}
+{% load static %}
+<!--    ================================================== -->
+{% block content %}
+
+<div class="tytle-page">
+     <p> {{ prodotto.nome }}  </p>
+<!--    set-{{ set }} tipo-{{ tipo_id }} cat-{{ catalogo_pk }} ind-{{ catalogo_ind }} -->
+</div>
+
+<div class="tytle-add">
+         <p> {{ prod_nome }}</p>
+</div>
+
+<div class = "image-prodotto">
+    {% for img in prod_images %}
+         <img src="{% static img.path %}" alt="{{ img.path }}"
+         style="height:100%; border: 0px solid white;"/>
+        <br><br>
+    {% endfor %}
+</div>  <!-- image prodotto -->
+
+<div class = "tipi-prod">
+    {% for tip in tipi %}
+        <a href="{% url 'tipo-detail' tip.pk %}"
+           style = "color: white"> {{ tip }}
+        </a> <br>
+    {% endfor %}<br>
+
+    {{ misura }}<br>
+    {{ altezza }}<br>
+    {{ materiale }}<br><br>
+
+    {% for luc in prodotto_luc %}
+        {% if luc.quantita %}
+            {{ luc.quantita }} x {{ luc.lampadina }}<br>
+        {% endif %}
+    {% endfor %}<br>
+
+    {% for prog in prodotto_progetti %}
+        <a href="{% url 'progetto-detail' prog.stanza prog.id %}"
+           style = "color: white"> {{ prog.nome }}
+        </a> <br>
+    {% endfor %}<br>
+
+</div>  <!-- tipi-prod -->
+
+<div class = "scheda-prod">
+    {% if img_scheda %}
+<!--        <p> {{ img_scheda }} {{ prodotto_schede }} {{ prod_pk }} </p>-->
+         <img src="{% static img_scheda %}" alt="{{ img_scheda }}"
+         style="height:100%; border: 0px solid white;"/>
+        <br><br>
+    {% endif %}
+</div>  <!-- scheda-prod -->
+
+{% endblock %}  <!-- content -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!--TEMPLATE INDEX-->
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+
+    <meta charset="utf-8" />
+    <!-- Responsibilaty -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Сompiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Сompiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_jago.css' %}" />
+
+
+  </head>
+
+<style>
+
+    .mobil-top-logo {
+        background: black;
+        border: 0px solid green;
+        position: absolute;
+        left: 0.0%;     top:0%;
+        width: 50%;   height: 16.0%;
+        padding-left: 0;
+    }
+    .mobil-top-menu {
+        background: black;
+        border: 0px solid blue;
+        position: absolute;
+        left:50.0%;       top:0.0%;
+        width: 50%;       height:16%;
+        padding-top: 1%; padding-left: 5%;
+        line-height: 1.2;
+        list-style: none;
+    }
+
+    .mobil-content {
+        background: black;
+        position: absolute;
+        left:0%;       top:16%;
+        width: 100%;   height: 62.0%;
+        border: 0px solid red;
+        padding-left: 0px;
+        color: white;
+     }
+     .mobil-bottom {
+        background: black;
+        position: absolute;
+        left:0%;       top:78%;
+        width: 100%;   height: 22.0%;
+        border: 0px solid red;
+        padding-left: 0px;
+        color: white;
+     }
+
+.tytle-page {
+    background: none;
+    border: 0px solid blue;
+    position: absolute;
+    left:0.0%;     top:1%;
+    width: 100%;   height: 10.0%;
+    padding-right: 5%;
+    font-family: Anton;
+    font-size: 20px;
+    color: white;
+    text-align: right;
+}
+.list-detail {
+        background: none;
+        justify-content: space-between;
+        position: relative;
+        left:0%;       top:1%;
+        width: 100%;     height: 100.0%;
+        padding-left: 1.5%;
+        overflow: auto;
+}
+.list-cataloghi {
+        line-height: 3.5;
+        background: none;
+        position: relative;
+        left:0.0%;       top:0.0%;
+        width: 100%;    hight: 0.0%;
+}
+.catalog-image {
+        background: none;
+        position: relative;
+        left: 0.0%;       top:0.0%;
+        width: 50%;    hight: 0.0%;
+        border: 3px solid rgb(100, 100, 100);
+}
+.catalog-coll {
+        background: none;
+        position: relative;
+        left: 0.0%;       top:0.0%;
+        width: 50%;    hight: 0.0%;
+        border: 0px solid white;
+        padding-left: 10px;
+}
+.novita {
+        background: none;
+        position: absolute;
+        left:0.0%;       top:5%;
+        width: 100.0%;    height: 95.0%;
+        padding-left: 3%;
+        text-align: center;
+}
+
+<!--   =================== SCALE IMAGE ======================  -->
+.scale0 {
+       transform: scale(1.0)
+}
+.scale0:hover {
+       transition: 0.5s;      /* Время эффекта *
+       transform: scale(1.1); /* Увеличиваем масштаб */
+}
+.scale1 {
+       transition: 0.3s; /* Время эффекта */
+}
+.scale1:hover {
+       transform: scale(1.0); /* Увеличиваем масштаб */
+       border: 2px solid white;
+}
+<!--   =================== SLIDE SHOW ======================  -->
+* {box-sizing:border-box}
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: top;}
+
+.slideshow-container {
+  width: 100%; hight = 100%
+  position: absolut;
+  margin: auto;
+  padding-top: 0%;
+}
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+/* Slide text */
+.text {
+  color: #f2f2f2;
+  font-size: 13px;
+  padding: 8px 12px;
+  position: relative;
+  bottom: 24%;
+  width: 100%;
+  text-align: center;
+}
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+  background-color: rgb(80, 80, 80);
+}
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+@keyframes fade {
+  from {opacity: 0.3}
+  to   {opacity: 1.0}
+}
+<!--   =================== END SLIDE SHOW END ======================  -->
+
+</style>
+
+<body>
+
+{% block title %}<title>JB Index Moba</title>{% endblock %}
+
+
+{% load user_agents %}
+
+<div class="container">
+
+{% if request|is_mobile %}  <!-- MODO MOBILE -->
+
+
+<div class = "mobil-top-logo">
+         <img src="{% static 'img_background/JAGO Logo White.jpg' %}" alt="LOGO"
+                     style="width:100%;"/>
+ </div> <!--<div class = "mobil-top-logo">-->
+
+<div class = "mobil-top-menu" >
+         <a class = "link" href="{% url 'index' %}"><strong>&nbsp;&nbsp;Home</strong></a><br>
+         <a class = "link" href="{% url 'catalogo' %}"><strong>&nbsp;&nbsp;Cataloghi</strong></a><br>
+         <a class = "link" href="{% url 'collezione' %}"><strong>&nbsp;&nbsp;Collezioni</strong></a><br>
+         <a class = "link" href="{% url 'tipo' %}"><strong>&nbsp;&nbsp;Tipi di Prodotti</strong></a><br>
+         <a class = "link" href="{% url 'progetto' 0 %}"><strong>&nbsp;&nbsp;Progetti</strong></a><br>
+ </div> <!--<div class = "mobil-top-menut">-->
+
+<div class = "mobil-content">
+
+<div class = "list-detail">
+
+<!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
+    <p style = "font-family: Anton; font-size: 25px; color: rgb(150, 150, 150)">
+           Presentazione </p>
+<div class="slideshow-container">
+
+   {% for coll in collezionelist %}
+       <div class="mySlides fade">
+          <img src="{% static coll.path %}" alt="{{ coll.path }}" style="width:100%">
+          <div class="text">Collezione {{ coll.nome }}</div>
+       </div>
+   {% endfor %}
+
+       <div style="text-align:center">
+           {% for coll in collezionelist %}
+               <span class="dot" onclick="currentSlide(coll.slide)"></span>
+           {% endfor %}
+       </div>
+
+</div>   <!-- slideshow-container -->
+
+<script> // JavaScript for slides
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
+// END JavaScript for slides
+</script>
+
+    <br><br> <br><br>
+
+<!--   =================== CATALOGHI ======================  -->
+    <p style = "font-family: Anton; font-size: 25px; color: rgb(150, 150, 150)">
+           Cataloghi </p>
+    {% for cata in catalogolist %}
+<div class = "list-cataloghi">
+    <div class = "catalog-image">
+        <a href="{% url 'catalogo-detail' cata.pk %}">
+        <img class = "scale1" src="{% static cata.path %}" alt="{{ cata.nome }}"
+         style="width:100%; "/> </a>
+    </div>  <!-- catalog-image -->
+&nbsp;
+    <div class = "catalog-coll">
+        <p style = "font-family: Anton; font-size: 11px; color: rgb(150, 150, 150)">
+           {{ cata.nome }}, {{ cata.num_coll }} collezioni </p>
+        {% for coll in catalogo_colllist %}
+            {% if coll.0 == cata.nome %}
+<!--        <p> {{ coll.2 }} - {{ coll.3 }}</p>-->
+            <a href="{% url 'collezione-detail' coll.1 %}">
+            <img class = "scale1" src="{% static coll.3 %}" alt="{{ coll.3 }}"
+            style="height:14%; width: 16% "/> </a>&nbsp;
+            {% endif %}
+        {% endfor %}
+    </div>  <!-- catalog-coll -->
+</div>  <!-- list-cataloghi -->
+    <br><br>
+    {% endfor %}
+
+
+<!--   =================== PROGETTI ======================  -->
+   <p style = "font-family: Anton; font-size: 25px; color: rgb(150, 150, 150)">
+           Progetti </p>
+    {% for prog in progettolist %}
+      <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+        <img class = "scale1" src="{% static prog.path %}" alt="{{ prog.nome }}"
+         style="width:49%"/> </a>
+    {% endfor %}
+
+</div> <!-- list-detail -->
+
+</div> <!--<div class = "mobil-content">-->
+
+<div class = "mobil-bottom">
+         <div class = "novita" >
+            {% for nov in novita %}
+                 <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
+                    <img class = "scale0" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    style="height: 90%; text-align: center;"/>  </a>
+                 &nbsp; &nbsp; &nbsp;
+             {% endfor %}
+         </div> <!-- novita -->
+</div> <!--<div class = "mobil-bottom">-->
+
+<!--<  ======================================================================================  -->
+<!--<  ======================================================================================  -->
+{% endif %}
+
+{% if request|is_pc or request|is_tablet %}   <!-- MODO PC -->
+
+<div class = "side-left">
+
+    <div class = "image-logo">
+         <img src="{% static 'img_background/JAGO Logo White.jpg' %}" alt="Jago - Italian lighting"
+                     style="width:100%;"/>
+    </div>
+
+    <div class="menu">
+        <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>
+        <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
+        <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
+        <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
+        <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
+    </div>  <!-- menu -->
+
+    <div class = "count-jago">
+        <li>Catalochi: {{ num_cata }}</li>
+        <li>Collezione: {{ num_coll }}</li>
+        <li>Tipi di prodotti: {{ num_tipi }}</li>
+        <li>Prodotti: {{ num_prod }}</li>
+        <li>Progetti: {{ num_prog }}</li>
+        <li>Images: {{ num_imag }}</li>
+    </div>
+
+    <div class="copy-right">
+     <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
+               style="width:100%;"/>
+    </div>  <!-- copy_right  -->
+
+</div> <!--<div class = "side-left">-->
+
+<div class = "content">
+
+    <div class = "tytle-page" style = "font-size: 35px">
+    <p> Jago - Italian lighting </p>
+    </div> <!--<div class = "tytle-page">-->
+
+
+    <div class = "list-detail" style = "top:10%; width: 103%; height: 90.0%;">
+<!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
+        <p style = "font-family: Anton; font-size: 35px; color: rgb(150, 150, 150)">
+           Presentazione </p>
+
+    <div class="slideshow-container">
+       {% for coll in collezionelist %}
+           <div class="mySlides fade">
+              <img src="{% static coll.path %}" alt="{{ coll.path }}" style="width:100%">
+              <div class="text">Collezione {{ coll.nome }}</div>
+           </div>
+       {% endfor %}
+
+       <div style="text-align:center">
+           {% for coll in collezionelist %}
+               <span class="dot" onclick="currentSlide(coll.slide)"></span>
+           {% endfor %}
+       </div>
+    </div>   <!-- slideshow-container -->
+
+    <script> // JavaScript for slides
+        let slideIndex = 0;
+        showSlides();
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+          setTimeout(showSlides, 3000); // Change image every 2 seconds
+        }
+    </script> <!-- END JavaScript for slides -->
+    <br><br> <br><br>
+<!--   =================== CATALOGHI ======================  -->
+    <p style = "font-family: Anton; font-size: 35px; color: rgb(100, 100, 100)">
+           Cataloghi </p>
+
+<div class = "list-cataloghi">
+    {% for cata in catalogolist %}
+<!--    <div class = "catalog-image">-->
+        <a href="{% url 'catalogo-detail' cata.pk %}">
+        <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
+             style = "width:30%;  margin: 1.0%" /> </a>
+<!--    </div>  &lt;!&ndash; catalog-image &ndash;&gt;-->
+
+    {% endfor %}
+</div>  <!-- list-cataloghi -->
+    <br><br>
+
+<!--   =================== PROGETTI ======================  -->
+      <p style = "font-family: Anton; font-size: 35px; color: rgb(100, 100, 100)">
+           Progetti </p>
+    {% for prog in progettolist %}
+      <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+        <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
+         style="width:23%; margin: 0.5%"/> </a>
+    {% endfor %}
+<br><br><br>
+
+<!--   =================== COLLEZIONI ======================  -->
+      <p style = "font-family: Anton; font-size: 35px; color: rgb(100, 100, 100)">
+           Collezioni </p>
+    {% for coll in collezioni_tutti %}
+      <a href="{% url 'collezione-detail' coll.pk %}">
+        <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
+         style="width:13.5%; margin: 0.5%"/> </a>
+    {% endfor %}
+<br><br><br>
+
+    </div> <!-- list-detail -->
+
+</div> <!--<div class = "content">-->
+
+<div class = "side-right">
+    <div class = "novita" style = "top: 2%;">
+        <p style = "color: white; font-size: 20px"><b> Novità  </b></p><br>
+            {% for nov in novita %}
+                 <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
+                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    style="height: 23%; text-align: center;"/>  </a>
+                 <br><br><br>
+             {% endfor %}
+    </div> <!-- novita -->
+</div> <!--<div class = "side-right">-->
+
+{% endif %}
+
+</div> <!--<div class = "container">-->
+
+</body>
+
+</html>
