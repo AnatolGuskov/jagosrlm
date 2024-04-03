@@ -45,7 +45,7 @@ BODY {
     width: 50%;      height:;
     padding-left: 2%;
     color: rgb(220, 220, 220);
-    font-size: 10px;
+    font-size: 12px;
 }
 .count-jago {                           /* mobile */
     background: none;
@@ -61,7 +61,7 @@ BODY {
     display: ;
     border: 0px solid white;
     position: absolute;
-    left:0.0%;       top:0.0%;
+    left:0.0%;       top:.-20.0%;
     width: 0%;     height:0%;
 }
 
@@ -182,6 +182,7 @@ body {
     width: 97%;      height:;
     padding-left: 2%;
     color: rgb(220, 220, 220);
+    font-size: 12px;
 }
 .copy-right {                               /* computer */
     border: 0px solid white;
@@ -238,6 +239,7 @@ body {
     alink: #ff0000;
     color: rgb(220, 220, 220);
     text-decoration: none;
+    font-size: 12px;
 }
 .link:hover {
     color: white;

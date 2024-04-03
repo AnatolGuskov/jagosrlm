@@ -151,8 +151,8 @@ class Progetto (models.Model):
     testo = models.TextField(max_length=1000, blank=True, help_text="", null=True)
 
 
-    def __str__(self):
-        return self.nome
+    # def __str__(self):
+    #     return self.nome
 
 # End PROGETTO     ==========================================================
 
