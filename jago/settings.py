@@ -59,14 +59,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'django_user_agents.middleware.UserAgentMiddleware',
+    # 'django_user_agents.middleware.UserAgentMiddleware',
 
 ]
 
-MIDDLEWARE_CLASSES = (
-    # other middlewares...
-    'django_user_agents.middleware.UserAgentMiddleware',
-)
+# MIDDLEWARE_CLASSES = (
+#     # other middlewares...
+#     'django_user_agents.middleware.UserAgentMiddleware',
+# )
 
 ROOT_URLCONF = 'jago.urls'
 

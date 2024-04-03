@@ -54,9 +54,6 @@
 <!--    set-{{ set }} tipo-{{ tipo_id }} cat-{{ catalogo_pk }} ind-{{ catalogo_ind }} -->
 </div>
 
-<div class="tytle-add">
-         <p> {{ prod_nome }}</p>
-</div>
 
 <div class = "image-prodotto">
     {% for img in prod_images %}
@@ -65,6 +62,10 @@
         <br><br>
     {% endfor %}
 </div>  <!-- image prodotto -->
+
+<div class="tytle-add">
+         <p> {{ prod_nome }}</p>
+</div>
 
 <div class = "tipi-prod">
     {% for tip in tipi %}
