@@ -13,15 +13,7 @@ BODY {
 
 
 /* =============== SIDE-LEFT ====================== */
-.side-left-0 {
-    background: black;
-    border: 0px solid yellow;
-    position: absolute;
-    left: 0.0%;     top:0%;
-    width: 13.0%;   height: 100.0%;
-    padding-left: 0;
-    font-size: 12px;
-}
+
 .side-left {                            /* mobile */
     background: black;
     border: 1px solid white;
@@ -35,14 +27,14 @@ BODY {
     background: none;
     position: absolute;
     left: 1.0;       top:0%;
-    width: 48.0%;   height: 15.0%;
+    width: 50.0%;   height: 15.0%;
 }
 .menu {                               /* mobile */
     background: none;
     border: 0px solid black;
     position: absolute;
-    left:50.0%;      top:0.0%;
-    width: 50%;      height:;
+    left:55.0%;      top:0.0%;
+    width: 45%;      height:;
     padding-left: 2%;
     color: rgb(220, 220, 220);
     font-size: 12px;
@@ -105,17 +97,17 @@ BODY {
     display: ;
     background: black;
     position: absolute;
-    left:0%;       top:-10%;
+    left:-35%;       top:0%;
     width: 0px;   height: 0px;
     border: 0px solid red;
     padding-left: 0px;
     color: black;
  }
- .right-image-top {
+ .right-image-top {                          /* mobile */
         border: 0px solid white;
         background: none;
         position: absolute;
-        top:1.0%;       left:3.0%;
+        top:10.0%;       left:110.0%;
         height: 25.0%;  width: 90.0%;
         padding-left: 0px;
     }
@@ -216,7 +208,7 @@ body {
     width: 93.0%;   height: 10.0%;
     padding-left: 0;
     font-family: Anton;
-    font-size: 40px;
+    font-size: 35px;
     color: white;
 }
 .side-right {                                /* computer */
@@ -228,6 +220,14 @@ body {
     padding-left: 0px;
     color: white;
 }
+.right-image-top {                          /* computer */
+        border: 0px solid white;
+        background: none;
+        position: absolute;
+        top:1.0%;       left:3.0%;
+        height: 25.0%;  width: 90.0%;
+        padding-left: 0px;
+    }
 }
  <!--   =================== END of MEDIA COMPUTER ======================  -->
 

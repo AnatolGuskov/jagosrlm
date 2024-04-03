@@ -4,7 +4,7 @@
   .tytle-add {
         background: none;
         position: absolute;
-        left:56%;       top:13.5%;
+        left:2%;       top:13.5%;
         width: 44.0%;   height: 15.0%;
         padding-left: 0;
         font-family: Anton;
@@ -12,18 +12,18 @@
         color: white;
     }
 
-   .image-prodotto {
+   .image-prodotto {                           /* mobile */
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:3.0%;       top:10.0%;
-        width: 40.0%;   height: 90.0%;
+        left:10.0%;       top:8.0%;
+        width: 40.0%;   height: 92.0%;
         padding-left: 0px;
     }
 
-    .tipi-prod {
+    .tipi-prod {                              /* mobile */
         position: absolute;
-        left:56%;       top:20%;
+        left:3%;       top:8%;
         width: 43.0%;   height: 50.0%;
         padding-left: 0;
         font-size: 10;
@@ -39,6 +39,27 @@
         color: yellow;
     }
 
+@media (min-width: 500px) {
+
+    .tipi-prod {                               /* computer */
+        position: absolute;
+        left:56%;       top:20%;
+        width: 43.0%;   height: 50.0%;
+        padding-left: 0;
+        font-size: 10;
+        color: white;
+    }
+    .image-prodotto {                           /* computer */
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:0.0%;       top:10.0%;
+        width: 40.0%;   height: 90.0%;
+        padding-left: 0px;
+    }
+
+}
+
 </style>
 
 <body>
@@ -50,7 +71,7 @@
 {% block content %}
 
 <div class="tytle-page">
-     <p> {{ prodotto.nome }}  </p>
+     <p> {{ prod_nome }}  </p>
 <!--    set-{{ set }} tipo-{{ tipo_id }} cat-{{ catalogo_pk }} ind-{{ catalogo_ind }} -->
 </div>
 
@@ -63,9 +84,9 @@
     {% endfor %}
 </div>  <!-- image prodotto -->
 
-<div class="tytle-add">
-         <p> {{ prod_nome }}</p>
-</div>
+<!--<div class="tytle-add">-->
+<!--         <p> {{ prod_nome }}</p>-->
+<!--</div>-->
 
 <div class = "tipi-prod">
     {% for tip in tipi %}

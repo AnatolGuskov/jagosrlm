@@ -39,7 +39,7 @@
 
 {% extends "base_generic_K.html" %}
 
-{% block title %}<title>JB Index</title>{% endblock %}
+{% block title %}<title>Jago - Italian Lighting </title>{% endblock %}
 {% load static %}
 
 
@@ -134,7 +134,7 @@ function showSlides() {
     {% for coll in collezioni_tutti %}
       <a href="{% url 'collezione-detail' coll.pk %}">
         <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-         style="width:17.5%; margin: 0.5%"/> </a>
+         style="width:22.5%; margin: 0.5%"/> </a>
     {% endfor %}
 <br><br><br><br><br>
 

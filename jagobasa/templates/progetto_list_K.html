@@ -36,15 +36,18 @@
 <p>
       {% for prog in progettolist %}
       <figure style ="margin: 1.5%">
-        <p style="font-size: 12px; color: white" > {{ prog.nome }}</p>
+        <p style="font-size: 12px; color: white" > {{ prog.nome }} </p>
         <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
             <img class = "scale-border" title = "Collection of lighting {{prog.nome}}"
              src="{% static prog.path %}" alt="{{ prog.nome }}"
-             style="width:350px"/> </a>
+             style="height: 70%; box-shadow: 5px 5px 10px white;"/> </a>
       </figure>
       {% endfor %}
 </p>
 </div>   <!-- collezione-list -->
+
+
+
 
 {% endblock %} <!-- content -->
 
@@ -74,7 +77,7 @@
             <p style = "color: white; font-size: 12"><b> {{ prod.nome }} </b></p></a>
         {% endfor %}
     {% endif %}
-</div>
+</div> <!-- right-image-top -->
 
 <div class = "right-list">
       <p style = "font-size: 13; color: white"> <b>{{ text_count }}: {{ num_progetti }}</b> </p>
@@ -87,7 +90,7 @@
          </figure>
 
       {% endfor %}
-</div>
+</div>    <!-- right-list -->
 
 
 {% endblock %}  <!-- side-right -->

@@ -85,7 +85,7 @@ def index(request):
             catalogo_colllist = catalogo_colllist + [line]
 
 
-# =============== Render =============
+# =============== Render INDEX =============
     return render(
         request,
         'index_K.html',
@@ -240,7 +240,7 @@ def catalogo_detail(request, pk):
         'collezione_list_K.html',
         context={'collist': collist,
                  'num_collezione': num_collezione,
-                 'tytle_nome': 'Collezioni del Catalogo',
+                 'tytle_nome': 'Collezioni di ',
                  'right_img': catalogo.img,
                  'right_text': catalogo.nome,
                  'url_nome': 'catalogo',
