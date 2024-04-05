@@ -44,7 +44,7 @@
 {% block content %}
 
 <div class="tytle-page">
-     <p> {{ tytle_nome }} {{ right_text }} </p>
+     <p> {{ tytle_nome }}  {{ right_text }} </p>
 </div>
 
 <div class = "collezione-list">
@@ -54,7 +54,6 @@
             <img class = "scale-size-small" src="{% static prod.2 %}" alt="{{ prod.2 }}"
             style="height:80%;"/>  </a>
      </figure>
-       <br><br>
 
     {% endfor %}
 
@@ -89,17 +88,23 @@
     <p style = "font-size: 12; color: white"><b>Totale: {{prodotti_count}} </b></p>
     {% for prod in prodotti %}
         <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} <br><br>
-
-    {% if prod.2 %}
-    <a href="{% url 'prodotto' prod.0 set url_id %}">
-            <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
-            style="height:90px; text-align: center;"/>  </a> </p><br>
-    {% endif %}
-
-
-
+        {% if prod.2 %}
+        <a href="{% url 'prodotto' prod.0 set url_id %}">
+                <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
+                style="height:90px; text-align: center;"/>  </a> </p><br>
+        {% endif %}
     {% endfor %}
 </div>  <!-- right-list -->
+
+<div class = "novita-mobile">
+    {% for prod in prodotti %}
+        {% if prod.2 %}
+        <a href="{% url 'prodotto' prod.0 set url_id %}">
+                <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
+                style="height:80px; text-align: center;"/>  </a>
+        {% endif %}
+    {% endfor %}
+</div>  <!-- novita-mobile -->
 
 {% endblock %}
 

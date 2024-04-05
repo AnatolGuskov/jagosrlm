@@ -6,7 +6,7 @@ from ctypes  import *
 
 
 from .models import (Catalogo, Collezione, Tipo, Prodotto,
-                     Prodottoimg, ProdottoDet, ProdottoLuc, ProdottoSchede,
+                     ProdottoImg, ProdottoDet, ProdottoLuc, ProdottoSchede,
                      Progetto, TipoStanza)
 
 
@@ -17,7 +17,7 @@ def index(request):
     num_catalogo = Catalogo.objects.all().count()
     num_collezione = Collezione.objects.all().count()
     num_prodotto = Prodotto.objects.all().count()
-    num_images_prod = Prodottoimg.objects.all().filter(image__isnull=False).count()
+    num_images_prod = ProdottoImg.objects.all().filter(image__isnull=False).count()
     num_tipi = Tipo.objects.all().count()
     num_progetto = Progetto.objects.all().count()
     num_images = num_collezione + num_images_prod + num_progetto
@@ -28,8 +28,8 @@ def index(request):
     prodotti_nov = []
     for prod in novita:
         line = []
-        images = Prodottoimg.objects.all().filter(prodotto = prod.id)
-        image_count = Prodottoimg.objects.all().filter(prodotto = prod.id).count()
+        images = ProdottoImg.objects.all().filter(prodotto = prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto = prod.id).count()
         for x in range (image_count):
             line = line + [prod.id]                 #0 id
             line = line + [images[x].img_nome]      #1 nome_image
@@ -189,8 +189,8 @@ def collezione_detail(request, pk):
     for prod in prodotto:
         prodotti_count += 1
         line = []
-        images = Prodottoimg.objects.all().filter(prodotto = prod.id)
-        image_count = Prodottoimg.objects.all().filter(prodotto = prod.id).count()
+        images = ProdottoImg.objects.all().filter(prodotto = prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto = prod.id).count()
         for x in range (image_count):
             line = line + [prod.id]                 #0 id
             line = line + [images[x].img_nome]      #1 nome_image
@@ -323,8 +323,8 @@ def tipo_detail(request, pk ):
     for prod in prodotto:
         prodotti_count += 1
         line = []
-        images = Prodottoimg.objects.all().filter(prodotto=prod.id)
-        image_count = Prodottoimg.objects.all().filter(prodotto=prod.id).count()
+        images = ProdottoImg.objects.all().filter(prodotto=prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         for x in range(image_count):
             line = line + [prod.id]             # 0 id
             line = line + [images[x].img_nome]  # 1 nome_image
@@ -390,8 +390,8 @@ def prodotto(request, pk, set, url_id):
     for prod in prodotto_set:
         prodotti_count = prodotti_count + 1
         line = []
-        images = Prodottoimg.objects.all().filter(prodotto=prod.id)
-        image_count = Prodottoimg.objects.all().filter(prodotto=prod.id).count()
+        images = ProdottoImg.objects.all().filter(prodotto=prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         for x in range(image_count):
             line = line + [prod.id]             # 0 id
             line = line + [images[x].img_nome]  # 1 nome_image
@@ -402,7 +402,7 @@ def prodotto(request, pk, set, url_id):
             prodotti = prodotti + [line]
 
     #  ===================================
-    images = Prodottoimg.objects.all().filter(prodotto = pk)
+    images = ProdottoImg.objects.all().filter(prodotto = pk)
     for img in images:
         img.path = str(img.image)
         img.path = img.path[img.path.find("static") + 7:]

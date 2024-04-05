@@ -70,7 +70,7 @@ class Prodotto(models.Model):
 # End PRODOTTO       ==========================================================
 
 # PRODOTTO IMAGE        Model representing a Image dei Prodotti
-class Prodottoimg(models.Model):
+class ProdottoImg(models.Model):
     class Meta:
         ordering = ["img_nome"]
 

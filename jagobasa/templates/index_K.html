@@ -3,36 +3,19 @@
 
 <style>
 
+
 .list-detail {
         background: none;
         justify-content: space-between;
         position: absolute;
         left:1.5%;       top:10%;
         width: 98.5%;     height: 90.0%;
-        overflow: auto;
+        overflow-y: scroll;
+}
+.list-detail::-webkit-scrollbar  {
+        display: none;
 }
 
-.novita {
-        background: none;
-        position: absolute;
-        left:0.0%;       top:2%;
-        width: 96.0%;    height: 89.0%;
-        padding-left: 0;
-        text-align: center;
-}
-.tytle-home {                                /* mobile */
-    background: none;
-    font-family: Anton;
-    font-size: 15px;
-    color: rgb(150, 150, 150);
-}
-@media (min-width: 790px) {
-.tytle-home {                                /* computer */
-    font-family: Anton;
-    font-size: 35px;
-    color: rgb(150, 150, 150);
-}
-}
 
 </style>
 
@@ -147,16 +130,28 @@ function showSlides() {
 
      {% block side_right %}
 
+         <div class = "novita-mobile" >
+             {% for nov in novita %}
+                 <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
+                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    style="height: 80px; text-align: center;"/>  </a>
+
+             {% endfor %}
+         </div> <!-- novita-mobile -->
+
+
          <div class = "novita" >
              <p style = "font-size: 20; text-align: center;"><b> Novità  </b></p><br>
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
                     <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
-                    style="height: 27%; text-align: center;"/>  </a>
+                    style="height: 25%; text-align: center;"/>  </a>
              <br><br>
              {% endfor %}
-
          </div> <!-- novita -->
+
+
+
 
      {% endblock %}
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (Catalogo, Collezione, Tipo, Prodotto,
-                     Prodottoimg, ProdottoDet, ProdottoLuc, ProdottoSchede,
+                     ProdottoImg, ProdottoDet, ProdottoLuc, ProdottoSchede,
                      Progetto, TipoStanza)
 
 from import_export.admin import ImportExportActionModelAdmin
@@ -66,17 +66,17 @@ admin.site.register(Prodotto, ProdottoAdmin)
 
 #========================= Prodotto ===================================
 #========================== PRODOTTOIMG ==============================
-class ProdottoimgResource(resources.ModelResource):
+class ProdottoImgResource(resources.ModelResource):
 
    class Meta:
-       model = Prodottoimg
+       model = ProdottoImg
 
-class ProdottoimgAdmin(ImportExportActionModelAdmin):
-    resourse_class = ProdottoimgResource
-    list_display = ('id', 'img_nome', 'prodotto',)
+class ProdottoImgAdmin(ImportExportActionModelAdmin):
+    resourse_class = ProdottoImgResource
+    list_display = ('id', 'img_nome', 'image',)
     # list_filter = ('catalogo', )
 
-admin.site.register(Prodottoimg, ProdottoimgAdmin)
+admin.site.register(ProdottoImg, ProdottoImgAdmin)
 
 #========================== Prodottoimg ==============================
 #========================== PRODOTTODET ==============================
