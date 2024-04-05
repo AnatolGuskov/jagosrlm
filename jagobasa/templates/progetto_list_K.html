@@ -22,7 +22,7 @@
 <!--  ======================================================= -->
 
 {% extends "base_generic_K.html" %}
-{% block title %}<title>Collezioni</title>{% endblock %}
+{% block title %}<title>Progetti</title>{% endblock %}
 {% load static %}
 
 <!--  ======================================================= -->
@@ -35,7 +35,7 @@
 <div class="collezione-list">
 <p>
       {% for prog in progettolist %}
-      <figure style ="margin: 1.5%">
+      <figure style ="margin: 0%">
         <p style="font-size: 12px; color: white" > {{ prog.nome }} </p>
         <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
             <img class = "scale-border" title = "Collection of lighting {{prog.nome}}"

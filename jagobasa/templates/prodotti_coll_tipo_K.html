@@ -49,11 +49,11 @@
 
 <div class = "collezione-list">
     {% for prod in prodotti %}
-    <figure style ="margin: 1.5%">
+
          <a href="{% url 'prodotto' prod.0 set url_id %}">
             <img class = "scale-size-small" src="{% static prod.2 %}" alt="{{ prod.2 }}"
-            style="height:80%;"/>  </a>
-     </figure>
+            style="width:45%;"/>  </a>
+
 
     {% endfor %}
 
@@ -101,7 +101,7 @@
         {% if prod.2 %}
         <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
-                style="height:80px; text-align: center;"/>  </a>
+                style="width: 18%; text-align: center;"/>  </a>
         {% endif %}
     {% endfor %}
 </div>  <!-- novita-mobile -->
