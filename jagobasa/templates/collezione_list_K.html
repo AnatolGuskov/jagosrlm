@@ -20,22 +20,27 @@
 </div>
 
 <div class="collezione-list">
-<p>
+
       {% for col in collist %}
-        <figure style ="margin: 2.0%">
-         <p style="width:100.0%; font-size: 12px; color: white; text-align: left;"> {{ col.nome }} ({{col.prodotto_set.all.count}}) </p>
+
+        <figure style = "display:inline-block; max-width: 22%; margin: 2.0">
+            <p style = "font-size: 10; margin-top: 0.1em; margin-bottom: 0.1em; text-align: left;">{{ col.nome }}</p>
          {% if catalogo_pk %}
           <a href="{% url 'catalogo-detail-collezione' catalogo_pk col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="height: 170px"/></a>
+            style="width: 30%;"/>  </a>
          {% else %}
          <a href="{% url 'collezione-detail' col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="height: 170px"/></a>
+            style="width: 100%; "/></a>
          {% endif %}
+            <br>  <br>
         </figure>
+
+
+
       {% endfor %}
-</p>
+
 </div>   <!-- collezione-list -->
 
 {% endblock %} <!-- content -->
@@ -61,14 +66,14 @@
            <a class = "link" href="{% url 'collezione-detail' col.pk %}"> {{ col.nome }} </a></p>
         {% else %}
         <p style="text-align: left;">
-           <a class = "link" href="{% url 'collezione-detail' col.pk %}"> {{ col.nome }}&nbsp;&nbsp;({{col.prodotto_set.all.count}}) </a></p>
+           <a class = "link" href="{% url 'collezione-detail' col.pk %}">{{ col.nome }}&nbsp;&nbsp;({{col.prodotto_set.all.count}}) </a></p>
         {% endif %}
     {% endfor %}
 </div>
 
 <div class = "novita-mobile" style = "text-align: left; font-size: 12; padding-right: 20%">
     {% for col in collist %}
-        <a class = "link" href="{% url 'collezione-detail' col.pk %}"> {{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
+        <a class = "link" href="{% url 'collezione-detail' col.pk %}"> &nbsp;&nbsp;{{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
     {% endfor %}
 </div>
 

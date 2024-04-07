@@ -20,14 +20,14 @@
 <div class="collezione-list">
 
       {% for tipo in tiplist %}
-      <figure style = "margin: 1.5%">
-         <p style="font-size: 12px; color: white" >{{ tipo.tipo }}</p>
-
+      <figure style = "display:inline-block; max-width: 22%; margin: 2.0">
+         <p style="font-size: 10; margin-top: 0.1em; margin-bottom: 0.1em; text-align: left;" >{{ tipo.tipo }}</p>
          <a href="{% url 'tipo-detail' tipo.pk %}">
         <img class = "scale-border" src="{% static tipo.path %}" alt="{{ tipo.tipo }}"
-         style="height:170px"/> </a>
+         style="width: 90%"/> </a>
+         <br> <br>
       </figure>
-         <br>  <p></p>
+
       {% endfor %}
 
 </div>   <!-- collezione-list -->
