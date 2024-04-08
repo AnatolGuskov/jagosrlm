@@ -5,6 +5,7 @@
 <!--  ======================================================= -->
 
 {% extends "base_generic_K.html" %}
+
 {% block title %}<title>Collezioni</title>{% endblock %}
 {% load static %}
 
@@ -28,16 +29,14 @@
          {% if catalogo_pk %}
           <a href="{% url 'catalogo-detail-collezione' catalogo_pk col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="width: 30%;"/>  </a>
+            style="width: 90%;"/>  </a>
          {% else %}
          <a href="{% url 'collezione-detail' col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="width: 100%; "/></a>
+            style="width: 90%; "/></a>
          {% endif %}
             <br>  <br>
         </figure>
-
-
 
       {% endfor %}
 
@@ -56,7 +55,6 @@
     <h3 style = ""><b> {{ right_text }}</b></h3>
 </div>
 
-
 <div class = "right-list">
     <p></p>
     <p style = "font-size: 13; text-align: left;"><b> Totale: {{num_collezione}} </b></p>
@@ -71,9 +69,15 @@
     {% endfor %}
 </div>
 
-<div class = "novita-mobile" style = "text-align: left; font-size: 12; padding-right: 20%">
+<div class = "right-nome-top">
+  <p> <b> &nbsp;&nbsp;Collezione totale: {{num_collezione}} </b> </p>
+</div>
+
+<div class = "novita-mobile" style = "text-align: left; font-size: 11;">
     {% for col in collist %}
-        <a class = "link" href="{% url 'collezione-detail' col.pk %}"> &nbsp;&nbsp;{{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
+        <a class = "link" href="{% url 'collezione-detail' col.pk %}">
+           &nbsp;&nbsp;{{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
+        <br>
     {% endfor %}
 </div>
 

@@ -1,40 +1,48 @@
 BODY {
     background: rgb(100, 100, 100); /* Цвет фона веб-страницы */
+    left:0.0%;       top:00%;
+    width: 100.0%;   height: 100.0%;
    }
-   A {
+A {
     color: rgb(220, 220, 220); /* Цвет ссылок */
    }
-   A:visited {
+A:visited {
     color: #cecece; /* Цвет посещенных ссылок */
    }
-   A:active {
+A:active {
     color: #ffff00; /* Цвет активных ссылок */
    }
+
 /* =============== HOME ====================== */
 
 .novita-mobile {                                     /* mobile */
             display: flex;
             display: block;
             background: black;
+            border: 0px solid white;
             position: absolute;
-            left:0.0%;       top:20%;
+            left:0.0%;       top:21%;
             width: 100.0%;   height: 79.0%;
             padding-left: 2%;
-            overflow: auto;
+            overflow: scroll;
             /* Chrom  Safari  */          /* FireFox  */
-        -webkit-column-width: 100.0%; -moz-column-width: 100.0%; column-width: 100.0%;
-        -webkit-column-count: 1;     -moz-column-count: 1;     column-count: 1;
+        -webkit-column-width: 50.0%; -moz-column-width: 50.0%; column-width: 50.0%;
+        -webkit-column-count: 2;     -moz-column-count: 2;     column-count: 2;
         -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;
         -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
     }
 .novita {                                           /* mobile */
             display: none;
+    }
+
+.novita-tytle {                                     /* mobile */
+            display: block;
             background: black;
             position: absolute;
-            left:0.0%;       top:0%;
-            width: 100%;    height: 100%;
-            padding-left: 0;
-            text-align: center;
+            left:0.0%;       top:1%;
+            width: 100.0%;   height: 18.0%;
+            padding-left: 2%;
+
     }
 
 .tytle-home {                                /* mobile */
@@ -54,7 +62,6 @@ BODY {
         left: 0.0%;     top:0%;
         width: 100.0%;   height: 16.0%;
         padding-left: 0;
-
     }
 .image-logo {                           /* mobile */
         background: black;
@@ -62,17 +69,18 @@ BODY {
         left: 0.0%;       top:0.0%;
         width: 45.0%;   height: 16.0%;
     }
-.menu {                               /* mobile */
+.menu {                                /* mobile */
         background: black;
-        border: 0px solid black;
+        border: 0px solid yellow;
         position: absolute;
-        left:45.0%;      top:2.0%;
-        width: 55%;      height: 16%;
-        padding-left: 8%;
+        left:50.0%;      top:2.0%;
+        width: 35%;      height: 98%;
+        padding-left: 0%;
         color: rgb(220, 220, 220);
         font-size: 12px;
     }
 .count-jago {                           /* mobile */
+        display: none;
         background: none;
         position: absolute;
         left:-24.0%;      top:-50%;
@@ -81,19 +89,25 @@ BODY {
         color: white;
         font-size: 10px;
     }
-
 .copy-right {                           /* mobile */
         border: 0px solid white;
         position: absolute;
         left:0.0%;       top:.-20.0%;
         width: 0%;     height:0%;
     }
+.social {                              /* mobile */
+        background: black;
+        border: 0px solid red;
+        position: absolute;
+        left: 89.0%;    top:2%;
+        width: 9%;      height: 98.0%;
+     }
 
 /* =============== CONTENT ====================== */
 .content {                             /* mobile */
         background: black;
         position: absolute;
-        left:0%;       top:16.2%;
+        left:0%;         top:16.2%;
         width: 100.0%;   height: 67.6%;
         border: 0px solid green;
         padding-left: 10px;
@@ -119,11 +133,10 @@ BODY {
         text-align: center;
         position: absolute;
         left:0px;       top:8%;
-        width: 100%;   height: 92%;
+        width: 100%;   height: 91%;
         border: 0px solid red;
         padding-left: 0px;
         overflow-y: scroll;
-
     }
 .collezione-list::-webkit-scrollbar {
         display: none;
@@ -159,21 +172,23 @@ BODY {
         text-align: center;
         -webkit-text-stroke: 0.5px black;
     }
-    .right-nome-top {
+ .right-nome-top {                           /* mobile */
+        display: block;
         background: black;
         position: absolute;
-        top: 0%;        left: 2%;
-        width: 90.0%;   height: 15.0%;
-        font-family: Anton;
-        font-size: 15px;
-        color: yellow
-        border: 1px solid white;
+        left: 0%;       top: 0%;
+        width: 100.0%;  height: 19.0%;
+        padding-top: 2px; padding-left: 7px;
+        font-family: Arial;
+        font-size: 13px;
+        color: white;
+        border: 0px solid red;
     }
-    .right-list {                          /* mobile */
+ .right-list {                             /* mobile */
         display: none;
         background: black;
         position: absolute;
-        left: 0%;     top: 0.0%;
+        left: 0%;      top: 0.0%;
         width: 100%;   height: 71%;
         font-family: Arial;
         font-size: 12px;
@@ -183,7 +198,7 @@ BODY {
         text-align: center;
         overflow-y: scroll;
     }
-    .right-list::-webkit-scrollbar {        /* mobile */
+ .right-list::-webkit-scrollbar {        /* mobile */
         display: none;
     }
 
@@ -206,14 +221,14 @@ body {
 .image-logo {                               /* computer */
     background: none;
     position: absolute;
-    left: 2%;       top: 0%;
+    left: 2%;        top: 0%;
     width: 100.0%;   height: 15.0%;
 }
 .menu {                                    /* computer */
     background: none;
     border: 0px solid black;
     position: absolute;
-    left:3.0%;       top:22.0%;
+    left:3.0%;       top:18.0%;
     width: 97%;      height:;
     padding-left: 2%;
     color: rgb(220, 220, 220);
@@ -222,22 +237,34 @@ body {
 .copy-right {                               /* computer */
     border: 0px solid white;
     position: absolute;
-    left: 0.0%;       top: 78.0%;
+    left: 0.0%;      top: 78.0%;
     width: 100%;     height:18%;
 }
-.count-jago {                             /* computer */
+.count-jago {                              /* computer */
+    display: block;
     background: none;
     position: absolute;
-    left:-24.0%;      top:50%;
-    width: 97.0%;   height: 30.0%;
-    padding-left: 3%;
+    left:-20.0%;     top:40%;
+    width: 110.0%;   height: 30.0%;
+    padding-left: 0%;
     color: white;
     font-size: 10px;
 }
+.social {                                  /* computer */
+        background: black;
+        border: 0px solid red;
+        position: absolute;
+        left: 5.0%;      top:70.0%;
+        width: 94.0%;    height: 6.5%;
+        -webkit-column-width: 33.0%; -moz-column-width: 33.0%; column-width: 33.0%;
+        -webkit-column-count: 3;     -moz-column-count: 3;     column-count: 3;
+        -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;
+        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+     }
 .content {                                 /* computer */
     background: black;
     position: absolute;
-    left:13.2%;       top:0px;
+    left:13.2%;     top:0px;
     width: 73.6%;   height: 100.0%;
     border: 0px solid green;
     padding-left: 0px;
@@ -248,7 +275,7 @@ body {
 .tytle-page {                                /* computer */
     background: none;
     position: absolute;
-    left: 3%;        top: 1%;
+    left: 3%;       top: 1%;
     width: 93.0%;   height: 10.0%;
     padding-left: 0;
     font-family: Anton;
@@ -273,6 +300,18 @@ body {
         height: 25.0%;  width: 90.0%;
         padding-left: 0px;
     }
+.right-nome-top {                           /* computer */
+        display: none;
+        background: black;
+        position: absolute;
+        left: 2%;       top: 0%;
+        width: 97.0%;   height: 19.0%;
+        font-family: Anton;
+        font-size: 10px;
+        color: white
+        border: 0px solid white;
+    }
+
 .right-list {                          /* computer */
         display: block;
         background: black;
@@ -294,7 +333,7 @@ body {
 
     .tytle-home {                                /* computer */
         font-family: Anton;
-        font-size: 35px;
+        font-size: 30px;
         color: rgb(150, 150, 150);
     }
     .novita-mobile {                             /* computer */
@@ -317,7 +356,7 @@ body {
 /* =============== EFFECTS ====================== */
 
 .link {
-    link: rgb(220, 220, 220);
+    link:  rgb(220, 220, 220);
     vlink: rgb(220, 220, 220);
     alink: rgb(220, 220, 220);
     color: rgb(220, 220, 220);

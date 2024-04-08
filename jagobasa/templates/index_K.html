@@ -12,6 +12,7 @@
         width: 98.5%;     height: 90.0%;
         overflow-y: scroll;
 }
+
 .list-detail::-webkit-scrollbar  {
         display: none;
 }
@@ -25,6 +26,56 @@
 {% block title %}<title>Jago - Italian Lighting </title>{% endblock %}
 {% load static %}
 
+{% block sidebar %}
+
+<side-left class="side-left">
+
+    <div class = "image-logo">
+         <img src="{% static 'img_background/JAGO Logo Yellow.jpg' %}" alt="Jago - Italian lighting"
+                     style="width:98%;"/>
+    </div>
+
+    <div class="menu">
+            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>
+            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
+            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
+            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
+            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
+    </div>  <!-- menu -->
+
+    <div class = "count-jago">
+  <ul>
+    <li>Catalochi: {{ num_cata }}</li>
+    <li>Collezione: {{ num_coll }}</li>
+    <li>Tipi Prodotti: {{ num_tipi }}</li>
+    <li>Prodotti: {{ num_prod }}</li>
+    <li>Progetti: {{ num_prog }}</li>
+    <li>Images: {{ num_imag }}</li>
+  </ul>
+ </div>
+
+    <div class = "social">
+          <a href="https://facebook.com/jagolampadari" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Facebook.jpg' %}" alt="Jago - Facebook"
+                     style="width: 28px;"/> </a>
+          <a href="https://www.instagram.com/jago_italian_lighting" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Instagram.jpg' %}" alt="Jago - Instagram"
+                     style="width: 28px;"/> </a>
+          <a href="viber://chat?number=393334953433" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Viber.jpg' %}" alt="Jago - Viber"
+                     style="width: 28px;"/> </a>
+    </div>
+
+    <div class="copy-right">
+         <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
+                   style="width:100%;"/>
+    </div>  <!-- copy_right  -->
+
+
+</side-left> <!-- side_left -->
+
+
+ {% endblock %} <!-- sidebar -->
 
 {% block content %}
 
@@ -32,16 +83,7 @@
     <p> Jago - Italian lighting </p>
 </div>
 
-<div class = "count-jago">
-  <ul>
-    <li>Catalochi: {{ num_cata }}</li>
-    <li>Collezione: {{ num_coll }}</li>
-    <li>Tipi di prodotti: {{ num_tipi }}</li>
-    <li>Prodotti: {{ num_prod }}</li>
-    <li>Progetti: {{ num_prog }}</li>
-    <li>Images: {{ num_imag }}</li>
-  </ul>
- </div>
+
 
 
 <div class = "list-detail">
@@ -141,7 +183,7 @@ function showSlides() {
 
 
          <div class = "novita" >
-             <p style = "font-size: 20; text-align: center;"><b> Novità  </b></p><br>
+             <p style = "font-size: 20; text-align: center;"><b> Nuovi prodotti  </b></p><br>
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
                     <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"

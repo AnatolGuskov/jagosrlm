@@ -94,12 +94,16 @@
     {% endfor %}
 </div>  <!-- right-list -->
 
+<div class = "right-nome-top">
+  <p> <b> &nbsp;&nbsp;Prodotti di {{ right_text }} totali: {{prodotti_count}} </b> </p>
+</div>
+
 <div class = "novita-mobile">
     {% for prod in prodotti %}
         {% if prod.2 %}
         <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
-                style="width: 18%; text-align: center;"/>  </a>
+                style="width: 30%; text-align: center;"/>  </a>
         {% endif %}
     {% endfor %}
 </div>  <!-- novita-mobile -->

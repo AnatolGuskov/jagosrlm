@@ -93,6 +93,18 @@
       {% endfor %}
 </div>    <!-- right-list -->
 
+<div class = "right-nome-top">
+  <p> <b> Progetti totali: {{num_progetti}} </b> </p>
+</div>
+
+<div class = "novita-mobile" style = "text-align: left; font-size: 11;">
+    {% for stanza in stanzalist %}
+            {% if stanza.num_prog > 0 %}
+               <a class = "link" href="{% url 'progetto' stanza.id %}"
+               style = "font-size: 11; line-height: 1.5;"><b> -&nbsp;{{ stanza.nome }}&nbsp;({{ stanza.num_prog }})&nbsp;- </b></a>
+            {% endif %}
+    {% endfor %}
+</div>
 
 {% endblock %}  <!-- side-right -->
 

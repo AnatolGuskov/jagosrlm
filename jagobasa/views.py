@@ -274,8 +274,8 @@ def catalogo_detail_collezione(request, pk, col):
     for prod in prodotto:
         prodotti_count += 1
         line = []
-        images = Prodottoimg.objects.all().filter(prodotto=prod.id)
-        image_count = Prodottoimg.objects.all().filter(prodotto=prod.id).count()
+        images = ProdottoImg.objects.all().filter(prodotto=prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         for x in range(image_count):
             line = line + [prod.id]  # 0 id
             line = line + [images[x].img_nome]  # 1 nome_image

@@ -25,58 +25,16 @@
     <link rel="stylesheet" href="{% static 'css/styles_jago.css' %}" />
 
   </head>
-
+<!--  ====================================================    -->
  <style>
 
-    .mobila {
-        background: black;
-        border: 1px solid red;
-        position: absolute;
-        left: 0.0%;     top:0%;
-        width: 500px;   height: 100.0%;
 
-    }
-   .mobila-top {
-        background: black;
-        border: 0px solid black;
-        position: relative;
-        left: 0.0%;     top:0%;
-        width: 100%;   height: 20.0%;
-        padding-left: 0;
-        color: white;
-        font-size: 11px;
-        list-style: none;
-    }
-
-     .mobila-content {
-        background: red;
-        position: relative;
-        left:0%;       top:20%;
-        width: max 100%;   height: 50.0%;
-        border: 1px solid white;
-        padding-left: 0px;
-        color: white;
-     }
-
-    .mobila-bottom {
-        background: black;
-        position: relative;
-        left:0%;       top:70%;
-        width: 100%;   height: 30.0%;
-
-
-    }
-
-
-    </style>
-
+ </style>
+<!--  ====================================================    -->
  <body>
 
 <!--  ====================================================    -->
-
 {% block sidebar %}
-<!--<div class="side-left-0">-->
-<!--</div>  &lt;!&ndash; side-left-0 &ndash;&gt;-->
 
 <side-left class="side-left">
 
@@ -92,6 +50,18 @@
             <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
             <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
     </div>  <!-- menu -->
+
+    <div class = "social">
+          <a href="https://facebook.com/jagolampadari" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Facebook.jpg' %}" alt="Jago - Facebook"
+                     style="width: 28px;"/> </a>
+          <a href="https://www.instagram.com/jago_italian_lighting" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Instagram.jpg' %}" alt="Jago - Instagram"
+                     style="width: 28px;"/> </a>
+          <a href="viber://chat?number=393334953433" target="_blank">
+          <img class = "scale-size" src="{% static 'img_background/Icone_Viber.jpg' %}" alt="Jago - Viber"
+                     style="width: 28px;"/> </a>
+    </div>
 
     <div class="copy-right">
          <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"

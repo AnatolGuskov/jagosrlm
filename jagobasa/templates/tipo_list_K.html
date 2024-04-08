@@ -60,7 +60,19 @@
       {% endfor %}
 </div>
 
-<!--</div>   &lt;!&ndash; tipo_list &ndash;&gt;-->
+<div class = "right-nome-top">
+  <p> <b> Tipi totali: {{num_tipi}} </b> </p>
+</div>
+
+<div class = "novita-mobile" style = "text-align: left; font-size: 11;">
+    {% for tipo in tiplist %}
+         <a class = "link" href="{% url 'tipo-detail' tipo.pk %}"
+            style = "font-size: 11; line-height: 1.5;">{{ tipo.tipo }}&nbsp;({{tipo.prodotto_set.all.count}})</a>
+        <br>
+    {% endfor %}
+</div>
+
+
 {% endblock %}
 
 
