@@ -2,48 +2,21 @@
 <style>
 
 
-    .tytle-add {
-        background: none;
-        position: absolute;
-        left:55%;       top:13.5%;
-        width: 35.0%;   height: 15.0%;
-        padding-left: 0px;
-        font-family: Anton;
-        font-size: 15px;
-        color: yellow
-    }
+
 
    .image-progetto {
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:0.0%;      top:0.0%;
-        width: 100.0%;   height: 100.0%;
+        left:1.0%;      top:0.0%;
+        width: 98.0%;   height: 100.0%;
         padding-left: 0px;
-        overflow: auto;
+        overflow-y: auto;
+   }
+   .image-progetto::-webkit-scrollbar {        /* computer */
+        display: none;
    }
 
-   .progetto-detail {                     /* mobile */
-        position: absolute;
-        left: 5%;       top:82%;
-        width: 50.0%;   height: 18.0%;
-        padding-left: 0;
-        font-size: 10;
-        line-height: 0.9;
-   }
-
-   @media (min-width: 500px) {             /* computer */
-
-    .progetto-detail {
-        position: absolute;
-        left: -50%;       top:82%;
-        width: 50.0%;   height: 18.0%;
-        padding-left: 0;
-        font-size: 10;
-
-    }
-
-   }
 
 
 </style>
@@ -76,24 +49,50 @@
 
 </div>  <!-- image progetto        -->
 
-<div class = "progetto-detail">
 
-    <p style = "color: white; font-size: 14"><b> {{ progetto_nome }}</b></p>
+</div>
+
+{% endblock %}  <!-- content       -->
+
+{% block side_right %}
+
+    <div class = "right-nome-top">
+            <p> {{ progetto_nome }} </p> </div>
+
+    <div class = "right-image-top">
+        {% if modo == 2 %}         <!-- modo di progetto unico -->
+            <br><br><br>
+            <a href="{% url 'progetto' stanza_id %}">
+                <p style = "color: white; font-size: 12; text-align: center;"> {{ progetto_stanza }}</p></a>
+            {% for prod in prodotti %}
+            <a href="{% url 'prodotto' prod.id 4 progetto_id %}">
+                <p style = "color: white; font-size: 12; text-align: center;"><b> {{ prod.nome }} </b></p></a>
+            {% endfor %}
+        {% endif %}
+    </div> <!-- right-image-top -->
+
+    <div class = "right-list">
+          {% for prog in progettolist %}
+            <figure style ="margin: 1.5%">
+            <p style="font-size: 11px; color: white:">{{ prog.menu }}</p>
+            <p style=""> <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+                <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
+                     style = height:110px;"/>  </a></p>
+             </figure>
+          {% endfor %}
+    </div>    <!-- right-list -->
+
+    <div class = "novita-mobile" style = "text-align: left; font-size: 11;">
         <a href="{% url 'progetto' stanza_id %}">
             <p style = "color: white; font-size: 12"> {{ progetto_stanza }}</p></a>
+        <br>
         {% for prod in prodotti %}
         <a href="{% url 'prodotto' prod.id 4 progetto_id %}">
             <p style = "color: white; font-size: 12"><b> {{ prod.nome }} </b></p></a>
         {% endfor %}
+    </div> <!-- novita-mobile -->
 
-</div> <!-- progetto-detail -->
-
-
-</div>
-
-
-{% endblock %}  <!-- content       -->
-
+{% endblock %}  <!-- side-right   -->
 
 </body>
 </html>

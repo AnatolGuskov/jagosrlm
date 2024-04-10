@@ -1,7 +1,6 @@
 BODY {
     background: rgb(100, 100, 100); /* Цвет фона веб-страницы */
-    left:0.0%;       top:00%;
-    width: 100.0%;   height: 100.0%;
+
    }
 A {
     color: rgb(220, 220, 220); /* Цвет ссылок */
@@ -59,15 +58,15 @@ A:active {
         background: black;
         border: 0px solid white;
         position: absolute;
-        left: 0.0%;     top:0%;
+        left: 0.0%;      top:0%;
         width: 100.0%;   height: 16.0%;
-        padding-left: 0;
+        padding-left: 0%;
     }
 .image-logo {                           /* mobile */
         background: black;
         position: absolute;
-        left: 0.0%;       top:0.0%;
-        width: 45.0%;   height: 16.0%;
+        left: 0.0%;      top:0.0%;
+        width: 45.0%;    height: 16.0%;
     }
 .menu {                                /* mobile */
         background: black;
@@ -78,6 +77,7 @@ A:active {
         padding-left: 0%;
         color: rgb(220, 220, 220);
         font-size: 12px;
+        line-height: 1.8;
     }
 .count-jago {                           /* mobile */
         display: none;
@@ -144,7 +144,7 @@ A:active {
 
 /* =============== RIGHTSIDE ====================== */
 .side-right {                              /* mobile */
-        display: ;
+        display: block;
         background: black;
         position: absolute;
         left:0%;       top:84.0%;
@@ -179,8 +179,8 @@ A:active {
         left: 0%;       top: 0%;
         width: 100.0%;  height: 19.0%;
         padding-top: 2px; padding-left: 7px;
-        font-family: Arial;
-        font-size: 13px;
+        font-family: Anton;
+        font-size: 12px;
         color: white;
         border: 0px solid red;
     }
@@ -203,8 +203,11 @@ A:active {
     }
 
 <!--   =================== MEDIA COMPUTER ======================  -->
+<!--   =========================================================  -->
 body {
-     margin: 0;
+     margin-bottom: -10.0%;
+     left: 0.0%;     top:0%;
+     width: 0.0%;   height: 90.0%;
   }
 
 @media (min-width: 500px) {
@@ -244,7 +247,7 @@ body {
     display: block;
     background: none;
     position: absolute;
-    left:-20.0%;     top:40%;
+    left:-18.0%;     top:40%;
     width: 110.0%;   height: 30.0%;
     padding-left: 0%;
     color: white;
@@ -282,7 +285,9 @@ body {
     font-size: 32px;
     color: white;
 }
+
 .side-right {                                /* computer */
+    display: block;
     background: black;
     position: absolute;
     left:87%;       top:0px;
@@ -293,22 +298,23 @@ body {
 }
 .right-image-top {                          /* computer */
         display: block;
-        border: 0px solid white;
+        border: 1px solid white;
         background: none;
         position: absolute;
-        top:1.0%;       left:3.0%;
-        height: 25.0%;  width: 90.0%;
+        left:3.0%;     top:1.0%;
+        width: 94.0%;  height: 25.0%;
         padding-left: 0px;
     }
 .right-nome-top {                           /* computer */
-        display: none;
-        background: black;
+        display: block;
+        background: none;
         position: absolute;
-        left: 2%;       top: 0%;
-        width: 97.0%;   height: 19.0%;
+        left: 0%;       top: 2%;
+        width: 97.0%;   height: 10.0%;
         font-family: Anton;
-        font-size: 10px;
-        color: white
+        font-size: 18px;
+        color: white;
+        text-align: center;
         border: 0px solid white;
     }
 
@@ -344,10 +350,14 @@ body {
             display: block;
             background: black;
             position: absolute;
-            left:0.0%;       top:2%;
-            width: 96.0%;    height: 89.0%;
+            left:0.0%;       top:15%;
+            width: 96.0%;    height: 84.0%;
             padding-left: 0px;
             text-align: center;
+            overflow-y: scroll;
+    }
+    .novita::-webkit-scrollbar {        /* computer */
+        display: none;
     }
 
 }
@@ -412,7 +422,7 @@ img {vertical-align: middle;}
 /* Slide text */
 .text {
   color: #f2f2f2;
-  font-size: 13px;
+  font-size: 11px;
   padding: 8px 12px;
   position: relative;
   bottom: 24%;
@@ -423,8 +433,8 @@ img {vertical-align: middle;}
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width:  8px;
   margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;

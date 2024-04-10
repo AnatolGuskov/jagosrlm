@@ -24,16 +24,16 @@
 
       {% for col in collist %}
 
-        <figure style = "display:inline-block; max-width: 22%; margin: 2.0">
+        <figure style = "display:inline-block; max-width: 17%; margin: 2.0">
             <p style = "font-size: 10; margin-top: 0.1em; margin-bottom: 0.1em; text-align: left;">{{ col.nome }}</p>
          {% if catalogo_pk %}
           <a href="{% url 'catalogo-detail-collezione' catalogo_pk col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="width: 90%;"/>  </a>
+            style="width: 70%;"/>  </a>
          {% else %}
          <a href="{% url 'collezione-detail' col.pk %}">
             <img class = "scale-border" title = "Lighting collection {{col.nome}}" src="{% static col.path %}" alt="{{ col.nome }}"
-            style="width: 90%; "/></a>
+            style="width: 100%; "/></a>
          {% endif %}
             <br>  <br>
         </figure>
@@ -52,12 +52,10 @@
             <img src="{% static right_img %}" alt=""
             style="border: 1px solid white; width: 100%; height: 100%; object-fit: fill"/> </a>
 
-    <h3 style = ""><b> {{ right_text }}</b></h3>
 </div>
 
 <div class = "right-list">
     <p></p>
-    <p style = "font-size: 13; text-align: left;"><b> Totale: {{num_collezione}} </b></p>
     {% for col in collist %}
         {% if col.prodotto_set.all.count == 0 %}
         <p style="text-align: left;">
@@ -70,13 +68,13 @@
 </div>
 
 <div class = "right-nome-top">
-  <p> <b> &nbsp;&nbsp;Collezione totale: {{num_collezione}} </b> </p>
+  <p> Collezione: {{num_collezione}} </p>
 </div>
 
 <div class = "novita-mobile" style = "text-align: left; font-size: 11;">
     {% for col in collist %}
         <a class = "link" href="{% url 'collezione-detail' col.pk %}">
-           &nbsp;&nbsp;{{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
+           {{ col.nome }}&nbsp;({{col.prodotto_set.all.count}}) </a>
         <br>
     {% endfor %}
 </div>

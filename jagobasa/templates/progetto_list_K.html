@@ -55,33 +55,44 @@
 <!-- ===========  SIDE RIGHT ===================================== -->
 
 {% block side_right %}
+    {% if modo == 1 %}        <!-- modo di totale stanze -->
+    <div class = "right-nome-top">
+            <p> Progetti: {{ num_progetti }}</p> </div>
+    {% endif %}  <!-- modo di totale stanze -->
+
+<!--    {% if modo == 2 %}         &lt;!&ndash; modo di progetto unico &ndash;&gt;-->
+<!--    <div class = "right-nome-top">-->
+<!--            <p> {{ progetto_nome }} </p> </div>-->
+<!--    {% endif %}  &lt;!&ndash; modo di progetto unico &ndash;&gt;-->
+
 
 <div class = "right-image-top">
 
     {% if modo == 1 %}        <!-- modo di totale stanze -->
-        <p style = "color: white; font-size: 18"><b> Stanze </b></p>
+        <br><br>
         {% for stanza in stanzalist %}
             {% if stanza.num_prog > 0 %}
-            <p style="text-align: left;">
+            <p style="text-align: center;">
             <a class = "link" href="{% url 'progetto' stanza.id %}"
                style = "font-size: 12; line-height: 0.8;"><b> {{ stanza.nome }} ({{ stanza.num_prog }}) </b></a></p>
             {% endif %}
         {% endfor %}
-    {% endif %}
+    {{ progetto_stanza }}
+    {% endif %}  <!-- modo di totale stanze -->
 
     {% if modo == 2 %}         <!-- modo di progetto unico -->
-    <p style = "color: white; font-size: 18"><b> {{ progetto_nome }}</b></p>
+        <br><br>
         <a href="{% url 'progetto' stanza_id %}">
-            <p style = "color: white; font-size: 12"> {{ progetto_stanza }}</p></a>
+            <p style = "color: white; font-size: 12; text-align: center;"> {{ progetto_stanza }}</p></a>
         {% for prod in prodotti %}
         <a href="{% url 'prodotto' prod.id 4 progetto_id %}">
-            <p style = "color: white; font-size: 12"><b> {{ prod.nome }} </b></p></a>
+            <p style = "color: white; font-size: 12; text-align: center;"><b> {{ prod.nome }} </b></p></a>
         {% endfor %}
     {% endif %}
+
 </div> <!-- right-image-top -->
 
 <div class = "right-list">
-      <p style = "font-size: 13; color: white"> <b>{{ text_count }}: {{ num_progetti }}</b> </p>
       {% for prog in progettolist %}
         <figure style ="margin: 1.5%">
         <p style="font-size: 11px; color: white:">{{ prog.menu }}</p>
@@ -89,22 +100,19 @@
             <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
                  style = height:110px;"/>  </a></p>
          </figure>
-
       {% endfor %}
 </div>    <!-- right-list -->
 
-<div class = "right-nome-top">
-  <p> <b> Progetti totali: {{num_progetti}} </b> </p>
-</div>
+
 
 <div class = "novita-mobile" style = "text-align: left; font-size: 11;">
     {% for stanza in stanzalist %}
             {% if stanza.num_prog > 0 %}
-               <a class = "link" href="{% url 'progetto' stanza.id %}"
-               style = "font-size: 11; line-height: 1.5;"><b> -&nbsp;{{ stanza.nome }}&nbsp;({{ stanza.num_prog }})&nbsp;- </b></a>
+               <a class = "link" href="{% url 'progetto' stanza.id %}">
+               {{ stanza.nome }}&nbsp;({{ stanza.num_prog }})</a>
             {% endif %}
     {% endfor %}
-</div>
+</div> <!-- novita-mobile -->
 
 {% endblock %}  <!-- side-right -->
 

@@ -4,17 +4,105 @@
 <style>
 
 
-.list-detail {
+.list-detail {                           /* mobile */
+        background: none;
+        justify-content: space-between;
+        position: absolute;
+        left:1.5%;       top:1%;
+        width: 98.5%;     height: 98.0%;
+        overflow-y: scroll;
+}
+.list-detail::-webkit-scrollbar  {
+        display: none;
+}
+
+.tytle-lighting {                           /* mobile */
+        display: none;
+        background: none;
+        position: absolute;
+        left: 0%;        top: 0%;
+        width: 0.0%;   height: 0.0%;
+        padding-left: 0;
+        font-family: Anton;
+        font-size: 20px;
+        color: white;
+    }
+
+.lenta-horizont {                          /* mobile */
+        display: flex;
+        display: block;
+        background: none;
+        position: relative;
+        left: 0%;        top: 0%;
+        width: 99.0%;   height: 230px;
+        border: 0px solid red;
+        overflow: auto;
+
+        -webkit-column-width: 50.0%; -moz-column-width: 50.0%; column-width: 50.0%;
+        -webkit-column-count: 1;     -moz-column-count: 1;     column-count: 1;
+        -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;
+        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+}
+.lenta-horizont::-webkit-scrollbar {
+        width: 6px;    height: 6px;
+    }
+.lenta-horizont::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, rgb(50, 50, 50), rgb(200, 200, 200));
+  border-radius: 5px;
+}
+
+/* ================================================================== */
+
+@media (min-width: 500px) {
+
+.list-detail {                             /* computer */
+        display: block;
         background: none;
         justify-content: space-between;
         position: absolute;
         left:1.5%;       top:10%;
-        width: 98.5%;     height: 90.0%;
+        width: 98.5%;     height: 89.0%;
         overflow-y: scroll;
 }
-
 .list-detail::-webkit-scrollbar  {
         display: none;
+}
+.tytle-lighting {                           /* computer */
+        display: block;
+        background: none;
+        position: absolute;
+        left: 3%;        top: 1%;
+        width: 93.0%;   height: 8.0%;
+        padding-left: 0;
+        font-family: Anton;
+        font-size: 32px;
+        color: white;
+    }
+
+.lenta-horizont {                          /* computer */
+        display: flex;
+        display: block;
+        background: none;
+        position: relative;
+        left: 0%;        top: 0%;
+        width: 99.0%;   height: 250px;
+        border: 0px solid red;
+        overflow: auto;
+
+        -webkit-column-width: 50.0%; -moz-column-width: 50.0%; column-width: 50.0%;
+        -webkit-column-count: 1;     -moz-column-count: 1;     column-count: 1;
+        -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;
+        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+}
+
+.lenta-horizont::-webkit-scrollbar {
+        width: 10px;    height: 10px;
+    }
+.lenta-horizont::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, rgb(50, 50, 50), rgb(200, 200, 200));
+  border-radius: 5px;
+}
+
 }
 
 
@@ -31,12 +119,13 @@
 <side-left class="side-left">
 
     <div class = "image-logo">
+          <a href="{% url 'index' %}">
          <img src="{% static 'img_background/JAGO Logo Yellow.jpg' %}" alt="Jago - Italian lighting"
-                     style="width:98%;"/>
+              style="width:98%;"/></a>
     </div>
 
     <div class="menu">
-            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>
+<!--            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>-->
             <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
             <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
             <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
@@ -71,24 +160,22 @@
                    style="width:100%;"/>
     </div>  <!-- copy_right  -->
 
-
 </side-left> <!-- side_left -->
-
 
  {% endblock %} <!-- sidebar -->
 
+<!--   =================== CONTENT ======================  -->
 {% block content %}
 
-<div class = "tytle-page" style = "text-align: right;">
+<div class = "tytle-lighting" style = "text-align: right;">
     <p> Jago - Italian lighting </p>
 </div>
 
 
-
-
 <div class = "list-detail">
 <!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
-<div class = "tytle-home"> Presentazione </div>
+
+    <div class = "tytle-home"> Presentazione </div>
 
 <div class="slideshow-container">
 
@@ -134,34 +221,67 @@ function showSlides() {
 
     <br><br> <br><br>
 
-<!--   =================== CATALOGHI ======================  -->
-    <div class = "tytle-home"> Cataloghi </div>
-
-    {% for cata in catalogolist %}
-        <a href="{% url 'catalogo-detail' cata.pk %}">
-        <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
-             style = "width:28%;  margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
+<!--   =================== NUOVI PRODOTTI ======================  -->
+    <div class = "tytle-home"> Nuovi prodotti </div>
+    <br>
+    <div class = "lenta-horizont">
+    {% for nov in novita %}
+         <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
+         <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+              style="height: 190px; text-align: center; margin-right: 1%"/>  </a>
     {% endfor %}
-<br><br> <br><br>
+    </div>     <!-- lenta-horizont -->
 
-<!--   =================== PROGETTI ======================  -->
-      <div class = "tytle-home">Progetti </div>
-
-    {% for prog in progettolist %}
-      <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
-        <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
-         style="width:28%; margin: 1.5%"/> </a>
-    {% endfor %}
 <br><br><br><br>
 
-<!--   =================== COLLEZIONI ======================  -->
-      <div class = "tytle-home"> Collezioni </div>
-    {% for coll in collezioni_tutti %}
-      <a href="{% url 'collezione-detail' coll.pk %}">
-        <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-         style="width:22.5%; margin: 0.5%"/> </a>
-    {% endfor %}
-<br><br><br><br><br>
+    <!--   =================== COLLEZIONI ======================  -->
+      <a class = "tytle-home" href="{% url 'collezione' %}"> Collezioni </a>
+      <br>
+    <div class = "lenta-horizont">
+        {% for coll in collezioni_tutti %}
+          <a href="{% url 'collezione-detail' coll.pk %}">
+            <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
+             style="height: 85px; margin-right: 1.0%; margin-bottom: 5.0%;"/> </a>
+        {% endfor %}
+    </div>     <!-- lenta-horizont -->
+<br><br><br><br>
+
+<!--   =================== CATALOGHI ======================  -->
+    <a class = "tytle-home" href="{% url 'catalogo' %}" > Cataloghi </a>
+    <br>
+    <div class = "lenta-horizont">
+        {% for cata in catalogolist %}
+            <a href="{% url 'catalogo-detail' cata.pk %}">
+            <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
+            style = "height: 170px;  text-align: center; margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
+        {% endfor %}
+    </div>     <!-- lenta-horizont -->
+<br><br><br><br>
+
+
+<!--   =================== PROGETTI ======================  -->
+    <a class = "tytle-home" href="{% url 'progetto' 0 %}">Progetti </a>
+    <br>
+    <div class = "lenta-horizont">
+        {% for prog in progettolist %}
+          <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+            <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
+             style="height: 170px; margin: 1.5% "/> </a>
+        {% endfor %}
+    </div>     <!-- lenta-horizont -->
+<br><br><br><br>
+
+ <!--   =================== TIPI ======================  -->
+    <a class = "tytle-home" href="{% url 'tipo' %}">Tipi di prodotti </a>
+    <br>
+    <div class = "lenta-horizont">
+        {% for tipo in tiplist %}
+          <a href="{% url 'tipo-detail' tipo.pk %}">
+            <img class = "scale-border" title = "{{tipo.tipo}}" src="{% static tipo.path %}" alt="{{ tipo.tipo }}"
+             style="height: 190px; margin: 1.5% "/> </a>
+        {% endfor %}
+    </div>     <!-- lenta-horizont -->
+<br><br><br><br>
 
 </div> <!-- list-detail -->
 
@@ -171,11 +291,14 @@ function showSlides() {
  <div class="side-right">
 
      {% block side_right %}
+        <div class = "right-nome-top">
+        <p>  Nuovi prodotti  </p>
+        </div>
 
          <div class = "novita-mobile" >
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 80px; text-align: center;"/>  </a>
 
              {% endfor %}
@@ -183,10 +306,11 @@ function showSlides() {
 
 
          <div class = "novita" >
-             <p style = "font-size: 20; text-align: center;"><b> Nuovi prodotti  </b></p><br>
+
              {% for nov in novita %}
+
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 25%; text-align: center;"/>  </a>
              <br><br>
              {% endfor %}

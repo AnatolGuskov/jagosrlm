@@ -3,7 +3,7 @@
 
    .image-prodotto {                           /* mobile */
         background: none;
-        border: 0px solid white;
+        border: 0px solid red;
         position: absolute;
         left:20.0%;       top:8.0%;
         width: 80.0%;   height: 92.0%;
@@ -13,11 +13,13 @@
 
     .tipi-prod {                              /* mobile */
         position: absolute;
+        border: 0px solid red;
         left:3%;       top:8%;
         width: 43.0%;   height: 50.0%;
         padding-left: 0;
         font-size: 10;
         color: white;
+        overflow: none;
     }
 
     .scheda-prod {
@@ -31,24 +33,31 @@
 
 @media (min-width: 500px) {
 
-    .tipi-prod {                               /* computer */
+
+.image-prodotto {                           /* computer */
+        display: block;
+        background: black;
+        background: none;
+        border: 0px solid red;
         position: absolute;
-        left:63%;       top:11%;
-        width: 37.0%;   height: 50.0%;
+        left:0.0%;       top:10.0%;
+        width: 80.0%;   height: 90.0%;
+        padding-left: 0px;
+        overflow-y: scroll;
+    }
+.image-prodotto::-webkit-scrollbar {        /* computer */
+        display: none;
+    }
+.tipi-prod {                              /* mobile */
+        position: absolute;
+        border: 0px solid red;
+        left:65%;       top:10%;
+        width: 30.0%;   height: 50.0%;
         padding-left: 0;
         font-size: 10;
         color: white;
-    }
-    .image-prodotto {                           /* computer */
-        background: none;
-        border: 0px solid white;
-        position: absolute;
-        left:0.0%;       top:10.0%;
-        width: 100.0%;   height: 90.0%;
-        padding-left: 0px;
         overflow: none;
     }
-
 }
 
 </style>
@@ -96,7 +105,7 @@
 
     {% for prog in prodotto_progetti %}
         <a href="{% url 'progetto-detail' prog.stanza prog.id %}"
-           style = "color: white"> {{ prog.nome }}
+           style = "color: white"> {{ prog.menu }}
         </a> <br>
     {% endfor %}<br>
 

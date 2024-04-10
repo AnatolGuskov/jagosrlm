@@ -84,6 +84,13 @@ def index(request):
             line = line + [path]                      # 3 image_collezione
             catalogo_colllist = catalogo_colllist + [line]
 
+# =============== Index TIPI =============
+    tiplist = Tipo.objects.all().order_by('tipo')
+
+    for tip in tiplist:
+        tip.path = str(tip.image)
+        tip.path = tip.path[tip.path.find("static")+7:]
+
 
 # =============== Render INDEX =============
     return render(
@@ -100,7 +107,7 @@ def index(request):
                  'collezionelist': collezionelist,
                  'collezioni_tutti': collezioni_tutti,
                  'catalogolist': catalogolist, 'catalogo_colllist': catalogo_colllist,
-                 # 'width': width, 'height': height,
+                 'tiplist': tiplist,
                  'modo': "mobil1",
 
                  }
@@ -362,7 +369,6 @@ def prodotto(request, pk, set, url_id):
     prodotto_set = []
     right_img = ""
     right_text = ""
-    # background = "3"
 
     if set != "2":   # da COLLEZIONE
         prodotto_set = Prodotto.objects.all().filter(collezione = collezione_id)
@@ -450,6 +456,11 @@ def prodotto(request, pk, set, url_id):
     #  ===================================
     # if Prodotto.objects.get(id=pk).progetto.all():
     prodotto_progetti = Progetto.objects.all().filter(prodotto = pk)
+    for prog in prodotto_progetti:
+        prog.path = str(prog.image)
+        prog.path = prog.path[prog.path.find("static")+7:]
+        menu = prog.nome.split()
+        prog.menu = menu[0] + " " + menu[1]
 
     return render(
         request,
@@ -525,8 +536,6 @@ def progetto_detail(request, stanza, pk ):
     progetto.path = progetto.path[progetto.path.find("static") + 7:]
     menu = progetto.nome.split()
     progetto.menu = menu[0] + " " + menu[1]
-
-    # progetto_nome = progetto[0].nome
 
     progettolist = Progetto.objects.all()
 
