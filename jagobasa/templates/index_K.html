@@ -3,6 +3,9 @@
 
 <style>
 
+.menu-button {
+
+}
 
 .list-detail {                           /* mobile */
         background: none;
@@ -34,7 +37,7 @@
         background: none;
         position: relative;
         left: 0%;        top: 0%;
-        width: 99.0%;   height: 230px;
+        width-max: 1000px;   height: 230px;
         border: 0px solid red;
         overflow: auto;
 
@@ -54,6 +57,8 @@
 /* ================================================================== */
 
 @media (min-width: 500px) {
+
+
 
 .list-detail {                             /* computer */
         display: block;
@@ -85,7 +90,7 @@
         background: none;
         position: relative;
         left: 0%;        top: 0%;
-        width: 99.0%;   height: 250px;
+        max-width: 650px;   height: 250px;
         border: 0px solid red;
         overflow: auto;
 
@@ -111,12 +116,13 @@
 
 {% extends "base_generic_K.html" %}
 
-{% block title %}<title>Jago - Italian Lighting </title>{% endblock %}
+{% block title %}<title> Jago - Italian Lighting </title>{% endblock %}
 {% load static %}
 
-{% block sidebar %}
+<!--   =================== SIDE-LEFT ======================  -->
 
 <side-left class="side-left">
+{% block sidebar %}
 
     <div class = "image-logo">
           <a href="{% url 'index' %}">
@@ -125,11 +131,14 @@
     </div>
 
     <div class="menu">
-<!--            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>-->
-            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
-            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
-            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
-            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
     </div>  <!-- menu -->
 
     <div class = "count-jago">
@@ -160,9 +169,10 @@
                    style="width:100%;"/>
     </div>  <!-- copy_right  -->
 
-</side-left> <!-- side_left -->
+
 
  {% endblock %} <!-- sidebar -->
+    </side-left> <!-- side_left -->
 
 <!--   =================== CONTENT ======================  -->
 {% block content %}
@@ -179,18 +189,20 @@
 
 <div class="slideshow-container">
 
-   {% for coll in collezionelist %}
-       <div class="mySlides fade">
-          <img src="{% static coll.path %}" alt="{{ coll.path }}" style="width:100%">
-          <div class="text">Collezione {{ coll.nome }}</div>
-       </div>
-   {% endfor %}
-
-       <div style="text-align:center">
+    <div style="text-align:center">
            {% for coll in collezionelist %}
                <span class="dot" onclick="currentSlide(coll.slide)"></span>
            {% endfor %}
        </div>
+
+   {% for coll in collezionelist %}
+       <div class="mySlides fade">
+          <img src="{% static coll.path %}" alt="{{ coll.path }}" style="width:100%">
+          <div class="text"> Collezione {{ coll.nome }} </div>
+       </div>
+   {% endfor %}
+
+
 
 </div>   <!-- slideshow-container -->
 

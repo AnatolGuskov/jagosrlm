@@ -29,14 +29,16 @@
  <style>
 
 
+
  </style>
 <!--  ====================================================    -->
  <body>
 
 <!--  ====================================================    -->
-{% block sidebar %}
+<div class = "maxwidth">
 
 <side-left class="side-left">
+{% block sidebar %}
 
     <div class = "image-logo">
          <a href="{% url 'index' %}">
@@ -45,11 +47,14 @@
     </div>
 
     <div class="menu">
-<!--            <a class = "link" href="{% url 'index' %}"><strong>Home</strong></a><br>-->
-            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a><br>
-            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a><br>
-            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a><br>
-            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'catalogo' %}"><strong>Cataloghi</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
     </div>  <!-- menu -->
 
     <div class = "social">
@@ -70,10 +75,10 @@
     </div>  <!-- copy_right  -->
 
 
-</side-left> <!-- side_left -->
 
 
  {% endblock %} <!-- sidebar -->
+ </side-left> <!-- side_left -->
 <!--   ==========================================================  -->
 
         <content class="content">
@@ -89,6 +94,7 @@
           {% endblock %}
         </side-right>
 
+ </div>
 
  </body>
 

@@ -1,16 +1,14 @@
-BODY {
+body {
     background: rgb(100, 100, 100); /* Цвет фона веб-страницы */
+}
 
-   }
-A {
-    color: rgb(220, 220, 220); /* Цвет ссылок */
-   }
-A:visited {
-    color: #cecece; /* Цвет посещенных ссылок */
-   }
-A:active {
-    color: #ffff00; /* Цвет активных ссылок */
-   }
+.maxwidth {
+    position: absolute;
+    left:0px;    top:0px;
+    width: 100%;   height: 100.0%;
+    max-width: 1100px;
+    margin: 0;
+     }
 
 /* =============== HOME ====================== */
 
@@ -68,16 +66,24 @@ A:active {
         left: 0.0%;      top:0.0%;
         width: 45.0%;    height: 16.0%;
     }
+.menu-button {                         /* mobile */
+    position: relative;
+    left:0.0%;       top:0%;
+    width:100%;    height:20px;
+    background: rgb(80, 80, 80);
+    vertical-align: middle;
+    border: 1px solid black; border-radius: 10px;
+    padding-left: 5px;
+    color: white;
+    font-size: 11px;
+}
 .menu {                                /* mobile */
         background: black;
         border: 0px solid yellow;
         position: absolute;
         left:50.0%;      top:2.0%;
         width: 35%;      height: 98%;
-        padding-left: 0%;
-        color: rgb(220, 220, 220);
-        font-size: 12px;
-        line-height: 1.8;
+
     }
 .count-jago {                           /* mobile */
         display: none;
@@ -201,18 +207,25 @@ A:active {
  .right-list::-webkit-scrollbar {        /* mobile */
         display: none;
     }
+.link {                                /* mobile */
+    link:  white;
+    vlink: white;
+    alink: white;
+    color: white;
+    text-decoration: none;
+}
+
 
 <!--   =================== MEDIA COMPUTER ======================  -->
 <!--   =========================================================  -->
 body {
-     margin-bottom: -10.0%;
-     left: 0.0%;     top:0%;
-     width: 0.0%;   height: 90.0%;
-  }
+    scroll: no;
+}
 
 @media (min-width: 500px) {
 
   .side-left {                               /* computer */
+    display: block;
     background: black;
     border: 0px solid red;
     position: absolute;
@@ -227,27 +240,35 @@ body {
     left: 2%;        top: 0%;
     width: 100.0%;   height: 15.0%;
 }
+
+.menu-button {                              /* computer */
+    position: relative;
+    left:0.0%;       top:0%;
+    width:100%;    height:23px;
+    font-size: 12px;
+    vertical-align: middle;
+    border: 2px solid black; border-radius: 10px;
+}
+
 .menu {                                    /* computer */
     background: none;
     border: 0px solid black;
     position: absolute;
-    left:3.0%;       top:18.0%;
-    width: 97%;      height:;
-    padding-left: 2%;
-    color: rgb(220, 220, 220);
-    font-size: 12px;
+    left:0.0%;       top:18.0%;
+    width: 100%;      height: 50%;
+
 }
 .copy-right {                               /* computer */
     border: 0px solid white;
     position: absolute;
-    left: 0.0%;      top: 78.0%;
+    left: 0.0%;      top: 75.0%;
     width: 100%;     height:18%;
 }
 .count-jago {                              /* computer */
     display: block;
     background: none;
     position: absolute;
-    left:-18.0%;     top:40%;
+    left:-16.0%;     top:45%;
     width: 110.0%;   height: 30.0%;
     padding-left: 0%;
     color: white;
@@ -257,7 +278,7 @@ body {
         background: black;
         border: 0px solid red;
         position: absolute;
-        left: 5.0%;      top:70.0%;
+        left: 5.0%;      top:68.0%;
         width: 94.0%;    height: 6.5%;
         -webkit-column-width: 33.0%; -moz-column-width: 33.0%; column-width: 33.0%;
         -webkit-column-count: 3;     -moz-column-count: 3;     column-count: 3;
@@ -285,7 +306,6 @@ body {
     font-size: 32px;
     color: white;
 }
-
 .side-right {                                /* computer */
     display: block;
     background: black;
@@ -304,7 +324,7 @@ body {
         left:3.0%;     top:1.0%;
         width: 94.0%;  height: 25.0%;
         padding-left: 0px;
-    }
+}
 .right-nome-top {                           /* computer */
         display: block;
         background: none;
@@ -317,13 +337,12 @@ body {
         text-align: center;
         border: 0px solid white;
     }
-
 .right-list {                          /* computer */
         display: block;
         background: black;
         position: absolute;
         left: 3%;     top: 28.0%;
-        width: 97%;   height: 71%;
+        width: 94%;   height: 71%;
         font-family: Arial;
         font-size: 12px;
         line-height: 1.0;
@@ -335,9 +354,7 @@ body {
 .right-list::-webkit-scrollbar {        /* computer */
         display: none;
     }
-
-
-    .tytle-home {                                /* computer */
+.tytle-home {                                /* computer */
         font-family: Anton;
         font-size: 30px;
         color: rgb(150, 150, 150);
@@ -360,12 +377,7 @@ body {
         display: none;
     }
 
-}
- <!--   =================== END of MEDIA COMPUTER ======================  -->
-
-/* =============== EFFECTS ====================== */
-
-.link {
+.link {                                /* computer */
     link:  rgb(220, 220, 220);
     vlink: rgb(220, 220, 220);
     alink: rgb(220, 220, 220);
@@ -377,6 +389,13 @@ body {
     color: white;
     text-decoration: none;
 }
+
+}
+ <!--   =================== END of MEDIA COMPUTER ======================  -->
+
+/* =============== EFFECTS ====================== */
+
+
 /* -------------------------------------- */
 .scale-size {
     transform: scale(1.0)
@@ -408,9 +427,9 @@ body {font-family: Verdana, sans-serif;}
 img {vertical-align: middle;}
 
 .slideshow-container {
-  max-width: 1000px; hight = 100%
+  width: 100%; height: 100%
   position: absolut;
-  margin: auto;
+  margin: 0;
   padding-top: 5%;
 }
 
@@ -424,8 +443,8 @@ img {vertical-align: middle;}
   color: #f2f2f2;
   font-size: 11px;
   padding: 8px 12px;
-  position: relative;
-  bottom: 24%;
+  position: absolute;
+  bottom: 0%;
   width: 100%;
   text-align: center;
 }
@@ -433,8 +452,7 @@ img {vertical-align: middle;}
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 8px;
-  width:  8px;
+  height: 8px;  width:  8px;
   margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
