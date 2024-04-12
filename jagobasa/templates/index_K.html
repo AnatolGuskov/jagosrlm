@@ -37,7 +37,7 @@
         background: none;
         position: relative;
         left: 0%;        top: 0%;
-        width-max: 1000px;   height: 230px;
+        width-max: 1000px;   height: 200px;
         border: 0px solid red;
         overflow: auto;
 
@@ -90,7 +90,7 @@
         background: none;
         position: relative;
         left: 0%;        top: 0%;
-        width: 90%;   height: 250px;
+        width: 100%;   height: 250px;
         border: 0px solid red;
         padding-top: 10px;
         overflow: auto;
@@ -111,9 +111,7 @@
 
 }
 
-
 </style>
-
 
 {% extends "base_generic_K.html" %}
 
@@ -239,22 +237,10 @@ function showSlides() {
     {% for nov in novita %}
          <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
          <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
-              style="height: 200px; text-align: center; margin-right: 1%"/>  </a>
+              style="height: 85%; text-align: center; margin-right: 2%"/>  </a>
     {% endfor %}
     </div>     <!-- lenta-horizont -->
 
-<br><br><br><br>
-
-    <!--   =================== COLLEZIONI ======================  -->
-      <a class = "tytle-home" href="{% url 'collezione' %}"> Collezioni </a>
-      <br>
-    <div class = "lenta-horizont">
-        {% for coll in collezioni_tutti %}
-          <a href="{% url 'collezione-detail' coll.pk %}">
-            <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-             style="height: 75px; margin-right: 1.0%; margin-bottom: 5.0%;"/> </a>
-        {% endfor %}
-    </div>     <!-- lenta-horizont -->
 <br><br><br><br>
 
 <!--   =================== CATALOGHI ======================  -->
@@ -264,10 +250,24 @@ function showSlides() {
         {% for cata in catalogolist %}
             <a href="{% url 'catalogo-detail' cata.pk %}">
             <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
-            style = "height: 190px;  text-align: center; margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
+            style = "height: 85%;  text-align: center; margin-right: 5.0%;  box-shadow: 5px 5px 15px white;" /> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
+
+
+<!--   =================== COLLEZIONI ======================  -->
+      <a class = "tytle-home" href="{% url 'collezione' %}"> Collezioni </a>
+      <br>
+    <div class = "lenta-horizont">
+        {% for coll in collezioni_tutti %}
+          <a href="{% url 'collezione-detail' coll.pk %}">
+            <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
+             style="height: 85%; margin-right: 2.0%; margin-bottom: 5.0%;"/> </a>
+        {% endfor %}
+    </div>     <!-- lenta-horizont -->
+<br><br><br><br>
+
 
 
 <!--   =================== PROGETTI ======================  -->
@@ -277,7 +277,7 @@ function showSlides() {
         {% for prog in progettolist %}
           <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
             <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
-             style="height: 190px; margin: 1.5% "/> </a>
+             style="height: 85%; margin: 1.5% "/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
@@ -289,7 +289,7 @@ function showSlides() {
         {% for tipo in tiplist %}
           <a href="{% url 'tipo-detail' tipo.pk %}">
             <img class = "scale-border" title = "{{tipo.tipo}}" src="{% static tipo.path %}" alt="{{ tipo.tipo }}"
-             style="height: 190px; margin: 1.5% "/> </a>
+             style="height: 85%; margin: 2.0% "/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>

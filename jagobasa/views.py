@@ -131,7 +131,7 @@ def collezione(request):
         context={'collist': collist,
                  'num_collezione': num_collezione,
                  'tytle_nome': 'Collezioni',
-                 'right_img': 'img_background/collezione_spazio 01 rose.jpg',
+                 'right_img': 'img_background/spazio 01 rose.jpg',
                  'right_text': "Collezioni",
                  'url_nome': 'collezione',
                                         }
