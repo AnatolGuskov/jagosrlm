@@ -86,18 +86,19 @@
 
 .lenta-horizont {                          /* computer */
         display: flex;
-        display: block;
+        display: inline-block;
         background: none;
         position: relative;
         left: 0%;        top: 0%;
-        max-width: 650px;   height: 250px;
+        width: 90%;   height: 250px;
         border: 0px solid red;
+        padding-top: 10px;
         overflow: auto;
 
-        -webkit-column-width: 50.0%; -moz-column-width: 50.0%; column-width: 50.0%;
-        -webkit-column-count: 1;     -moz-column-count: 1;     column-count: 1;
-        -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;
-        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+<!--        -webkit-column-width: 100.0%; -moz-column-width: 100.0%; column-width: 100.0%;-->
+<!--        -webkit-column-count: 1;     -moz-column-count: 1;     column-count: 1;-->
+<!--        -webkit-column-gap: 0%;      -moz-column-gap: 0%;      column-gap: 0%;-->
+<!--        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;-->
 }
 
 .lenta-horizont::-webkit-scrollbar {
@@ -166,7 +167,7 @@
 
     <div class="copy-right">
          <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
-                   style="width:100%;"/>
+                   style="width:95%;"/>
     </div>  <!-- copy_right  -->
 
 
@@ -185,15 +186,9 @@
 <div class = "list-detail">
 <!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
 
-    <div class = "tytle-home"> Presentazione </div>
+<!--    <div class = "tytle-home"> Presentazione </div> -->
 
 <div class="slideshow-container">
-
-    <div style="text-align:center">
-           {% for coll in collezionelist %}
-               <span class="dot" onclick="currentSlide(coll.slide)"></span>
-           {% endfor %}
-       </div>
 
    {% for coll in collezionelist %}
        <div class="mySlides fade">
@@ -202,7 +197,11 @@
        </div>
    {% endfor %}
 
-
+       <div style="text-align:center">
+           {% for coll in collezionelist %}
+               <span class="dot" onclick="currentSlide(coll.slide)"></span>
+           {% endfor %}
+       </div>
 
 </div>   <!-- slideshow-container -->
 
@@ -240,7 +239,7 @@ function showSlides() {
     {% for nov in novita %}
          <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
          <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
-              style="height: 190px; text-align: center; margin-right: 1%"/>  </a>
+              style="height: 200px; text-align: center; margin-right: 1%"/>  </a>
     {% endfor %}
     </div>     <!-- lenta-horizont -->
 
@@ -253,7 +252,7 @@ function showSlides() {
         {% for coll in collezioni_tutti %}
           <a href="{% url 'collezione-detail' coll.pk %}">
             <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-             style="height: 85px; margin-right: 1.0%; margin-bottom: 5.0%;"/> </a>
+             style="height: 75px; margin-right: 1.0%; margin-bottom: 5.0%;"/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
@@ -265,7 +264,7 @@ function showSlides() {
         {% for cata in catalogolist %}
             <a href="{% url 'catalogo-detail' cata.pk %}">
             <img class = "scale-border" title = "Catalog {{cata.nome}}" src="{% static cata.path %}" alt="{{ cata.nome }}"
-            style = "height: 170px;  text-align: center; margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
+            style = "height: 190px;  text-align: center; margin: 2.0%;  box-shadow: 5px 5px 15px white;" /> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
@@ -278,7 +277,7 @@ function showSlides() {
         {% for prog in progettolist %}
           <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
             <img class = "scale-border" title = "Lighting project {{prog.nome}}" src="{% static prog.path %}" alt="{{ prog.nome }}"
-             style="height: 170px; margin: 1.5% "/> </a>
+             style="height: 190px; margin: 1.5% "/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
@@ -311,7 +310,7 @@ function showSlides() {
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
                     <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
-                    style="height: 80px; text-align: center;"/>  </a>
+                    style="height: 70px; text-align: center;"/>  </a>
 
              {% endfor %}
          </div> <!-- novita-mobile -->
