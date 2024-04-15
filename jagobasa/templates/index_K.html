@@ -135,9 +135,10 @@
             <div class = "menu-button">
             <a class = "link" href="{% url 'collezione' %}"><strong>Collezioni</strong></a></div>
             <div class = "menu-button">
-            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
-            <div class = "menu-button">
             <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
+
     </div>  <!-- menu -->
 
     <div class = "count-jago">
@@ -177,14 +178,11 @@
 {% block content %}
 
 <div class = "tytle-lighting" style = "text-align: right;">
-    <p> Jago - Italian lighting </p>
+    <p> Presentazione </p>
 </div>
-
 
 <div class = "list-detail">
 <!--   =================== SLIDE SHOW COLLEZIONE BACK ======================  -->
-
-<!--    <div class = "tytle-home"> Presentazione </div> -->
 
 <div class="slideshow-container">
 
@@ -236,7 +234,7 @@ function showSlides() {
     <div class = "lenta-horizont">
     {% for nov in novita %}
          <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-         <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+         <img class = "scale-border" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
               style="height: 85%; text-align: center; margin-right: 2%"/>  </a>
     {% endfor %}
     </div>     <!-- lenta-horizont -->
@@ -263,7 +261,7 @@ function showSlides() {
         {% for coll in collezioni_tutti %}
           <a href="{% url 'collezione-detail' coll.pk %}">
             <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-             style="height: 85%; margin-right: 2.0%; margin-bottom: 5.0%;"/> </a>
+             style="height: 80%; margin-right: 2.0%; margin-bottom: 5.0%;"/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>

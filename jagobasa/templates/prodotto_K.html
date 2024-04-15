@@ -13,7 +13,7 @@
 
     .tipi-prod {                              /* mobile */
         position: absolute;
-        border: 0px solid red;
+        border: 0px solid green;
         left:3%;       top:8%;
         width: 43.0%;   height: 50.0%;
         padding-left: 0;
@@ -24,7 +24,7 @@
 
     .scheda-prod {
         position: absolute;
-        left:70%;       top:50%;
+        left:67%;       top:50%;
         width: 25.0%;   height: 45.0%;
         padding-left: 0;
         font-size: 10;
@@ -40,19 +40,26 @@
         background: none;
         border: 0px solid red;
         position: absolute;
-        left:0.0%;       top:10.0%;
-        width: 80.0%;   height: 90.0%;
+        left:20.0%;       top:0.0%;
+        width: 79.5%;   height: 101.0%;
         padding-left: 0px;
+        text-align: center;
         overflow-y: scroll;
+
     }
 .image-prodotto::-webkit-scrollbar {        /* computer */
-        display: none;
-    }
+        width: 5px;    height: 5px;
+}
+
+.image-prodotto::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
+        border-radius: 5px;
+}
 .tipi-prod {                              /* mobile */
         position: absolute;
-        border: 0px solid red;
-        left:65%;       top:10%;
-        width: 30.0%;   height: 50.0%;
+        border: 0px solid green;
+        left:3%;       top:10%;
+        width: 25.0%;   height: 50.0%;
         padding-left: 0;
         font-size: 10;
         color: white;
@@ -68,17 +75,17 @@
 
 {% block title %}<title>Prodotto</title>{% endblock %}
 {% load static %}
-<!--    ================================================== -->
+
+<!--    ================ VIEWS PRODOTTO ======================== -->
 {% block content %}
 
 <div class="tytle-page">
-     <p> {{ prod_nome }}  </p> </div>
+     <p> {{ prodotto_nome }} </p> </div>
 
 <div class = "image-prodotto">
     {% for img in prod_images %}
-         <img src="{% static img.path %}" alt="{{ img.path }}"
-         style="height:100%; border: 0px solid white;"/>
-        <br><br>
+         <img class = "scale-size-big" src="{% static img.path %}" alt="{{ img.path }}"
+              style="height:100%; border: 0px solid white;"/>
     {% endfor %}
 </div>  <!-- image prodotto -->
 
@@ -87,6 +94,9 @@
 <!--</div>-->
 
 <div class = "tipi-prod">
+    <a href="{% url 'collezione-detail' collezione_id %}"
+           style = "font-family: Anton; color: white; font-size: 14"> {{ collezione_nome }}
+    </a> <br>
     {% for tip in tipi %}
         <a href="{% url 'tipo-detail' tip.pk %}"
            style = "color: white"> {{ tip }}
@@ -113,7 +123,7 @@
 
 <div class = "scheda-prod">
     {% if img_scheda %}
-<!--        <p> {{ img_scheda }} {{ prodotto_schede }} {{ prod_pk }} </p>-->
+
          <img src="{% static img_scheda %}" alt="{{ img_scheda }}"
          style="height:100%; border: 0px solid white;"/>
         <br><br>

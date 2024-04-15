@@ -39,7 +39,7 @@
 {% extends "base_generic_K.html" %}
 {% block title %}<title>Prodotti</title>{% endblock %}
 {% load static %}
-<!--  ======================================================= -->
+<!--  ============== VIEWS TIPI DETAIL COLLEZIONE DETAIL=========================== -->
 
 {% block content %}
 
@@ -49,11 +49,12 @@
 
 <div class = "collezione-list">
     {% for prod in prodotti %}
-
+        {% if prod.2 and prod.4 == 0 %}
          <a href="{% url 'prodotto' prod.0 set url_id %}">
-            <img class = "scale-size-small" src="{% static prod.2 %}" alt="{{ prod.2 }}"
+            <img class = "scale-size-small" title = "{{ tipo.tipo }} {{ prod.3 }}"
+                 src="{% static prod.2 %}" alt="{{ prod.2 }}"
             style="width:45%;"/>  </a>
-
+        {% endif %}
     {% endfor %}
 </div>  <!-- collezione-list -->
 
@@ -83,8 +84,9 @@
 
 <div class = "right-list">
     {% for prod in prodotti %}
+
+        {% if prod.2 and prod.4 == 0 %}
         <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} <br><br>
-        {% if prod.2 %}
         <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="height:90px; text-align: center;"/>  </a> </p><br>
@@ -93,13 +95,12 @@
 </div>  <!-- right-list -->
 
 <div class = "right-nome-top">
-  <p>{{ right_text }} </p>
-  <p>{{ prodotti_count}} </p>
+  <p>{{ right_text }}: {{ prodotti_count}}</p>
 </div>
 
 <div class = "novita-mobile">
     {% for prod in prodotti %}
-        {% if prod.2 %}
+        {% if prod.2 and prod.4 == 0 %}
         <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="width: 30%; text-align: center;"/>  </a>

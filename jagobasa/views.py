@@ -194,17 +194,18 @@ def collezione_detail(request, pk):
     prodotti_count = 0
 
     for prod in prodotto:
-        prodotti_count += 1
-        line = []
         images = ProdottoImg.objects.all().filter(prodotto = prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto = prod.id).count()
+        if image_count > 0: prodotti_count += 1
         for x in range (image_count):
+            line = []
             line = line + [prod.id]                 #0 id
             line = line + [images[x].img_nome]      #1 nome_image
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                    #2 image_prodotto
             line = line + [images[x].prodotto]      #3 nome
+            line = line + [x]                       # 4 numero image
             prodotti = prodotti + [line]
 
 
@@ -322,32 +323,33 @@ def tipo_detail(request, pk ):
     tipo.img = str(tipo.image)
     tipo.img = tipo.img[tipo.img.find("static") + 7:]
 
-
     prodotto = Prodotto.objects.all().filter(tipo=pk)
     prodotti = []
     prodotti_count = 0
 
     for prod in prodotto:
-        prodotti_count += 1
-        line = []
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
+        if image_count > 0: prodotti_count += 1
         for x in range(image_count):
+            line = []
             line = line + [prod.id]             # 0 id
             line = line + [images[x].img_nome]  # 1 nome_image
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                # 2 image_prodotto
-            line = line + [images[x].prodotto]  # 3 nome
+            line = line + [images[x].prodotto]  # 3 nome_prodotto
+            line = line + [x]                   # 4 numero image
             prodotti = prodotti + [line]
 
     return render(
         request,
         'prodotti_coll_tipo_K.html',
         context={'prodotti': prodotti,
-                 'prodotti_count': prodotti_count,
+                 # 'prodotti_count': prodotti_count,
                  'background': 'img_background/tipo_spazio 03 blackblu.jpg',
                  'tytle_nome': 'Prodotti di ',
+                 'prodotti_count': prodotti_count,
                  'right_img': tipo.img,
                  'right_text': tipo.tipo,
                  'nome_url': 'tipo',
@@ -364,15 +366,17 @@ def tipo_detail(request, pk ):
 def prodotto(request, pk, set, url_id):
 
     prodotto = Prodotto.objects.get(id = pk)
-    prod_nome = prodotto.nome
-    collezione_id = prodotto.collezione
+    prodotto_nome = prodotto.nome
+    collezione_nome = prodotto.collezione
+    collezione = Collezione.objects.get(nome=collezione_nome)
+    collezione_id = collezione.id
     prodotto_set = []
     right_img = ""
     right_text = ""
 
     if set != "2":   # da COLLEZIONE
         prodotto_set = Prodotto.objects.all().filter(collezione = collezione_id)
-        set_data = Collezione.objects.get(nome = collezione_id)
+        set_data = Collezione.objects.get(nome = collezione_nome)
         set_data.path_back = str(set_data.image_back)
         set_data.path_back = set_data.path_back[set_data.path_back.find("static") + 7:]
         set_data.path_img = str(set_data.image)
@@ -388,23 +392,24 @@ def prodotto(request, pk, set, url_id):
         set_data.path_img = set_data.path_img[set_data.path_img.find("static") + 7:]
         right_text = set_data.tipo
         right_img = set_data.path_img
-        background = 'img_background/tipo_spazio 03 blackblu.jpg'
+        background = 'img_background/spazio 01 rose.jpg'
     #  ===================================
     prodotti = []
     prodotti_count = 0
 
     for prod in prodotto_set:
         prodotti_count = prodotti_count + 1
-        line = []
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         for x in range(image_count):
+            line = []
             line = line + [prod.id]             # 0 id
             line = line + [images[x].img_nome]  # 1 nome_image
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                # 2 image_prodotto
-            line = line + [images[x].prodotto]  # 3 nome
+            line = line + [images[x].prodotto]  # 3 nome prodotto
+            line = line + [x]                   # 4 numero image
             prodotti = prodotti + [line]
 
     #  ===================================
@@ -472,7 +477,8 @@ def prodotto(request, pk, set, url_id):
                  'prodotto': prodotto, # set
                  'prod_images': images,  # set
                  'background': background,
-                 'prod_nome': prod_nome,
+                 'prodotto_nome': prodotto_nome,
+                 'collezione_nome': collezione_nome, 'collezione_id': collezione_id,
                  'right_img': right_img,
                  'right_text': right_text,
                  'tipi': tipi, # set
@@ -505,12 +511,9 @@ def progetto(request, stanza):
         menu = prog.nome.split()
         prog.menu = menu[0] + " " + menu[1]
 
-
     stanzalist = TipoStanza.objects.all()
     for stanza in stanzalist:
         stanza.num_prog = Progetto.objects.all().filter(stanza = stanza.id).count()
-
-
 
     return render(
         request,
@@ -522,8 +525,7 @@ def progetto(request, stanza):
                  'stanzalist': stanzalist,
                  'modo': 1,
                  'stanza': stanza,
-
-                                        }
+                                      }
     )
 # ============== END progetti =======================
 

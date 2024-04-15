@@ -87,7 +87,7 @@ class ProdottoDetResource(resources.ModelResource):
 
 class ProdottoDetAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoDetResource
-    list_display = ('id', 'nome', 'larghezza', 'profondita', 'altezza_max', 'materiale')
+    list_display = ('id', 'nome', 'prodotto', 'larghezza', 'profondita', 'altezza_max', 'materiale')
     # list_filter = ('catalogo', )
 
 admin.site.register(ProdottoDet, ProdottoDetAdmin)
