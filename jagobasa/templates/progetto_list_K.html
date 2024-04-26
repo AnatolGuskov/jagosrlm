@@ -1,8 +1,6 @@
-<!--TEMPLATE COLLEZIONE-->
+<!--TEMPLATE PROGETTO LIST -->
 
  <style>
-
-
 
     .progetto-list {
         background: none;
@@ -29,7 +27,7 @@
 {% block content %}
 
 <div class = "tytle-page">
-        <p> {{ text_count }} di Jago </p>
+        <p> {{ text_count }} </p>
 </div>
 
 <div class="collezione-list">
@@ -60,14 +58,8 @@
             <p> Progetti: {{ num_progetti }}</p> </div>
     {% endif %}  <!-- modo di totale stanze -->
 
-<!--    {% if modo == 2 %}         &lt;!&ndash; modo di progetto unico &ndash;&gt;-->
-<!--    <div class = "right-nome-top">-->
-<!--            <p> {{ progetto_nome }} </p> </div>-->
-<!--    {% endif %}  &lt;!&ndash; modo di progetto unico &ndash;&gt;-->
-
 
 <div class = "right-image-top">
-
     {% if modo == 1 %}        <!-- modo di totale stanze -->
         <br><br>
         {% for stanza in stanzalist %}
@@ -89,18 +81,16 @@
             <p style = "color: white; font-size: 12; text-align: center;"><b> {{ prod.nome }} </b></p></a>
         {% endfor %}
     {% endif %}
-
 </div> <!-- right-image-top -->
 
 <div class = "right-list">
-      {% for prog in progettolist %}
-        <figure style ="margin: 1.5%">
-        <p style="font-size: 11px; color: white:">{{ prog.menu }}</p>
-        <p style=""> <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
-            <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
-                 style = height:110px;"/>  </a></p>
-         </figure>
-      {% endfor %}
+     {% for prog in progettolist %}
+            <p style="font-size: 11px; color: white;">{{ prog.menu }}</p>
+            <p style=""> <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
+                <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
+                     style = "height: 110px;"/>  </a></p>
+          <br>
+     {% endfor %}
 </div>    <!-- right-list -->
 
 
@@ -116,4 +106,7 @@
 
 {% endblock %}  <!-- side-right -->
 
+
+</body>
+</html>
 

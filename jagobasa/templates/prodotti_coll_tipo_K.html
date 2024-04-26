@@ -1,8 +1,6 @@
 
 <style>
 
-
-
     .right-nome-top {
         background: none;
         position: absolute;
@@ -30,7 +28,6 @@
         -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
     }
 
-
 </style>
 
 <body>
@@ -39,7 +36,8 @@
 {% extends "base_generic_K.html" %}
 {% block title %}<title>Prodotti</title>{% endblock %}
 {% load static %}
-<!--  ============== VIEWS TIPI DETAIL COLLEZIONE DETAIL=========================== -->
+
+<!--  ========= COLLEZIONE DETAIL === CATALOGO Detail Collezione === TIPI DETAIL === PRODOTTO  -->
 
 {% block content %}
 
@@ -49,12 +47,12 @@
 
 <div class = "collezione-list">
     {% for prod in prodotti %}
-        {% if prod.2 and prod.4 == 0 %}
+        {% if prod.2 and prod.4 == 1 %}
          <a href="{% url 'prodotto' prod.0 set url_id %}">
-            <img class = "scale-size-small" title = "{{ tipo.tipo }} {{ prod.3 }}"
+            <img class = "scale-size-small" title = "{{ prod.6 }} {{ prod.3 }}"
                  src="{% static prod.2 %}" alt="{{ prod.2 }}"
-            style="width:45%;"/>  </a>
-        {% endif %}
+            style="width:45%;  margin-bottom: 5%"/>  </a>
+         {% endif %}
     {% endfor %}
 </div>  <!-- collezione-list -->
 
@@ -65,17 +63,17 @@
 
 <div class = "right-image-top">
     {% if set == "1" or set == "4" %}
-            <a href="{% url 'collezione' %}">
+            <a href="{% url 'collezione-detail' collezione_id %}">
             <img src="{% static right_img %}" alt="{{ right_img }}"
             style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}
     {% if set == "2" %}
-    <a href="{% url 'tipo' %}">
+            <a href="{% url 'tipo-detail' tipo_id %}">
             <img src="{% static right_img %}" alt="{{ right_img }}"
             style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}
     {% if set == "3" %}
-    <a href="{% url 'catalogo-detail' url_id %}">
+            <a href="{% url 'catalogo-detail' url_id %}">
             <img src="{% static right_img %}" alt="{{ right_img }}"
             style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}
@@ -85,9 +83,13 @@
 <div class = "right-list">
     {% for prod in prodotti %}
 
-        {% if prod.2 and prod.4 == 0 %}
-        <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} <br><br>
-        <a href="{% url 'prodotto' prod.0 set url_id %}">
+        {% if prod.2 and prod.4 == 1 %}
+            {% if prod.5 > 1 %}
+        <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} ({{ prod.5 }}) </p>
+            {% else %}
+        <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} </p>
+            {% endif %}
+        <a href="{% url 'prodotto' prod.0 set tipo_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="height:90px; text-align: center;"/>  </a> </p><br>
         {% endif %}
@@ -100,17 +102,15 @@
 
 <div class = "novita-mobile">
     {% for prod in prodotti %}
-        {% if prod.2 and prod.4 == 0 %}
-        <a href="{% url 'prodotto' prod.0 set url_id %}">
+        {% if prod.2 and prod.4 == 1 %}
+        <a href="{% url 'prodotto' prod.0 set tipo_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="width: 30%; text-align: center;"/>  </a>
         {% endif %}
     {% endfor %}
 </div>  <!-- novita-mobile -->
 
-{% endblock %}
-
-
+{% endblock %}  <!-- side-right   -->
 
 </body>
 </html>

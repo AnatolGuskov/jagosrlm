@@ -1,10 +1,8 @@
+<!--  TEMPLATE PROGETTO  -->
 
 <style>
 
-
-
-
-   .image-progetto {
+  .image-progetto {
         background: none;
         border: 0px solid white;
         position: absolute;
@@ -17,43 +15,32 @@
         display: none;
    }
 
-
-
 </style>
 
 <body>
+<!--  ======================================================= -->
 
 {% extends "progetto_list_K.html" %}
-
 {% block title %}<title> Progetto </title>{% endblock %}
 {% load static %}
 
-<!--    ==================================================    -->
+<!--    =====================  PROGETTO DETAIL  =============================    -->
 
 {% block content %}
-
-<div class = "back-page">
-    {% if background %}
-
-    {% endif %}
-</div>
-
-<!--<div class="tytle-page">-->
-<!--     <p> {{ progetto_nome }} </p>-->
-<!--</div>-->
 
 <div class = "image-progetto">
 
          <img src="{% static progetto.path %}" alt="{{ prog.path }}"
          style="width:100%; border: 2px solid black;"/>
 
-</div>  <!-- image progetto        -->
+</div>  <!-- imag-progetto        -->
 
 
 </div>
 
 {% endblock %}  <!-- content       -->
 
+<!--    =====================  SIDE_RIGHT  =============================    -->
 {% block side_right %}
 
     <div class = "right-nome-top">
@@ -73,12 +60,11 @@
 
     <div class = "right-list">
           {% for prog in progettolist %}
-            <figure style ="margin: 1.5%">
-            <p style="font-size: 11px; color: white:">{{ prog.menu }}</p>
+            <p style="font-size: 11px; color: white;">{{ prog.menu }}</p>
             <p style=""> <a href="{% url 'progetto-detail' prog.stanza prog.pk %}">
                 <img class = "scale-border" src="{% static prog.path %}" alt="{{ prog.path }}"
-                     style = height:110px;"/>  </a></p>
-             </figure>
+                     style = "height: 110px;"/>  </a></p>
+          <br>
           {% endfor %}
     </div>    <!-- right-list -->
 
@@ -93,6 +79,7 @@
     </div> <!-- novita-mobile -->
 
 {% endblock %}  <!-- side-right   -->
+
 
 </body>
 </html>

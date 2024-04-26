@@ -24,15 +24,15 @@
 
     .scheda-prod {
         position: absolute;
-        left:67%;       top:50%;
+        left:3%;       top:50%;
         width: 25.0%;   height: 45.0%;
         padding-left: 0;
         font-size: 10;
         color: yellow;
     }
 
-@media (min-width: 500px) {
 
+@media (min-width: 500px) {
 
 .image-prodotto {                           /* computer */
         display: block;
@@ -55,7 +55,7 @@
         background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
         border-radius: 5px;
 }
-.tipi-prod {                              /* mobile */
+.tipi-prod {                              /* computer */
         position: absolute;
         border: 0px solid green;
         left:3%;       top:10%;
@@ -79,9 +79,6 @@
 <!--    ================ VIEWS PRODOTTO ======================== -->
 {% block content %}
 
-<div class="tytle-page">
-     <p> {{ prodotto_nome }} </p> </div>
-
 <div class = "image-prodotto">
     {% for img in prod_images %}
          <img class = "scale-size-big" src="{% static img.path %}" alt="{{ img.path }}"
@@ -89,9 +86,12 @@
     {% endfor %}
 </div>  <!-- image prodotto -->
 
-<!--<div class="tytle-add">-->
-<!--         <p> {{ prod_nome }}</p>-->
-<!--</div>-->
+<div class="tytle-page">
+    {% if images_count > 1 %}
+       <p> {{ prodotto_nome }} ({{ images_count }})</p>
+    {% else %}
+       <p> {{ prodotto_nome }} </p>
+    {% endif %} </div>
 
 <div class = "tipi-prod">
     <a href="{% url 'collezione-detail' collezione_id %}"
@@ -112,6 +112,7 @@
             {{ luc.quantita }} x {{ luc.lampadina }}<br>
         {% endif %}
     {% endfor %}<br>
+<!--    <pre style = "background: black, color: white" > {{ variante }} </pre><br>-->
 
     {% for prog in prodotto_progetti %}
         <a href="{% url 'progetto-detail' prog.stanza prog.id %}"

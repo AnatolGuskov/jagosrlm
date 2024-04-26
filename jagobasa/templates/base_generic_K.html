@@ -20,6 +20,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
+    <!-- Отключение кэширования -->
+    <meta http-equiv = "Cache-Control" content = "no-store, no-cache, must-revalidate">
+    <meta http-equiv = "Pragma" content = "no-cache">
+    <meta http-equiv = "Expires" content = "0">
+
     <!-- Добавление дополнительного статического CSS файла -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles_jago.css' %}" />
@@ -76,8 +81,6 @@
     </div>  <!-- copy_right  -->
 
 
-
-
  {% endblock %} <!-- sidebar -->
  </side-left> <!-- side_left -->
 <!--   ==========================================================  -->
@@ -92,12 +95,11 @@
 
         <side-right class="side-right">
           {% block side_right %}
+
           {% endblock %}
         </side-right>
 
  </div>
 
- </body>
-
-
+</body>
 </html>

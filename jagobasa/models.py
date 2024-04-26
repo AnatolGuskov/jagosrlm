@@ -55,7 +55,7 @@ class Tipo(models.Model):
 # PRODOTTO        Model representing a Prodotti
 class Prodotto(models.Model):
     class Meta:
-        ordering = ["-status", "nome"]
+        ordering = ["nome"]
 
     nome = models.CharField(max_length=100)
     collezione = models.ForeignKey('Collezione', on_delete=models.SET_NULL, null=True)
@@ -141,7 +141,7 @@ class ProdottoSchede(models.Model):
 # PROGETTO        Model representing a Image dei Progetti
 class Progetto (models.Model):
     class Meta:
-        ordering = ["-status", "nome"]
+        ordering = ["nome"]
 
     prodotto = models.ManyToManyField(Prodotto, help_text="Scegli i progetti per questo prodotto")
     nome = models.CharField(max_length=100, null=True)

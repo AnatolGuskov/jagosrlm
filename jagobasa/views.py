@@ -189,7 +189,7 @@ def collezione_detail(request, pk):
     catalogo_pk = cataloghi[0].pk
 
 
-    prodotto = Prodotto.objects.all().filter(collezione = pk)
+    prodotto = Prodotto.objects.all().filter(collezione = pk).order_by('-nome', 'status')
     prodotti = []
     prodotti_count = 0
 
@@ -199,13 +199,15 @@ def collezione_detail(request, pk):
         if image_count > 0: prodotti_count += 1
         for x in range (image_count):
             line = []
-            line = line + [prod.id]                 #0 id
-            line = line + [images[x].img_nome]      #1 nome_image
+            line = line + [prod.id]                 # 0 id
+            line = line + [images[x].img_nome]      # 1 image_nome
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
-            line = line + [path]                    #2 image_prodotto
-            line = line + [images[x].prodotto]      #3 nome
-            line = line + [x]                       # 4 numero image
+            line = line + [path]                    # 2 image_prodotto
+            line = line + [images[x].prodotto]      # 3 nome
+            line = line + [x + 1]                   # 4 numero image
+            line = line + [image_count]             # 5 image_count
+            line = line + [prod.collezione]         # 6 collezione
             prodotti = prodotti + [line]
 
 
@@ -275,22 +277,25 @@ def catalogo_detail_collezione(request, pk, col):
     collezione.img = collezione.img[collezione.img.find("static") + 7:]
     collezione_id = collezione.pk
 
-    prodotto = Prodotto.objects.all().filter(collezione=col)
+    prodotto = Prodotto.objects.all().filter(collezione=col).order_by('-nome', 'status')
     prodotti = []
     prodotti_count = 0
 
     for prod in prodotto:
-        prodotti_count += 1
-        line = []
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
+        if image_count > 0: prodotti_count += 1
         for x in range(image_count):
+            line = []
             line = line + [prod.id]  # 0 id
-            line = line + [images[x].img_nome]  # 1 nome_image
+            line = line + [images[x].img_nome]   # 1 nome_image
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
-            line = line + [path]  # 2 image_prodotto
-            line = line + [images[x].prodotto]  # 3 nome
+            line = line + [path]                 # 2 image_prodotto
+            line = line + [images[x].prodotto]   # 3 nome
+            line = line + [x + 1]                # 4 numero image
+            line = line + [image_count]          # 5 image_count
+            line = line + [prod.collezione]      # 6 collezione
             prodotti = prodotti + [line]
 
     return render(
@@ -309,11 +314,8 @@ def catalogo_detail_collezione(request, pk, col):
                  'catalogo_ind': "1",
                  'set': '3', 'tipo_id': 1,
                  }
-
     )
-
 # ============== END Catalogo Detail Collezione=============================
-
 
 # ============== TIPI DETAIL =============================
 
@@ -323,7 +325,8 @@ def tipo_detail(request, pk ):
     tipo.img = str(tipo.image)
     tipo.img = tipo.img[tipo.img.find("static") + 7:]
 
-    prodotto = Prodotto.objects.all().filter(tipo=pk)
+
+    prodotto = Prodotto.objects.all().filter(tipo=pk).order_by('-nome', 'status')
     prodotti = []
     prodotti_count = 0
 
@@ -334,21 +337,22 @@ def tipo_detail(request, pk ):
         for x in range(image_count):
             line = []
             line = line + [prod.id]             # 0 id
-            line = line + [images[x].img_nome]  # 1 nome_image
+            line = line + [images[x].img_nome]  # 1 image_nome
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                # 2 image_prodotto
             line = line + [images[x].prodotto]  # 3 nome_prodotto
-            line = line + [x]                   # 4 numero image
+            line = line + [x + 1]               # 4 numero image
+            line = line + [image_count]         # 5 image_count
+            line = line + [prod.collezione]     # 6 collezione
             prodotti = prodotti + [line]
 
     return render(
         request,
         'prodotti_coll_tipo_K.html',
         context={'prodotti': prodotti,
-                 # 'prodotti_count': prodotti_count,
-                 'background': 'img_background/tipo_spazio 03 blackblu.jpg',
                  'tytle_nome': 'Prodotti di ',
+                 'tipo_id': tipo.id,
                  'prodotti_count': prodotti_count,
                  'right_img': tipo.img,
                  'right_text': tipo.tipo,
@@ -375,7 +379,7 @@ def prodotto(request, pk, set, url_id):
     right_text = ""
 
     if set != "2":   # da COLLEZIONE
-        prodotto_set = Prodotto.objects.all().filter(collezione = collezione_id)
+        prodotto_set = Prodotto.objects.all().filter(collezione = collezione_id).order_by('-nome', 'status')
         set_data = Collezione.objects.get(nome = collezione_nome)
         set_data.path_back = str(set_data.image_back)
         set_data.path_back = set_data.path_back[set_data.path_back.find("static") + 7:]
@@ -386,7 +390,7 @@ def prodotto(request, pk, set, url_id):
         background = set_data.path_back
 
     if set == "2":   # da TIPO
-        prodotto_set = Prodotto.objects.all().filter(tipo = url_id)
+        prodotto_set = Prodotto.objects.all().filter(tipo = url_id).order_by('-nome', 'status')
         set_data = Tipo.objects.get(id = url_id)
         set_data.path_img = str(set_data.image)
         set_data.path_img = set_data.path_img[set_data.path_img.find("static") + 7:]
@@ -404,16 +408,19 @@ def prodotto(request, pk, set, url_id):
         for x in range(image_count):
             line = []
             line = line + [prod.id]             # 0 id
-            line = line + [images[x].img_nome]  # 1 nome_image
+            line = line + [images[x].img_nome]  # 1 image_nome
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                # 2 image_prodotto
             line = line + [images[x].prodotto]  # 3 nome prodotto
-            line = line + [x]                   # 4 numero image
+            line = line + [x + 1]               # 4 numero image
+            line = line + [image_count]         # 5 image_count
+            line = line + [prod.collezione]  # 6 collezione
             prodotti = prodotti + [line]
 
     #  ===================================
     images = ProdottoImg.objects.all().filter(prodotto = pk)
+    images_count = ProdottoImg.objects.all().filter(prodotto = pk).count()
     for img in images:
         img.path = str(img.image)
         img.path = img.path[img.path.find("static") + 7:]
@@ -430,6 +437,7 @@ def prodotto(request, pk, set, url_id):
     misura = "-"
     altezza = "-"
     materiale = "-"
+    variante = ""
 
     prodotto_det = ProdottoDet.objects.all().filter(nome = prodotto.nome)
     if prodotto_det:
@@ -446,6 +454,7 @@ def prodotto(request, pk, set, url_id):
                 altezza = altezza + " + " + str(pro.catena)
             if pro.materiale:
                 materiale = str(pro.materiale)
+            variante = pro.variante
 
 
     #  ===================================
@@ -473,19 +482,19 @@ def prodotto(request, pk, set, url_id):
         context={'collezione': set_data,  # set
                  'prodotti': prodotti,  # set user
                  'prodotto_progetti': prodotto_progetti,  # set
-                 'prodotti_count': prodotti_count,
+                 'prodotti_count': prodotti_count, 'images_count': images_count,
                  'prodotto': prodotto, # set
                  'prod_images': images,  # set
                  'background': background,
                  'prodotto_nome': prodotto_nome,
                  'collezione_nome': collezione_nome, 'collezione_id': collezione_id,
-                 'right_img': right_img,
-                 'right_text': right_text,
+                 'right_img': right_img,  'right_text': right_text,
                  'tipi': tipi, # set
                  'misura': misura, 'altezza': altezza,  'materiale': materiale,
+                 'variante': variante,
                  'prodotto_luc': prodotto_luc,  # set
                  'set': set,
-                 'url_id': url_id,
+                 'tipo_id': url_id,
                  'img_scheda': img_scheda,
 
                  }
