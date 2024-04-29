@@ -138,6 +138,8 @@
             <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
             <div class = "menu-button">
             <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'elenco' 1 100 %}"><strong>Elenco di Prodotti</strong></a></div>
 
     </div>  <!-- menu -->
 
@@ -253,7 +255,6 @@ function showSlides() {
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
 
-
 <!--   =================== COLLEZIONI ======================  -->
       <a class = "tytle-home" href="{% url 'collezione' %}"> Collezioni </a>
       <br>
@@ -265,8 +266,6 @@ function showSlides() {
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
-
-
 
 <!--   =================== PROGETTI ======================  -->
     <a class = "tytle-home" href="{% url 'progetto' 0 %}">Progetti </a>

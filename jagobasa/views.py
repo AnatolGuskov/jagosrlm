@@ -584,22 +584,131 @@ def progetto_detail(request, stanza, pk ):
 
 # ============== PROGETTI ==??????===========================
 def progetto_(request):
-    progettolist = Progetto.objects.all().order_by('nome')
-
-    for prog in progettolist:
-        prog.path = str(prog.image)
-        prog.path = prog.path[prog.path.find("static")+7:]
-
-    num_progetti = Progetto.objects.all().count()
 
     return render(
         request,
         'progetto_list_K.html',
-        context={'progettolist': progettolist,  #set
-                 'num_progetti': num_progetti,
-                 'modo': 1,
-
-                                        }
+        context={                       }
     )
 # ============== END progetti =======================
 
+# ============== ELENCO ===========================
+def elenco(request, sort, coll_pk):
+    if coll_pk == '100':
+        prodotto = Prodotto.objects.all()
+        right_img = 'img_background/spazio 01 rose.jpg'
+        right_text = "Prodotti"
+    else:
+        prodotto = Prodotto.objects.all().filter(collezione = coll_pk)
+        coll_fix = Collezione.objects.get(pk = coll_pk)
+        right_img = str(coll_fix.image)
+        right_img = right_img[right_img.find("static") + 7:]
+        right_text = coll_fix.nome
+
+    prodotto_count = prodotto.count()
+
+    if sort == '1':
+        prodotto = prodotto.order_by('collezione','nome')
+    if sort == '2':
+        prodotto = prodotto.order_by('nome')
+
+    #  ===================================
+    prodotti = []
+
+    for prod in prodotto:
+        images = ProdottoImg.objects.all().filter(prodotto=prod.id)
+        image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
+        coll = Collezione.objects.get(nome=prod.collezione)
+        #  ===================================
+        line = []
+        # 0 id
+        line = line + [prod.id]
+        # 1 nome_prod
+        line = line + [prod.nome]
+        # 2 nome_coll
+        line = line + [coll.nome]
+        if image_count > 0: path = str(images[0].image)
+        path = path[path.find("static") + 7:]
+        # 3 image_prodotto
+        line = line + [path]
+        #  ===================================
+        detagli = ProdottoDet.objects.get(prodotto=prod.id)
+        if detagli.profondita:
+            misura = str(detagli.forma) + " " + str(detagli.larghezza) + " x " + str(detagli.profondita)
+        else:
+            misura = str(detagli.forma) + " " + str(detagli.larghezza)
+        line = line + [misura]             # 4 misura
+        if detagli.altezza_min:
+            altezza = "H= " + str(detagli.altezza_min) + " ... " + str(detagli.altezza_max)
+        else:
+            altezza = "H= " + str(detagli.altezza_max)
+        if detagli.catena:
+            altezza = altezza + " + " + str(detagli.catena)
+        line = line + [altezza]           # 5 altezza
+        if detagli.materiale:
+            materiale = str(detagli.materiale)
+        line = line + [materiale]         # 6 materiale
+        line = line + ["'"]               # 7 variante
+        #  ===================================
+        luci = ProdottoLuc.objects.all().filter(prodotto=prod.id)
+        luc_tip = ""
+        for luc in luci:
+            if luc_tip == "": luc_tip = luc_tip + str(luc.quantita)+"x"+str(luc.lampadina)
+            else: luc_tip = luc_tip + ", " + str(luc.quantita) + "x" + str(luc.lampadina)
+        line = line + [luc_tip]            # 8 luci
+        #  ===================================
+        prodotti = prodotti + [line]
+        #  ===================================
+        collist = Collezione.objects.all()
+
+
+
+    #  ===================================
+    # tipi = Prodotto.objects.get(id = pk).tipo.all() # ManyToMany Tutti Tipi per Prodotto !!!!!!!!!!!!!
+    # for tip in tipi:
+    #     tip_split = tip.tipo.split()
+    #     if len(tip_split) != 1:
+    #         tip.tipo = tip.tipo[len(tip_split[0]):]
+
+    # #  ===================================
+    # # if Prodotto.objects.get(id=pk).progetto.all():
+    # prodotto_progetti = Progetto.objects.all().filter(prodotto = pk)
+    # for prog in prodotto_progetti:
+    #     prog.path = str(prog.image)
+    #     prog.path = prog.path[prog.path.find("static")+7:]
+    #     menu = prog.nome.split()
+    #     prog.menu = menu[0] + " " + menu[1]
+
+
+    return render(
+        request,
+        'elenco_K.html',
+        context={
+            'prodotti': prodotti,
+            'prodotto_count': prodotto_count,
+            'collist': collist,
+            'coll_pk': coll_pk,
+            'right_img': right_img, 'right_text': right_text,
+        }
+    )
+# ============== END ELENCO_ =======================
+
+
+# ============== Elenco_ ??????===========================
+def elenco_1 (request):
+
+    return render(
+        request,
+        'progetto_list_K.html',
+        context={  }
+    )
+# ============== END elenco_ =======================
+
+def elenco_2 (request, sort):
+
+    return render(
+        request,
+        'progetto_list_K.html',
+        context={  }
+    )
+# ============== END elenco_ =======================

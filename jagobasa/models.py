@@ -17,7 +17,7 @@ class Catalogo(models.Model):
 # COLLEZIONE        Model representing a Collezione
 class Collezione(models.Model):
     class Meta:
-        ordering = ["-status", "nome"]
+        ordering = ["nome"]
 
     nome = models.CharField(max_length=50)
     catalogo =  models.ManyToManyField(Catalogo, help_text="Select a catalogo for this collection")

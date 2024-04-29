@@ -264,7 +264,7 @@ body {  }
 
 .menu {                                    /* computer */
     background: none;
-    border: 0px solid black;
+    border: 1px solid black;
     position: absolute;
     left:0.0%;       top:18.0%;
     width: 100%;      height: 50%;
@@ -430,12 +430,25 @@ body {  }
     transition: 0.5s;         /* Время эффекта */
     transform: scale(1.03);    /* Увеличиваем масштаб */
 }
-/* -------------------------------------- */
+/* ---------------image----------------------- */
 .scale-size-big {
     transform: scale(1.0)
     -webkit-transform-origin: top;
 }
 .scale-size-big:hover {
+    border: 2px solid white;
+    transition: 1.8s;         /* Время эффекта */
+    transform: scale(1.7);    /* Увеличиваем масштаб */
+    -webkit-transform-origin: top;
+
+}
+/* ---------------schede----------------------- */
+.scale-size-big1 {
+    transform: scale(1.0)
+    -webkit-transform-origin: top;
+}
+.scale-size-big1:hover {
+    border: 2px solid white;
     transition: 1.8s;         /* Время эффекта */
     transform: scale(1.7);    /* Увеличиваем масштаб */
     -webkit-transform-origin: top;

@@ -60,6 +60,8 @@
             <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
             <div class = "menu-button">
             <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
+            <div class = "menu-button">
+            <a class = "link" href="{% url 'elenco' 1 100 %}"><strong>Elenco di Prodotti</strong></a></div>
 
     </div>  <!-- menu -->
 
@@ -99,7 +101,7 @@
           {% endblock %}
         </side-right>
 
- </div>
+ </div>    <!-- maxwidth -->
 
 </body>
 </html>

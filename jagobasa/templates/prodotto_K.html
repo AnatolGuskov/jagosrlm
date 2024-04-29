@@ -22,13 +22,15 @@
         overflow: none;
     }
 
-    .scheda-prod {
+   .scheda-prod {
+        background: none;
+        border: 0px solid red;
         position: absolute;
-        left:3%;       top:50%;
-        width: 25.0%;   height: 45.0%;
-        padding-left: 0;
-        font-size: 10;
-        color: yellow;
+        left:2%;       top:50%;
+        width: 30.0%;   height: 45.0%;
+        padding-left: 0px;
+        font-size: 10;  color: yellow;
+        overflow: auto;
     }
 
 
@@ -40,8 +42,8 @@
         background: none;
         border: 0px solid red;
         position: absolute;
-        left:20.0%;       top:0.0%;
-        width: 79.5%;   height: 101.0%;
+        left:26.0%;       top:2.5%;
+        width: 73.5%;   height: 98.5%;
         padding-left: 0px;
         text-align: center;
         overflow-y: scroll;
@@ -55,6 +57,24 @@
         background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
         border-radius: 5px;
 }
+.scheda-prod {
+        background: none;
+        border: 0px solid red;
+        position: absolute;
+        left:1%;        top:50%;
+        width: 30.0%;   height: 51.0%;
+        padding-left: 0px;
+        font-size: 10;  color: yellow;
+        ooverflow-y: scroll;
+    }
+.scheda-prod::-webkit-scrollbar {        /* computer */
+        width: 5px;    height: 5px;
+}
+.scheda-prod::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
+        border-radius: 5px;
+}
+
 .tipi-prod {                              /* computer */
         position: absolute;
         border: 0px solid green;
@@ -65,7 +85,17 @@
         color: white;
         overflow: none;
     }
+.text-elenco {
+        position: absolute;
+        border: 0px solid green;
+        left: 70%;      top:2.5%;
+        width: 28.0%;   height: 5.0%;
+        text-align: right;
+        font-size: 10;  color: white;
+        overflow: none;
+    }
 }
+
 
 </style>
 
@@ -79,6 +109,13 @@
 <!--    ================ VIEWS PRODOTTO ======================== -->
 {% block content %}
 
+<div class = "scheda-prod">
+    {% if img_scheda %}
+         <img class = "scale-size-big" src="{% static img_scheda %}" alt="{{ img_scheda }}"
+         style="height:100%; border: 0px solid white;"/>
+    {% endif %}
+</div>  <!-- scheda-prod -->
+
 <div class = "image-prodotto">
     {% for img in prod_images %}
          <img class = "scale-size-big" src="{% static img.path %}" alt="{{ img.path }}"
@@ -91,7 +128,12 @@
        <p> {{ prodotto_nome }} ({{ images_count }})</p>
     {% else %}
        <p> {{ prodotto_nome }} </p>
-    {% endif %} </div>
+    {% endif %}
+</div> <!-- tytle -->
+
+<div class = "text-elenco">
+    <a class = "link" href="{% url 'elenco' 1 collezione_id %}"><b> >> Elenco di {{ collezione_nome }} </b></a>
+</div> <!-- text-elenco -->
 
 <div class = "tipi-prod">
     <a href="{% url 'collezione-detail' collezione_id %}"
@@ -122,14 +164,7 @@
 
 </div>  <!-- tipi-prod -->
 
-<div class = "scheda-prod">
-    {% if img_scheda %}
 
-         <img src="{% static img_scheda %}" alt="{{ img_scheda }}"
-         style="height:100%; border: 0px solid white;"/>
-        <br><br>
-    {% endif %}
-</div>  <!-- scheda-prod -->
 
 {% endblock %}  <!-- content -->
 

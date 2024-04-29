@@ -17,8 +17,12 @@ urlpatterns = [
 
     path('prodotto/<pk> <set> <url_id>', views.prodotto, name='prodotto'), # prodotti_coll_tipo
 
-    path('progetto/', views.progetto_, name='progetto_'), # base_generic,
+    path('progetto/', views.progetto_, name='progetto_'),
     path('progetto/<stanza>', views.progetto, name='progetto'), # base_generic,
     path('progetto/<stanza>/<pk>', views.progetto_detail, name='progetto-detail'), #progetto_list
+
+    path('elenco/', views.elenco_1, name='elenco_1'),
+    path('elenco/<sort>', views.elenco_2, name='elenco_2'),
+    path('elenco/<sort>/<coll_pk>', views.elenco, name='elenco'), # elenco,
 
 ]

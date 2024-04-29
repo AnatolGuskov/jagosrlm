@@ -116,7 +116,7 @@ class ProdottoLucResource(resources.ModelResource):
 
 class ProdottoLucAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoLucResource
-    list_display = ('id', 'nome', 'lampadina', 'quantita',)
+    list_display = ('id', 'nome', 'prodotto', 'lampadina', 'quantita',)
     # list_filter = ('prodotto', )
 
 admin.site.register(ProdottoLuc, ProdottoLucAdmin)

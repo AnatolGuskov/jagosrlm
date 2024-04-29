@@ -1,0 +1,153 @@
+
+<style>
+
+.elenco-list{
+        display: flex;    display: block;
+        flex-wrap: wrap;
+        background: none;
+        text-align: left;
+        position: absolute;
+        left:0px;       top:13%;
+        width: 100%;   height: 86%;
+        border: 0px solid red;
+        padding-left: 5px;
+        overflow-y: scroll;
+    }
+.elenco-list::-webkit-scrollbar {        /* computer */
+        width: 5px;    height: 5px;
+}
+.elenco-list::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
+        border-radius: 5px;
+}
+table {
+  border-spacing: 30px;
+}
+.th-block {
+        text-align: left;
+        position: absolute;
+        left:0px;      top:9%;
+        width: 100%;   height: 3%;
+        padding-left: 5px;
+}
+th, td {
+  border-bottom: 1px solid #ddd;
+  font-family: Arial;    font-size: 11px;
+  color: white;
+}
+td {
+  border-bottom: 0px solid gray;
+  font-family: Arial;    font-size: 11px;
+  color: white;
+  padding: 10px;
+}
+tr {
+  border-bottom: 1px solid gray;
+  font-family: Arial;    font-size: 11px;
+  color: white;
+  padding: 10px;
+}
+<!--td:nth-child(odd) {-->
+<!--  background-color: rgb(30, 30, 30);-->
+<!--}-->
+
+</style>
+
+<body>
+
+{% extends "base_generic_K.html" %}
+
+{% block title %}<title>Elenco di prodotti</title>{% endblock %}
+{% load static %}
+
+<!--    ================ VIEWS ELENCO ======================== -->
+{% block content %}
+
+<div class="tytle-page" style = "position: absolute; left: 5px; top: 1%;">
+    {% if coll_pk == '100' %}
+          <p> Elenco di prodotti </p>
+    {% else %}
+          <p> Elenco di {{ right_text }} </p>
+    {% endif %}
+</div> <!-- tytle-page -->
+
+<div class = "th-block">
+    <table style="width:100%">
+      <tr style="height:20px">
+        <th style="width:15%">
+            <a class = "link" href="{% url 'elenco' 1 100 %}"> Collezione </a>
+        </th>
+        <th style="width:13%">
+            <a class = "link" href="{% url 'elenco' 2 100 %}"> Prodotto </a>
+        </th>
+        <th style="width:7.5%"></th>
+        <th style="width:10%">Misura, mm</th>
+        <th style="width:12%">Altezza, mm</th>
+        <th style="width:16%">Materiale</th>
+        <th>Luci</th>
+      </tr>
+    </table>
+</div>  <!-- th-block -->
+
+
+<div class = "elenco-list">
+      <table style="width:100%">
+      {% for prod in prodotti %}
+          <tr>
+            <td style="width:15%">{{prod.2}}</td>  <!-- collezione -->
+            <td style="width:13%">
+               <a class = "link" stule = "font-size: 11px;" href="{% url 'prodotto' prod.0 1 37 %}">{{prod.1}} </a>
+            </td>
+            <td style="width:8%">
+                <img class = "scale-size-big" src="{% static prod.3 %}" alt="{{ prod.3 }}"
+                     style="height: 50px; border: 1px solid gray;"/>
+            </td>
+            <td style="width:10%">{{prod.4}}</td>  <!-- missura -->
+            <td style="width:12%">{{prod.5}}</td>  <!-- altezza -->
+            <td style="width:16%">{{prod.6}}</td>  <!-- materiale -->
+            <td>{{prod.8}}</td>  <!-- luci -->
+          </tr>
+       {% endfor %}
+     </table>
+</div>    <!-- elenco-list -->
+
+{% endblock %}  <!-- content -->
+
+<!-- ======================================================================= -->
+{% block side_right %}
+
+<div class = "right-image-top">
+    {% if coll_pk == '100' %}
+              <img src="{% static right_img %}" alt=""
+            style="width: 100%; height: 100%; object-fit: fill"/>
+    {% else %}
+    <a href="{% url 'collezione-detail' coll_pk %}">
+             <img src="{% static right_img  %}"
+             style="width: 100%; height: 100%; object-fit: fill"/> </a>
+    {% endif %}
+
+</div> <!-- right-image-top -->
+
+
+<div class = "right-list" style = "padding-left: 10px">
+    <p></p>
+    {% for col in collist %}
+        <p style="text-align: left;">
+           <a class = "link" href="{% url 'elenco' 1 col.pk %}">{{ col.nome }}&nbsp;&nbsp;({{col.prodotto_set.all.count}}) </a></p>
+
+    {% endfor %}
+</div>
+
+<div class = "right-nome-top">
+  <p>{{ right_text }}: {{prodotto_count}}</p>
+</div>
+
+
+{% endblock %} <!-- site_right -->
+
+<!-- ======================================================================= -->
+
+
+
+</body>
+</html>
