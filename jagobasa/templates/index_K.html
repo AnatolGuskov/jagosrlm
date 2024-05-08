@@ -236,7 +236,7 @@ function showSlides() {
     <div class = "lenta-horizont">
     {% for nov in novita %}
          <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-         <img class = "scale-border" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+         <img class = "scale-border" title = "{{nov.4}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
               style="height: 85%; text-align: center; margin-right: 2%"/>  </a>
     {% endfor %}
     </div>     <!-- lenta-horizont -->
