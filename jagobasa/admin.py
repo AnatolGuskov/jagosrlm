@@ -59,7 +59,7 @@ class ProdottoResource(resources.ModelResource):
 
 class ProdottoAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoResource
-    list_display = ('id', 'nome', 'collezione', 'status',)
+    list_display = ('id', 'nome', 'collezione', 'preise',)
     list_filter = ('collezione', 'tipo', 'status',)
 
 admin.site.register(Prodotto, ProdottoAdmin)

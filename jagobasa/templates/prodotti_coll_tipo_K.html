@@ -89,7 +89,7 @@
             {% else %}
         <p style="font-family: Arial; font-size: 11px; color: white; text-align: center" > {{ prod.3 }} </p>
             {% endif %}
-        <a href="{% url 'prodotto' prod.0 set tipo_id %}">
+        <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="height:90px; text-align: center;"/>  </a> </p><br>
         {% endif %}
@@ -103,7 +103,7 @@
 <div class = "novita-mobile">
     {% for prod in prodotti %}
         {% if prod.2 and prod.4 == 1 %}
-        <a href="{% url 'prodotto' prod.0 set tipo_id %}">
+        <a href="{% url 'prodotto' prod.0 set url_id %}">
                 <img class = "scale-size" src="{% static prod.2 %}" alt="{{ prod.2 }}"
                 style="width: 30%; text-align: center;"/>  </a>
         {% endif %}

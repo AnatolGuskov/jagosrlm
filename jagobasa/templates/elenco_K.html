@@ -81,6 +81,9 @@ tr {
             <a class = "link" href="{% url 'elenco' 2 100 %}"> Prodotto </a>
         </th>
         <th style="width:7.5%"></th>
+        <th style="width:10%">
+            <a class = "link" href="{% url 'elenco' 3 100 %}"> Tipo </a>
+        </th>
         <th style="width:10%">Misura, mm</th>
         <th style="width:12%">Altezza, mm</th>
         <th style="width:16%">Materiale</th>
@@ -94,14 +97,19 @@ tr {
       <table style="width:100%">
       {% for prod in prodotti %}
           <tr>
-            <td style="width:15%">{{prod.2}}</td>  <!-- collezione -->
-            <td style="width:13%">
-               <a class = "link" stule = "font-size: 11px;" href="{% url 'prodotto' prod.0 1 37 %}">{{prod.1}} </a>
+            <td style="width:15%">     <!-- collezione -->
+               <a class = "link" href="{% url 'elenco' 2 prod.9 %}">
+               {{prod.2}} </a>
             </td>
-            <td style="width:8%">
+            <td style="width:13%">    <!-- nome_prodotto -->
+               <a class = "link" style = "font-size: 11px;" href="{% url 'prodotto' prod.0 1 37 %}">{{prod.1}} </a>
+            </td>
+            <td style="width:8%">     <!-- image_prodotto -->
+                <a href="{% url 'prodotto' prod.0 1 37 %}">
                 <img class = "scale-size-big" src="{% static prod.3 %}" alt="{{ prod.3 }}"
-                     style="height: 50px; border: 1px solid gray;"/>
+                     style="height: 50px; border: 1px solid white;"/></a>
             </td>
+            <td style="width:10%; font-size: 10;">{{prod.10}}</td>  <!-- tipo -->
             <td style="width:10%">{{prod.4}}</td>  <!-- missura -->
             <td style="width:12%">{{prod.5}}</td>  <!-- altezza -->
             <td style="width:16%">{{prod.6}}</td>  <!-- materiale -->
@@ -118,12 +126,12 @@ tr {
 
 <div class = "right-image-top">
     {% if coll_pk == '100' %}
-              <img src="{% static right_img %}" alt=""
+            <img src="{% static right_img %}" alt=""
             style="width: 100%; height: 100%; object-fit: fill"/>
     {% else %}
     <a href="{% url 'collezione-detail' coll_pk %}">
-             <img src="{% static right_img  %}"
-             style="width: 100%; height: 100%; object-fit: fill"/> </a>
+            <img src="{% static right_img  %}"
+            style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}
 
 </div> <!-- right-image-top -->
@@ -133,7 +141,8 @@ tr {
     <p></p>
     {% for col in collist %}
         <p style="text-align: left;">
-           <a class = "link" href="{% url 'elenco' 1 col.pk %}">{{ col.nome }}&nbsp;&nbsp;({{col.prodotto_set.all.count}}) </a></p>
+               <a class = "link" style="font-size: 10;"
+                  href="{% url 'elenco' 1 col.pk %}">{{ col.nome }}: {{col.prodotto_set.all.count}} </a></p>
 
     {% endfor %}
 </div>

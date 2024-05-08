@@ -1,8 +1,8 @@
-<!--  TEMPLATE PROGETTO  -->
+<!--TEMPLATE PROGETTO LIST -->
 
-<style>
+ <style>
 
-  .image-progetto {
+     .image-progetto {
         background: none;
         border: 0px solid white;
         position: absolute;
@@ -15,17 +15,14 @@
         display: none;
    }
 
-</style>
-
-<body>
+ </style>
 <!--  ======================================================= -->
 
-{% extends "progetto_list_K.html" %}
-{% block title %}<title> Progetto </title>{% endblock %}
+{% extends "base_generic_K.html" %}
+{% block title %}<title>Progetto</title>{% endblock %}
 {% load static %}
 
-<!--    =====================  PROGETTO DETAIL  =============================    -->
-
+<!--  ======================================================= -->
 {% block content %}
 
 <div class = "image-progetto">
@@ -35,15 +32,13 @@
 
 </div>  <!-- imag-progetto        -->
 
+{% endblock %} <!-- content -->
 
-</div>
+<!-- ===========  SIDE RIGHT ===================================== -->
 
-{% endblock %}  <!-- content       -->
-
-<!--    =====================  SIDE_RIGHT  =============================    -->
 {% block side_right %}
 
-    <div class = "right-nome-top">
+   <div class = "right-nome-top">
             <p> {{ progetto_nome }} </p> </div>
 
     <div class = "right-image-top">
@@ -78,8 +73,9 @@
         {% endfor %}
     </div> <!-- novita-mobile -->
 
-{% endblock %}  <!-- side-right   -->
+{% endblock %}  <!-- side-right -->
 
 
 </body>
 </html>
+

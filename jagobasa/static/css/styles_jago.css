@@ -79,6 +79,11 @@ body {
     color: white;
     font-size: 11px;
 }
+.menu-button-c {                              /* computer */
+    display: none;
+
+
+}
 .menu {                                /* mobile */
         background: black;
         border: 0px solid yellow;
@@ -256,10 +261,22 @@ body {  }
 .menu-button {                              /* computer */
     position: relative;
     left:2.0%;       top:0%;
-    width:90%;    height:23px;
+    width:96%;    height:23px;
     font-size: 12px;
     vertical-align: middle;
     border: 3px solid black; border-radius: 10px;
+}
+.menu-button-c {                              /* computer */
+    display: block;
+    position: relative;
+    left:2.0%;       top:0%;
+    width:96%;    height:23px;
+    font-size: 12px;
+    background: rgb(50, 50, 50);
+    vertical-align: middle;
+    border: 3px solid black; border-radius: 10px;
+    padding-left: 5px;
+    color: white;
 }
 
 .menu {                                    /* computer */

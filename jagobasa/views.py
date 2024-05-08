@@ -140,7 +140,7 @@ def collezione(request):
 
 # ============== CATALOGO =============================
 def catalogo(request):
-    catlist = Catalogo.objects.all().order_by('nome')
+    catlist = Catalogo.objects.all().order_by('status')
     num_catalogo = Catalogo.objects.all().count()
 
     for cat in catlist:
@@ -442,6 +442,8 @@ def prodotto(request, pk, set, url_id):
     prodotto_det = ProdottoDet.objects.all().filter(nome = prodotto.nome)
     if prodotto_det:
         for pro in prodotto_det:
+            if pro.forma: pro.forma = pro.forma
+            else: pro.forma = ""
             if pro.profondita:
                 misura = str(pro.forma) + " " + str(pro.larghezza) + " x " + str(pro.profondita) + " mm"
             else:
@@ -452,8 +454,9 @@ def prodotto(request, pk, set, url_id):
                 altezza = "H = " + str(pro.altezza_max) + " mm"
             if pro.catena:
                 altezza = altezza + " + " + str(pro.catena)
-            if pro.materiale:
+            if pro.materiale and pro.materiale != "-":
                 materiale = str(pro.materiale)
+            else:materiale = ""
             variante = pro.variante
 
 
@@ -494,7 +497,7 @@ def prodotto(request, pk, set, url_id):
                  'variante': variante,
                  'prodotto_luc': prodotto_luc,  # set
                  'set': set,
-                 'tipo_id': url_id,
+                 'url_id': url_id,
                  'img_scheda': img_scheda,
 
                  }
@@ -592,18 +595,21 @@ def progetto_(request):
     )
 # ============== END progetti =======================
 
+
 # ============== ELENCO ===========================
 def elenco(request, sort, coll_pk):
-    if coll_pk == '100':
+    if coll_pk == "100":
         prodotto = Prodotto.objects.all()
         right_img = 'img_background/spazio 01 rose.jpg'
         right_text = "Prodotti"
+        coll_id = int(coll_pk)
     else:
         prodotto = Prodotto.objects.all().filter(collezione = coll_pk)
         coll_fix = Collezione.objects.get(pk = coll_pk)
         right_img = str(coll_fix.image)
         right_img = right_img[right_img.find("static") + 7:]
         right_text = coll_fix.nome
+        coll_id = int(coll_pk)
 
     prodotto_count = prodotto.count()
 
@@ -611,6 +617,8 @@ def elenco(request, sort, coll_pk):
         prodotto = prodotto.order_by('collezione','nome')
     if sort == '2':
         prodotto = prodotto.order_by('nome')
+    if sort == '3':
+        prodotto = prodotto.order_by('tipo', 'collezione','nome')
 
     #  ===================================
     prodotti = []
@@ -632,53 +640,44 @@ def elenco(request, sort, coll_pk):
         # 3 image_prodotto
         line = line + [path]
         #  ===================================
-        detagli = ProdottoDet.objects.get(prodotto=prod.id)
-        if detagli.profondita:
-            misura = str(detagli.forma) + " " + str(detagli.larghezza) + " x " + str(detagli.profondita)
+        detagli = ProdottoDet.objects.all().filter(prodotto=prod.id)
+        if detagli[0].forma:
+            detagli[0].forma = detagli[0].forma
         else:
-            misura = str(detagli.forma) + " " + str(detagli.larghezza)
+            detagli[0].forma = ""
+        if detagli[0].profondita:
+            misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza) + " x " + str(detagli[0].profondita)
+        else:
+            misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza)
         line = line + [misura]             # 4 misura
-        if detagli.altezza_min:
-            altezza = "H= " + str(detagli.altezza_min) + " ... " + str(detagli.altezza_max)
+        if detagli[0].altezza_min:
+            altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max)
         else:
-            altezza = "H= " + str(detagli.altezza_max)
-        if detagli.catena:
-            altezza = altezza + " + " + str(detagli.catena)
+            altezza = "h= " + str(detagli[0].altezza_max)
+        if detagli[0].catena:
+            altezza = altezza + " + " + str(detagli[0].catena)
         line = line + [altezza]           # 5 altezza
-        if detagli.materiale:
-            materiale = str(detagli.materiale)
+        if detagli[0].materiale and detagli[0].materiale != "-": materiale = str(detagli[0].materiale)
+        else: materiale = ""
         line = line + [materiale]         # 6 materiale
         line = line + ["'"]               # 7 variante
         #  ===================================
         luci = ProdottoLuc.objects.all().filter(prodotto=prod.id)
         luc_tip = ""
         for luc in luci:
-            if luc_tip == "": luc_tip = luc_tip + str(luc.quantita)+"x"+str(luc.lampadina)
-            else: luc_tip = luc_tip + ", " + str(luc.quantita) + "x" + str(luc.lampadina)
+            if luc_tip == "": luc_tip = luc_tip + str(luc.quantita)+"x "+str(luc.lampadina)
+            else: luc_tip = luc_tip + ", " + str(luc.quantita) + "x " + str(luc.lampadina)
         line = line + [luc_tip]            # 8 luci
+
+        line = line + [coll.id]            # 9 id_coll
+        tipi = Prodotto.objects.get(id = prod.id).tipo.all() # ManyToMany Tutti Tipi per Prodotto !!!!!!!!!!!!!
+        tipo = tipi[0].tipo
+        tipo = tipo.title()
+        line = line + [tipo]       # 10 tipo di prodotti
         #  ===================================
         prodotti = prodotti + [line]
         #  ===================================
         collist = Collezione.objects.all()
-
-
-
-    #  ===================================
-    # tipi = Prodotto.objects.get(id = pk).tipo.all() # ManyToMany Tutti Tipi per Prodotto !!!!!!!!!!!!!
-    # for tip in tipi:
-    #     tip_split = tip.tipo.split()
-    #     if len(tip_split) != 1:
-    #         tip.tipo = tip.tipo[len(tip_split[0]):]
-
-    # #  ===================================
-    # # if Prodotto.objects.get(id=pk).progetto.all():
-    # prodotto_progetti = Progetto.objects.all().filter(prodotto = pk)
-    # for prog in prodotto_progetti:
-    #     prog.path = str(prog.image)
-    #     prog.path = prog.path[prog.path.find("static")+7:]
-    #     menu = prog.nome.split()
-    #     prog.menu = menu[0] + " " + menu[1]
-
 
     return render(
         request,
@@ -687,7 +686,7 @@ def elenco(request, sort, coll_pk):
             'prodotti': prodotti,
             'prodotto_count': prodotto_count,
             'collist': collist,
-            'coll_pk': coll_pk,
+            'coll_pk': coll_pk                                                                                                       ,
             'right_img': right_img, 'right_text': right_text,
         }
     )
