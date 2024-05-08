@@ -57,7 +57,7 @@ class Prodotto(models.Model):
     class Meta:
         ordering = ["nome"]
 
-    nome = models.CharField(max_length=100, )
+    nome = models.CharField(max_length=100, null=True)
     collezione = models.ForeignKey('Collezione', on_delete=models.SET_NULL, null=True)
     tipo = models.ManyToManyField(Tipo, help_text="Select a tipo for this prodotto")
     status = models.CharField(max_length=20, null=True)
