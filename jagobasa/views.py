@@ -36,7 +36,8 @@ def index(request):
             path = str(images[x].image)
             path = path[path.find("static") + 7:]
             line = line + [path]                    #2 image_prodotto
-            line = line + [str(images[x].prodotto)]      #3 nome
+            # line = line + [images[x].prodotto]      #3 nome
+            line = line + [" "]  # 3 nome
             line = line + [prod.collezione]         #4 collezione
             prodotti_nov = prodotti_nov + [line]
 
