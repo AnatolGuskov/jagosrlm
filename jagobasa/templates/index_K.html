@@ -306,7 +306,7 @@ function showSlides() {
          <div class = "novita-mobile" >
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" title = "{{nov.4}} " src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 70px; text-align: center;"/>  </a>
 
              {% endfor %}
@@ -318,7 +318,7 @@ function showSlides() {
              {% for nov in novita %}
 
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" title = "{{nov.4}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 25%; text-align: center;"/>  </a>
              <br><br>
              {% endfor %}
