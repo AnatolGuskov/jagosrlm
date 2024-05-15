@@ -12,21 +12,25 @@
         border: 1px solid white;
     }
 
-    .prodotto-collezione-list {
-        background: none;
-        overflow: auto;
-        border: 0px solid white;
-        position: absolute;
-        left:0.0%;       top:20.0%;
-        width: 100.0%;   height: 79.5%;
-        padding-left: 20px;
-        list-style: none;
-        /* Chrom  Safari  */          /* FireFox  */
-        -webkit-column-width: 49.0%; -moz-column-width: 49.0%; column-width: 49.0%;
-        -webkit-column-count: 2;     -moz-column-count: 2;     column-count: 2;
-        -webkit-column-gap: 5%;      -moz-column-gap: 5%;      column-gap: 5%;
-        -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
+    .text-elenco {                            /* mobile */
+        display: none;
+
     }
+
+
+@media (min-width: 500px) {
+
+.text-elenco {                            /* computer */
+        display: block;
+        position: absolute;
+        border: 0px solid green;
+        left: 60%;      top:2.5%;
+        width: 38.0%;   height: 5.0%;
+        text-align: right;
+        font-size: 10;  color: white;
+        overflow: none;
+    }
+}
 
 </style>
 
@@ -51,10 +55,17 @@
          <a href="{% url 'prodotto' prod.0 set url_id %}">
             <img class = "scale-size-small" title = "{{ prod.6 }} {{ prod.3 }}"
                  src="{% static prod.2 %}" alt="{{ prod.2 }}"
-            style="width:45%;  margin-bottom: 5%"/>  </a>
+            style="width:30%;  margin-bottom: 5%"/>  </a>
          {% endif %}
     {% endfor %}
 </div>  <!-- collezione-list -->
+
+{% if set != "2" %}
+<div class = "text-elenco">
+    <a class = "link" style = "font-size: 11px;"
+                href="{% url 'elenco' 1 collezione_id %}"><b> >> Elenco di {{ right_text }} </b></a>
+</div> <!-- text-elenco -->
+{% endif %}
 
 {% endblock %}  <!-- content -->
 
@@ -68,7 +79,7 @@
             style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}
     {% if set == "2" %}
-            <a href="{% url 'tipo-detail' tipo_id %}">
+            <a href="{% url  'tipo-detail' tipo_id %}">
             <img src="{% static right_img %}" alt="{{ right_img }}"
             style="width: 100%; height: 100%; object-fit: fill"/> </a>
     {% endif %}

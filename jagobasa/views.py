@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from ctypes  import *
+import time
 
 
 
@@ -29,17 +30,15 @@ def index(request):
     for prod in novita:
         line = []
         images = ProdottoImg.objects.all().filter(prodotto = prod.id)
-        image_count = ProdottoImg.objects.all().filter(prodotto = prod.id).count()
-        for x in range (image_count):
-            line = line + [prod.id]                 #0 id
-            line = line + [images[x].img_nome]      #1 nome_image
-            path = str(images[x].image)
-            path = path[path.find("static") + 7:]
-            line = line + [path]                    #2 image_prodotto
-            # line = line + [images[x].prodotto]      #3 nome
-            line = line + [" "]  # 3 nome
-            line = line + [prod.collezione]         #4 collezione
-            prodotti_nov = prodotti_nov + [line]
+        line = line + [prod.id]                 #0 id
+        line = line + [images[0].img_nome]      #1 nome_image
+        path = str(images[0].image)
+        path = path[path.find("static") + 7:]
+        line = line + [path]                    #2 image_prodotto
+        line = line + [images[0].prodotto]      #3 nome
+        # line = line + [" "]  # 3 nome
+        line = line + [prod.collezione]         #4 collezione
+        prodotti_nov = prodotti_nov + [line]
 
 # =============== Index Collezione Slide =============
     collezionelist = Collezione.objects.all().filter(status__contains="Home").order_by('status')
@@ -450,9 +449,9 @@ def prodotto(request, pk, set, url_id):
             else:
                 misura = str(pro.forma) + " " + str(pro.larghezza) + " mm"
             if pro.altezza_min:
-                altezza = "H = " + str(pro.altezza_min) + " ... " + str(pro.altezza_max) + " mm"
+                altezza = "h= " + str(pro.altezza_min) + " ... " + str(pro.altezza_max) + " mm"
             else:
-                altezza = "H = " + str(pro.altezza_max) + " mm"
+                altezza = "h= " + str(pro.altezza_max) + " mm"
             if pro.catena:
                 altezza = altezza + " + " + str(pro.catena)
             if pro.materiale and pro.materiale != "-":
@@ -498,7 +497,7 @@ def prodotto(request, pk, set, url_id):
                  'variante': variante,
                  'prodotto_luc': prodotto_luc,  # set
                  'set': set,
-                 'url_id': url_id,
+                 'url_id': url_id, 'tipo_id': url_id,
                  'img_scheda': img_scheda,
 
                  }
@@ -599,6 +598,7 @@ def progetto_(request):
 
 # ============== ELENCO ===========================
 def elenco(request, sort, coll_pk):
+    start_time = time.time()
     if coll_pk == "100":
         prodotto = Prodotto.objects.all()
         right_img = 'img_background/spazio 01 rose.jpg'
@@ -636,28 +636,28 @@ def elenco(request, sort, coll_pk):
         line = line + [prod.nome]
         # 2 nome_coll
         line = line + [coll.nome]
-        if image_count > 0: path = str(images[0].image)
+        if image_count > 0: path = str(images[0].image_ico)
         path = path[path.find("static") + 7:]
         # 3 image_prodotto
         line = line + [path]
         #  ===================================
         detagli = ProdottoDet.objects.all().filter(prodotto=prod.id)
-        if detagli[0].forma:
-            detagli[0].forma = detagli[0].forma
-        else:
-            detagli[0].forma = ""
-        if detagli[0].profondita:
-            misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza) + " x " + str(detagli[0].profondita)
-        else:
-            misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza)
-        line = line + [misura]             # 4 misura
-        if detagli[0].altezza_min:
-            altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max)
-        else:
-            altezza = "h= " + str(detagli[0].altezza_max)
-        if detagli[0].catena:
-            altezza = altezza + " + " + str(detagli[0].catena)
-        line = line + [altezza]           # 5 altezza
+        # if detagli[0].forma:
+        #     detagli[0].forma = detagli[0].forma
+        # else:
+        #     detagli[0].forma = ""
+        # if detagli[0].profondita:
+        #     misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza) + " x " + str(detagli[0].profondita)
+        # else:
+        #     misura = str(detagli[0].forma) + " " + str(detagli[0].larghezza)
+        line = line + [detagli[0].messura]             # 4 misura
+        # if detagli[0].altezza_min:
+        #     altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max)
+        # else:
+        #     altezza = "h= " + str(detagli[0].altezza_max)
+        # if detagli[0].catena:
+        #     altezza = altezza + " + " + str(detagli[0].catena)
+        line = line + [detagli[0].altezza]           # 5 altezza
         if detagli[0].materiale and detagli[0].materiale != "-": materiale = str(detagli[0].materiale)
         else: materiale = ""
         line = line + [materiale]         # 6 materiale
@@ -680,6 +680,10 @@ def elenco(request, sort, coll_pk):
         #  ===================================
         collist = Collezione.objects.all()
 
+        end_time = time.time()
+        time_elenco = end_time - start_time
+        time_elenco = str(time_elenco)
+        time_elenco = time_elenco[:6]
     return render(
         request,
         'elenco_K.html',
@@ -689,12 +693,13 @@ def elenco(request, sort, coll_pk):
             'collist': collist,
             'coll_pk': coll_pk                                                                                                       ,
             'right_img': right_img, 'right_text': right_text,
+            'time_elenco': time_elenco,
         }
     )
 # ============== END ELENCO_ =======================
 
 
-# ============== Elenco_ ??????===========================
+# ============== Elenco_ ?????? service ===========================
 def elenco_1 (request):
 
     return render(

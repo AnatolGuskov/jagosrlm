@@ -73,7 +73,7 @@ class ProdottoImgResource(resources.ModelResource):
 
 class ProdottoImgAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoImgResource
-    list_display = ('id', 'img_nome', 'image',)
+    list_display = ('id', 'img_nome', 'image', 'image_ico',)
     # list_filter = ('catalogo', )
 
 admin.site.register(ProdottoImg, ProdottoImgAdmin)
@@ -87,8 +87,7 @@ class ProdottoDetResource(resources.ModelResource):
 
 class ProdottoDetAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoDetResource
-    list_display = ('id', 'nome', 'prodotto', 'larghezza', 'profondita', 'altezza_max', 'materiale')
-    # list_filter = ('catalogo', )
+    list_display = ('id', 'nome', 'prodotto', 'messura', 'altezza', 'materiale')
 
 admin.site.register(ProdottoDet, ProdottoDetAdmin)
 

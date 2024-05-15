@@ -78,7 +78,8 @@ class ProdottoImg(models.Model):
 
     prodotto = models.ForeignKey('Prodotto', on_delete=models.SET_NULL, null=True)
     img_nome = models.CharField(max_length=100, null=True)
-    image = models.ImageField(upload_to='jagobasa/static/img_prodotti')
+    image = models.ImageField(upload_to='jagobasa/static/img_prodotti', default ="")
+    image_ico = models.ImageField(upload_to='jagobasa/static/img_prod_ico', default ="")
 
 
     def __str__(self):
@@ -96,9 +97,11 @@ class ProdottoDet(models.Model):
     forma = models.CharField(max_length=5, blank=True, null=True)
     larghezza = models.IntegerField(blank=True, null=True)
     profondita = models.IntegerField(blank=True, null=True)
+    messura = models.CharField(max_length=25, blank=True, null=True)
     altezza_min = models.IntegerField(blank=True, null=True)
     altezza_max = models.IntegerField(blank=True, null=True)
     catena = models.CharField(max_length=100, blank=True, null=True)
+    altezza = models.CharField(max_length=25, blank=True, null=True)
     materiale = models.CharField(max_length=100, blank=True, null=True)
     variante = models.TextField(max_length=1000, blank=True, help_text="", null=True)
 

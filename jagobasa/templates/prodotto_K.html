@@ -46,8 +46,8 @@
         background: none;
         border: 0px solid red;
         position: absolute;
-        left:26.0%;       top:2.5%;
-        width: 73.5%;   height: 98.5%;
+        left:26.0%;       top:5%;
+        width: 73.5%;   height: 95.5%;
         padding-left: 0px;
         text-align: center;
         overflow-y: scroll;
@@ -124,7 +124,7 @@
 <div class = "image-prodotto">
     {% for img in prod_images %}
          <img class = "scale-size-big" src="{% static img.path %}" alt="{{ img.path }}"
-              style="height:100%; border: 0px solid white;"/>
+              style="height:85%; border: 0px solid white;"/>
     {% endfor %}
 </div>  <!-- image prodotto -->
 

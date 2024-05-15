@@ -330,6 +330,7 @@ body {  }
     position: absolute;
     left: 3%;       top: 1%;
     width: 93.0%;   height: 10.0%;
+    border: 0px solid white;
     padding-left: 0;
     font-family: Anton;
     font-size: 30px;

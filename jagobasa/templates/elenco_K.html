@@ -47,6 +47,18 @@ tr {
   color: white;
   padding: 10px;
 }
+
+time_car {
+    background: none;
+    position: absolute;
+    left:  102%;      top: 35%;
+    width: 4%;   height: 3%;
+    font-family: Arial;    font-size: 10px;
+    text-align: center;
+    border: 0px solid red;
+
+}
+
 <!--td:nth-child(odd) {-->
 <!--  background-color: rgb(30, 30, 30);-->
 <!--}-->
@@ -65,9 +77,11 @@ tr {
 
 <div class="tytle-page" style = "position: absolute; left: 5px; top: 1%;">
     {% if coll_pk == '100' %}
-          <p> Elenco di prodotti </p>
+          <p> Elenco di prodotti</p>
+          <time_car><i> {{ time_elenco }} </i></time_car>
     {% else %}
-          <p> Elenco di {{ right_text }} </p>
+          <p> Elenco di {{ right_text }}</p>
+          <time_car><i> {{ time_elenco }} </i></time_car>
     {% endif %}
 </div> <!-- tytle-page -->
 
@@ -75,14 +89,14 @@ tr {
     <table style="width:100%">
       <tr style="height:20px">
         <th style="width:15%">
-            <a class = "link" href="{% url 'elenco' 1 100 %}"> Collezione </a>
+            <a class = "link" href="{% url 'elenco' 1 100 %}" title= "Ordinamento circa 6s. Aspetta un'po!"> Collezione </a>
         </th>
         <th style="width:13%">
-            <a class = "link" href="{% url 'elenco' 2 100 %}"> Prodotto </a>
+            <a class = "link" href="{% url 'elenco' 2 100 %}" title= "Ordinamento circa 6s. Aspetta un'po!"> Prodotto </a>
         </th>
         <th style="width:7.5%"></th>
         <th style="width:10%">
-            <a class = "link" href="{% url 'elenco' 3 100 %}"> Tipo </a>
+            <a class = "link" href="{% url 'elenco' 3 100 %}" title= "Ordinamento circa 15s. Aspetta un'po!"> Tipo </a>
         </th>
         <th style="width:10%">Misura, mm</th>
         <th style="width:12%">Altezza, mm</th>
@@ -106,7 +120,7 @@ tr {
             </td>
             <td style="width:8%">     <!-- image_prodotto -->
                 <a href="{% url 'prodotto' prod.0 1 37 %}">
-                <img class = "scale-size-big" src="{% static prod.3 %}" alt="{{ prod.3 }}"
+                <img class = "scale-size-big"  src="{% static prod.3 %}" alt="{{ prod.3 }}"
                      style="height: 50px; border: 1px solid white;"/></a>
             </td>
             <td style="width:10%; font-size: 10;">{{prod.10}}</td>  <!-- tipo -->

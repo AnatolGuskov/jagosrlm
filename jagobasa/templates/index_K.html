@@ -138,9 +138,9 @@
             <a class = "link" href="{% url 'progetto' 0 %}"><strong>Progetti</strong></a></div>
             <div class = "menu-button">
             <a class = "link" href="{% url 'tipo' %}"><strong>Tipi di Prodotti</strong></a></div>
-            <div class = "menu-button">
-            <a class = "link" href="{% url 'elenco' 1 100 %}"><strong>Elenco di Prodotti</strong></a></div>
-
+            <div class = "menu-button-c">
+            <a class = "link" href="{% url 'elenco' 1 100 %}" title= "Caricamento circa 6s. Aspetta un'po!">
+                <strong>Elenco di Prodotti</strong></a></div>
     </div>  <!-- menu -->
 
     <div class = "count-jago">
@@ -236,7 +236,7 @@ function showSlides() {
     <div class = "lenta-horizont">
     {% for nov in novita %}
          <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-         <img class = "scale-border" title = "{{nov.4}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+         <img class = "scale-border" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
               style="height: 85%; text-align: center; margin-right: 2%"/>  </a>
     {% endfor %}
     </div>     <!-- lenta-horizont -->
@@ -306,7 +306,7 @@ function showSlides() {
          <div class = "novita-mobile" >
              {% for nov in novita %}
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" title = "{{nov.4}} " src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 70px; text-align: center;"/>  </a>
 
              {% endfor %}
@@ -318,7 +318,7 @@ function showSlides() {
              {% for nov in novita %}
 
                  <a href="{% url 'prodotto' nov.0 1 nov.4 %}">
-                    <img class = "scale-size" title = "{{nov.4}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
+                    <img class = "scale-size" title = "{{nov.4}} {{nov.3}}" src="{% static nov.2 %}" alt="{{ nov.2 }}"
                     style="height: 25%; text-align: center;"/>  </a>
              <br><br>
              {% endfor %}
