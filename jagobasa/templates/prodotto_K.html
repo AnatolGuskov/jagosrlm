@@ -23,6 +23,7 @@
     }
 
    .scheda-prod {
+        display: none;
         background: none;
         border: 0px solid red;
         position: absolute;
@@ -61,7 +62,7 @@
         background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
         border-radius: 5px;
 }
-.scheda-prod {
+.scheda-prod {                             /* computer */
         background: none;
         border: 0px solid red;
         position: absolute;
@@ -130,7 +131,8 @@
 
 <div class="tytle-page">
     {% if images_count > 1 %}
-       <p> {{ prodotto_nome }} ({{ images_count }})</p>
+       <p style = "display: inline-block;"> {{ prodotto_nome }}
+          <div style = "display: inline-block; font-size: 15"> &nbsp;&nbsp;({{ images_count }}) </div> </p>
     {% else %}
        <p> {{ prodotto_nome }} </p>
     {% endif %}
@@ -164,7 +166,7 @@
 
     {% for prog in prodotto_progetti %}
         <a href="{% url 'progetto-detail' prog.stanza prog.id %}"
-           style = "color: white"> {{ prog.menu }}
+           style = "color: white"> >> {{ prog.menu }}
         </a> <br>
     {% endfor %}<br>
 

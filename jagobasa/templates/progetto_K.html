@@ -6,14 +6,64 @@
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:1.0%;      top:0.0%;
-        width: 98.0%;   height: 100.0%;
+        left:1.0%;      top:1.0%;
+        width: 99.0%;   height: 98.0%;
+        padding-left: 0px;
+        overflow-y: auto;
+   }
+   .image-progetto::-webkit-scrollbar {        /* mobile */
+        display: none;
+   }
+
+
+      .image-prodotto {                           /* mobile */
+        display: none;
+        background: none;
+        border: 0px solid red;
+        position: absolute;
+        left:20.0%;       top:8.0%;
+        width: 80.0%;   height: 92.0%;
+        padding-left: 0px;
+        overflow: auto;
+    }
+
+
+@media (min-width: 500px) {
+
+    .image-progetto {                         /* computer */
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:1.0%;      top:1.0%;
+        width: 50.0%;   height: 98.0%;
         padding-left: 0px;
         overflow-y: auto;
    }
    .image-progetto::-webkit-scrollbar {        /* computer */
         display: none;
    }
+
+.image-prodotto {                           /* computer */
+        display: block;
+        background: black;
+        background: none;
+        border: 0px solid red;
+        position: absolute;
+        left:52.0%;       top:2%;
+        width: 46.5%;   height: 97.5%;
+        padding-left: 0px;
+        text-align: center;
+        overflow-y: scroll;
+
+    }
+.image-prodotto::-webkit-scrollbar {        /* computer */
+        width: 5px;    height: 5px;
+}
+
+.image-prodotto::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
+        border-radius: 5px;
+}
 
  </style>
 <!--  ======================================================= -->
@@ -32,6 +82,15 @@
 
 </div>  <!-- imag-progetto        -->
 
+<div class = "image-prodotto">
+    {% for img in prod_images %}
+        <a href="{% url 'prodotto' img.0 4 progetto_id %}">
+                <img class = "scale-size-small" src="{% static img.1 %}" alt="{{ img.1 }}"
+                style="height:50%; border: 2px solid gray;"/>  </a>
+         <p></p>
+    {% endfor %}
+</div>  <!-- image prodotto -->
+
 {% endblock %} <!-- content -->
 
 <!-- ===========  SIDE RIGHT ===================================== -->
@@ -48,7 +107,7 @@
                 <p style = "color: white; font-size: 12; text-align: center;"> {{ progetto_stanza }}</p></a>
             {% for prod in prodotti %}
             <a href="{% url 'prodotto' prod.id 4 progetto_id %}">
-                <p style = "color: white; font-size: 12; text-align: center;"><b> {{ prod.nome }} </b></p></a>
+                <p style = "color: white; font-size: 10; text-align: center;"><b> {{ prod.nome }} </b></p></a>
             {% endfor %}
         {% endif %}
     </div> <!-- right-image-top -->

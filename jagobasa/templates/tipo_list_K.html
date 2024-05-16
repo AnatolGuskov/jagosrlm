@@ -45,10 +45,10 @@
 </div>
 
 <div class = "right-list">
-      <p></p>
+
       {% for tipo in tiplist %}
            <p style="text-align: left;">
-           <a class = "link" href="{% url 'tipo-detail' tipo.pk  %}"> {{ tipo.tipo }}&nbsp;&nbsp;({{tipo.prodotto_set.all.count}}) </a></p>
+           <a class = "link" href="{% url 'tipo-detail' tipo.pk  %}"> {{ tipo.tipo }}: {{tipo.prodotto_set.all.count}} </a></p>
       {% endfor %}
 </div>
 
@@ -60,7 +60,7 @@
 <div class = "novita-mobile" style = "text-align: left; font-size: 11;">
     {% for tipo in tiplist %}
          <a class = "link" href="{% url 'tipo-detail' tipo.pk %}"
-            style = "font-size: 11; line-height: 1.5;">{{ tipo.tipo }}&nbsp;({{tipo.prodotto_set.all.count}})</a>
+            style = "font-size: 11; line-height: 1.5;">{{ tipo.tipo }}: {{tipo.prodotto_set.all.count}}</a>
         <br>
     {% endfor %}
 </div>
