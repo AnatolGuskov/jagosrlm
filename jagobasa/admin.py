@@ -87,8 +87,8 @@ class ProdottoDetResource(resources.ModelResource):
 
 class ProdottoDetAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoDetResource
-    list_display = ('id', 'nome', 'prodotto', 'messura', 'altezza', 'materiale')
-
+    list_display = ('id', 'nome', 'prodotto', 'collezione','messura', 'altezza', 'materiale')
+    list_filter = ('collezione',)
 admin.site.register(ProdottoDet, ProdottoDetAdmin)
 
 #========================== ProdottoDet ==============================
@@ -101,11 +101,10 @@ class ProdottoSchedeResource(resources.ModelResource):
 class ProdottoSchedeAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoSchedeResource
     list_display = ('id', 'prodotto', 'scheda_nome', 'image', 'image_blanc')
-    # list_filter = ('prodotto', )
 
 admin.site.register(ProdottoSchede, ProdottoSchedeAdmin)
 
-#========================== Prodotto SCHRDE ==============================
+#========================== END Prodotto SCHEDE ==============================
 
 #========================== PRODOTTO LUCI ==============================
 class ProdottoLucResource(resources.ModelResource):
@@ -115,8 +114,8 @@ class ProdottoLucResource(resources.ModelResource):
 
 class ProdottoLucAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoLucResource
-    list_display = ('id', 'nome', 'prodotto', 'lampadina', 'quantita',)
-    # list_filter = ('prodotto', )
+    list_display = ('id', 'nome', 'prodotto', 'collezione', 'lampadina', 'quantita',)
+    list_filter = ('collezione',)
 
 admin.site.register(ProdottoLuc, ProdottoLucAdmin)
 
@@ -130,7 +129,7 @@ class ProgettoResource(resources.ModelResource):
 
 class ProgettoAdmin(ImportExportActionModelAdmin):
     resourse_class = ProgettoResource
-    list_display = ('id', 'nome', 'stanza', 'status', 'testo', 'image',)
+    list_display = ('id', 'nome', 'stanza', 'status', 'image',)
     list_filter = ('stanza', )
 
 admin.site.register(Progetto, ProgettoAdmin)

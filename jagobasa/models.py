@@ -93,6 +93,7 @@ class ProdottoDet(models.Model):
         ordering = ["nome"]
 
     prodotto = models.ForeignKey('Prodotto', on_delete=models.SET_NULL, null=True)
+    collezione = models.ForeignKey('Collezione', on_delete=models.SET_NULL, null=True)
     nome = models.CharField(max_length=20, blank=True, null=True)
     forma = models.CharField(max_length=5, blank=True, null=True)
     larghezza = models.IntegerField(blank=True, null=True)
@@ -116,6 +117,7 @@ class ProdottoLuc(models.Model):
         ordering = ["nome"]
 
     prodotto = models.ForeignKey('Prodotto', on_delete=models.SET_NULL, null=True)
+    collezione = models.ForeignKey('Collezione', on_delete=models.SET_NULL, null=True)
     nome = models.CharField(max_length=20, blank=True, null=True)
     lampadina = models.CharField(max_length=50, null=True)
     quantita = models.IntegerField(blank=True, null=True)

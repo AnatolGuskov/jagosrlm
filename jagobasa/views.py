@@ -657,7 +657,7 @@ def elenco(request, sort, coll_pk):
     if sort == '2':
         prodotto = prodotto.order_by('nome')
     if sort == '3':
-        prodotto = prodotto.order_by('tipo', 'collezione','nome')
+        prodotto = prodotto.order_by('tipo',)
 
     #  ===================================
     prodotti = []
