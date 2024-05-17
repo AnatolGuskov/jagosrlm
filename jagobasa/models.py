@@ -90,7 +90,7 @@ class ProdottoImg(models.Model):
 # PRODOTTO DETTAGLI        Model representing a Dettagli dei Prodotti
 class ProdottoDet(models.Model):
     class Meta:
-        ordering = ["nome"]
+        ordering = ["nome", "forma"]
 
     prodotto = models.ForeignKey('Prodotto', on_delete=models.SET_NULL, null=True)
     nome = models.CharField(max_length=20, blank=True, null=True)
