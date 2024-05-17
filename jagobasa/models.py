@@ -94,7 +94,7 @@ class ProdottoDet(models.Model):
 
     prodotto = models.ForeignKey('Prodotto', on_delete=models.SET_NULL, null=True)
     nome = models.CharField(max_length=20, blank=True, null=True)
-    forma = models.CharField(max_length=5, blank=True, null=True)
+    forma = models.CharField(max_length=10, blank=True, null=True)
     larghezza = models.IntegerField(blank=True, null=True)
     profondita = models.IntegerField(blank=True, null=True)
     messura = models.CharField(max_length=25, blank=True, null=True)
