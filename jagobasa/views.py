@@ -674,7 +674,7 @@ def elenco(request, sort, coll_pk):
         line = line + [prod.nome]
         # 2 nome_coll
         line = line + [coll.nome]
-        if image_count > 0: path = str(images[0].image_ico)
+        if image_count > 0: path = str(images[0].image)
         path = path[path.find("static") + 7:]
         # 3 image_prodotto
         line = line + [path]
