@@ -51,7 +51,7 @@
         position: absolute;
         left:52.0%;       top:2%;
         width: 46.5%;   height: 97.5%;
-        padding-left: 0px;
+        padding-top: 1%;
         text-align: center;
         overflow-y: scroll;
 
@@ -85,8 +85,8 @@
 <div class = "image-prodotto">
     {% for img in prod_images %}
         <a href="{% url 'prodotto' img.0 4 progetto_id %}">
-                <img class = "scale-size-small" src="{% static img.1 %}" alt="{{ img.1 }}"
-                style="height:50%; border: 2px solid gray;"/>  </a>
+                <img class = "scale-size-small" title = "{{ img.2 }}" src="{% static img.1 %}" alt="{{ img.1 }}"
+                style="height:48%; border: 2px solid white;"/>  </a>
          <p></p>
     {% endfor %}
 </div>  <!-- image prodotto -->
@@ -102,7 +102,7 @@
 
     <div class = "right-image-top">
         {% if modo == 2 %}         <!-- modo di progetto unico -->
-            <br><br><br>
+            <br><br>
             <a href="{% url 'progetto' stanza_id %}">
                 <p style = "color: white; font-size: 12; text-align: center;"> {{ progetto_stanza }}</p></a>
             {% for prod in prodotti %}

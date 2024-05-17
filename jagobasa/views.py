@@ -26,8 +26,12 @@ def index(request):
 #=============== Index Novita =============
     novita = Prodotto.objects.all().filter(status = "Novita")
     novita_count = Prodotto.objects.all().filter(status = "Novita").count()
+    nome_novita = ["LCS 045", "NCS 298/16", "NCL 187/Amber", "NCS 287/1", "NCS 143/2", "NCS 282/100", "NCS 496/4/90", "NCS 490/4/100"]
     prodotti_nov = []
-    for prod in novita:
+    order = -1
+    for novita in nome_novita:
+        order += 1
+        prod = Prodotto.objects.get(nome = novita)
         line = []
         images = ProdottoImg.objects.all().filter(prodotto = prod.id)
         line = line + [prod.id]                 #0 id
@@ -592,9 +596,9 @@ def progetto_detail(request, stanza, pk ):
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         prod.path = str(images[0].image)
         prod.path = prod.path[prod.path.find("static") + 7:]
-        line = line + [prod.id]
-        line = line + [prod.path]
-        line = line + [prod.nome]
+        line = line + [prod.id]           # 0 id
+        line = line + [prod.path]         # 1 nome imace
+        line = line + [prod.nome]         # 2 nome prodotto
         prod_images = prod_images + [line]
 
 

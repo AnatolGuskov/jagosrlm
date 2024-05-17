@@ -442,10 +442,12 @@ body {  }
 /* -------------------------------------- */
 .scale-size-small {
     transform: scale(1.0)
+    border: 2px solid white;
 }
 .scale-size-small:hover {
     transition: 0.5s;         /* Время эффекта */
     transform: scale(1.03);    /* Увеличиваем масштаб */
+    border: 2px solid white;
 }
 /* ---------------image----------------------- */
 .scale-size-big {
