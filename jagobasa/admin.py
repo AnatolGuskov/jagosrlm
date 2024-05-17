@@ -87,8 +87,8 @@ class ProdottoDetResource(resources.ModelResource):
 
 class ProdottoDetAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoDetResource
-    list_display = ('id', 'nome', 'prodotto', 'collezione','messura', 'altezza', 'materiale')
-    list_filter = ('collezione',)
+    list_display = ('id', 'nome', 'prodotto', 'messura', 'altezza', 'materiale')
+
 admin.site.register(ProdottoDet, ProdottoDetAdmin)
 
 #========================== ProdottoDet ==============================
@@ -114,8 +114,8 @@ class ProdottoLucResource(resources.ModelResource):
 
 class ProdottoLucAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoLucResource
-    list_display = ('id', 'nome', 'prodotto', 'collezione', 'lampadina', 'quantita',)
-    list_filter = ('collezione',)
+    list_display = ('id', 'nome', 'prodotto', 'lampadina', 'quantita',)
+
 
 admin.site.register(ProdottoLuc, ProdottoLucAdmin)
 
