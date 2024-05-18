@@ -85,8 +85,8 @@
 <div class = "image-prodotto">
     {% for img in prod_images %}
         <a href="{% url 'prodotto' img.0 4 progetto_id %}">
-                <img class = "scale-size-small" title = "{{ img.2 }}" src="{% static img.1 %}" alt="{{ img.1 }}"
-                style="height:48%; border: 2px solid white;"/>  </a>
+                <img class = "scale-size" title = "{{ img.2 }}" src="{% static img.1 %}" alt="{{ img.1 }}"
+                style="height:48%; border: 0px solid gray;"/>  </a>
          <p></p>
     {% endfor %}
 </div>  <!-- image prodotto -->
