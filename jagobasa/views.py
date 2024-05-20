@@ -62,7 +62,7 @@ def index(request):
 
 
 # =============== Index Progetti =============
-    progettolist = Progetto.objects.all().filter(status__contains="Home").order_by('status')
+    progettolist = Progetto.objects.all().order_by('status')
 
     for prog in progettolist:
         prog.path = str(prog.image)
@@ -211,7 +211,7 @@ def collezione_detail(request, pk):
             line = line + [path]                    # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " +scheda"]  # 3 nome prodotto
+                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
             else:
                 line = line + [str(images[x].prodotto)]  # 3 nome prodotto
 
@@ -305,7 +305,7 @@ def catalogo_detail_collezione(request, pk, col):
             line = line + [path]                 # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " +scheda"]  # 3 nome prodotto
+                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
             else:
                 line = line + [str(images[x].prodotto)]               # 3 nome prodotto
 
@@ -360,7 +360,7 @@ def tipo_detail(request, pk ):
             line = line + [path]                # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " +scheda"]  # 3 nome prodotto
+                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
             else:
                 line = line + [str(images[x].prodotto)]               # 3 nome prodotto
 
@@ -438,7 +438,7 @@ def prodotto(request, pk, set, url_id):
             line = line + [path]                # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " +scheda"]  # 3 nome prodotto
+                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
             else:
                 line = line + [str(images[x].prodotto)]        # 3 nome prodotto
 
@@ -481,8 +481,8 @@ def prodotto(request, pk, set, url_id):
                 altezza = "h= " + str(pro.altezza_min) + " ... " + str(pro.altezza_max) + " mm"
             else:
                 altezza = "h= " + str(pro.altezza_max) + " mm"
-            if pro.catena:
-                altezza = altezza + " + " + str(pro.catena)
+            # if pro.catena:
+            #     altezza = altezza + " + " + str(pro.catena)
             if pro.materiale and pro.materiale != "-":
                 materiale = str(pro.materiale)
             else:materiale = ""
@@ -645,19 +645,19 @@ def elenco(request, sort, coll_pk):
         prodotto = Prodotto.objects.all()
         right_img = 'img_background/spazio 01 rose.jpg'
         right_text = "Prodotti"
-        coll_id = int(coll_pk)
+        # coll_id = int(coll_pk)
     else:
         prodotto = Prodotto.objects.all().filter(collezione = coll_pk)
         coll_fix = Collezione.objects.get(pk = coll_pk)
         right_img = str(coll_fix.image)
         right_img = right_img[right_img.find("static") + 7:]
         right_text = coll_fix.nome
-        coll_id = int(coll_pk)
+        # coll_id = int(coll_pk)
 
     prodotto_count = prodotto.count()
 
     if sort == '1':
-        prodotto = prodotto.order_by('collezione','nome')
+        prodotto = prodotto.order_by('collezione','-nome')
     if sort == '2':
         prodotto = prodotto.order_by('nome')
     if sort == '3':
@@ -686,8 +686,14 @@ def elenco(request, sort, coll_pk):
         detagli = ProdottoDet.objects.all().filter(prodotto=prod.id)
 
         line = line + [detagli[0].messura]             # 4 misura
+        if detagli[0].altezza_max:
+            if detagli[0].altezza_min:
+                altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max) + " mm"
+            else:
+                altezza = "h= " + str(detagli[0].altezza_max) + " mm"
+        else: altezza = ""
 
-        line = line + [detagli[0].altezza]           # 5 altezza
+        line = line + [altezza]           # 5 altezza
         if detagli[0].materiale and detagli[0].materiale != "-": materiale = str(detagli[0].materiale)
         else: materiale = ""
         line = line + [materiale]         # 6 materiale
@@ -704,7 +710,7 @@ def elenco(request, sort, coll_pk):
         tipi = Prodotto.objects.get(id = prod.id).tipo.all() # ManyToMany Tutti Tipi per Prodotto !!!!!!!!!!!!!
         tipo = tipi[0].tipo
         tipo = tipo.title()
-        line = line + [tipo]       # 10 tipo di prodotti
+        line = line + [tipo]              # 10 tipo di prodotti
         #  ===================================
         prodotti = prodotti + [line]
         #  ===================================
