@@ -199,6 +199,7 @@ def collezione_detail(request, pk):
 
     for prod in prodotto:
         prodotto_schede = ProdottoSchede.objects.filter(prodotto=prod.id)
+        prodotto_det = ProdottoDet.objects.all().filter(prodotto=prod.id)
         images = ProdottoImg.objects.all().filter(prodotto = prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto = prod.id).count()
         if image_count > 0: prodotti_count += 1
@@ -211,9 +212,9 @@ def collezione_detail(request, pk):
             line = line + [path]                    # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome) + " + scheda"]  # 3 nome prodotto
             else:
-                line = line + [str(images[x].prodotto)]  # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome)]  # 3 nome prodotto
 
             line = line + [x + 1]                   # 4 numero image
             line = line + [image_count]             # 5 image_count
@@ -293,6 +294,7 @@ def catalogo_detail_collezione(request, pk, col):
 
     for prod in prodotto:
         prodotto_schede = ProdottoSchede.objects.filter(prodotto=prod.id)
+        prodotto_det = ProdottoDet.objects.all().filter(prodotto=prod.id)
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         if image_count > 0: prodotti_count += 1
@@ -305,9 +307,9 @@ def catalogo_detail_collezione(request, pk, col):
             line = line + [path]                 # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome) + " + scheda"]  # 3 nome prodotto
             else:
-                line = line + [str(images[x].prodotto)]               # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome)]               # 3 nome prodotto
 
             line = line + [x + 1]                # 4 numero image
             line = line + [image_count]          # 5 image_count
@@ -348,6 +350,7 @@ def tipo_detail(request, pk ):
 
     for prod in prodotto:
         prodotto_schede = ProdottoSchede.objects.filter(prodotto=prod.id)
+        prodotto_det = ProdottoDet.objects.all().filter(prodotto=prod.id)
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         if image_count > 0: prodotti_count += 1
@@ -360,9 +363,9 @@ def tipo_detail(request, pk ):
             line = line + [path]                # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome) + " + scheda"]  # 3 nome prodotto
             else:
-                line = line + [str(images[x].prodotto)]               # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome)]               # 3 nome prodotto
 
             line = line + [x + 1]               # 4 numero image
             line = line + [image_count]         # 5 image_count
@@ -425,6 +428,7 @@ def prodotto(request, pk, set, url_id):
 
     for prod in prodotto_set:
         prodotti_count = prodotti_count + 1
+        prodotto_det = ProdottoDet.objects.all().filter(prodotto=prod.id)
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         prodotto_schede = ProdottoSchede.objects.filter(prodotto=prod.id)
@@ -438,9 +442,9 @@ def prodotto(request, pk, set, url_id):
             line = line + [path]                # 2 image_prodotto
 
             if len(prodotto_schede) > 0:
-                line = line + [str(images[x].prodotto) + " + scheda"]  # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome) + " + scheda"]  # 3 nome prodotto
             else:
-                line = line + [str(images[x].prodotto)]        # 3 nome prodotto
+                line = line + [str(prodotto_det[0].nome)]        # 3 nome prodotto
 
             line = line + [x + 1]               # 4 numero image
             line = line + [image_count]         # 5 image_count
@@ -468,7 +472,7 @@ def prodotto(request, pk, set, url_id):
     materiale = "-"
     variante = ""
 
-    prodotto_det = ProdottoDet.objects.all().filter(nome = prodotto.nome)
+    prodotto_det = ProdottoDet.objects.all().filter(prodotto = pk)
     if prodotto_det:
         for pro in prodotto_det:
             if pro.forma: pro.forma = pro.forma
@@ -487,6 +491,7 @@ def prodotto(request, pk, set, url_id):
                 materiale = str(pro.materiale)
             else:materiale = ""
             variante = pro.variante
+            prodotto_nome = pro.nome
 
 
     #  ===================================
@@ -507,6 +512,8 @@ def prodotto(request, pk, set, url_id):
         prog.path = prog.path[prog.path.find("static")+7:]
         menu = prog.nome.split()
         prog.menu = menu[0] + " " + menu[1]
+
+
 
     return render(
         request,
@@ -685,7 +692,8 @@ def elenco(request, sort, coll_pk):
         #  ===================================
         detagli = ProdottoDet.objects.all().filter(prodotto=prod.id)
 
-        line = line + [detagli[0].messura]             # 4 misura
+        line[1] = detagli[0].nome         # 1 nome prodotto preis
+        line = line + [detagli[0].messura]  # 4 misura
         if detagli[0].altezza_max:
             if detagli[0].altezza_min:
                 altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max) + " mm"
