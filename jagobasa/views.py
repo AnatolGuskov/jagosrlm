@@ -125,6 +125,7 @@ def collezione(request):
 
     for col in collist:
         col.path = str(col.image)
+
         col.path = col.path[col.path.find("static")+7:]
 
 
@@ -175,6 +176,7 @@ def tipo(request):
         'tipo_list_K.html',
         context={'tiplist': tiplist,  #set
                  'num_tipi': num_tipi,
+                 'name_proba': "name"
                                         }
     )
 # ============== END tipo =======================
@@ -481,10 +483,13 @@ def prodotto(request, pk, set, url_id):
                 misura = str(pro.forma) + " " + str(pro.larghezza) + " x " + str(pro.profondita) + " mm"
             else:
                 misura = str(pro.forma) + " " + str(pro.larghezza) + " mm"
-            if pro.altezza_min:
-                altezza = "h= " + str(pro.altezza_min) + " ... " + str(pro.altezza_max) + " mm"
+            if pro.altezza_max:
+                if pro.altezza_min:
+                    altezza = "h= " + str(pro.altezza_min) + " ... " + str(pro.altezza_max) + " mm"
+                else:
+                    altezza = "h= " + str(pro.altezza_max) + " mm"
             else:
-                altezza = "h= " + str(pro.altezza_max) + " mm"
+                altezza = ""
             # if pro.catena:
             #     altezza = altezza + " + " + str(pro.catena)
             if pro.materiale and pro.materiale != "-":
