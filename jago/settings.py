@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 ALLOWED_HOSTS = ['*',
+                 'www.jagosrlm.com', 'jagosrlm.com'
                  'jagosrl-492f067a52fc.herokuapp.com',
                  '0.0.0.0',
                  '127.0.0.1',
