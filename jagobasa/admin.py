@@ -2,7 +2,8 @@ from django.contrib import admin
 
 from .models import (Catalogo, Collezione, Tipo, Prodotto,
                      ProdottoImg, ProdottoDet, ProdottoLuc, ProdottoSchede,
-                     Progetto, TipoStanza)
+                     Progetto, TipoStanza,
+                     CatalogoBook,)
 
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
@@ -38,6 +39,20 @@ admin.site.register(Catalogo, CatalogoAdmin)
 
 
 #========================= Catalogo ===================================
+#========================= CATALOGO BOOK ===================================
+class CatalogoBookResource(resources.ModelResource):
+
+    class Meta:
+        model = CatalogoBook
+
+class CatalogoBookAdmin(ImportExportActionModelAdmin):
+    resourse_class = CatalogoBookResource
+    list_display = ('id', 'nome', 'catalogo', 'pagina', 'titolo', 'image_pag',)
+
+admin.site.register(CatalogoBook, CatalogoBookAdmin)
+
+
+#========================= Catalogo book ===================================
 # ======================== TIPO =======================================
 class TipoResource(resources.ModelResource):
 
@@ -59,7 +74,7 @@ class ProdottoResource(resources.ModelResource):
 
 class ProdottoAdmin(ImportExportActionModelAdmin):
     resourse_class = ProdottoResource
-    list_display = ('id', 'nome', 'collezione', 'preise',)
+    list_display = ('id', 'nome', 'collezione', 'status', 'preise',)
     list_filter = ('collezione', 'tipo', 'status',)
 
 admin.site.register(Prodotto, ProdottoAdmin)

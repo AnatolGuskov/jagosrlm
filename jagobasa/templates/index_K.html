@@ -102,7 +102,7 @@
 }
 
 .lenta-horizont::-webkit-scrollbar {
-        width: 10px;    height: 10px;
+        width: 6px;    height: 6px;
     }
 .lenta-horizont::-webkit-scrollbar-thumb {
   background: linear-gradient(to right, rgb(50, 50, 50), rgb(200, 200, 200));
@@ -262,7 +262,7 @@ function showSlides() {
         {% for coll in collezioni_tutti %}
           <a href="{% url 'collezione-detail' coll.pk %}">
             <img class = "scale-border" title = "Lighting collection {{coll.nome}}" src="{% static coll.path %}" alt="{{ coll.nome }}"
-             style="height: 80%; margin-right: 2.0%; margin-bottom: 5.0%;"/> </a>
+             style="height: 75%; margin-right: 2.0%; margin-bottom: 5.0%;"/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>
@@ -286,7 +286,7 @@ function showSlides() {
         {% for tipo in tiplist %}
           <a href="{% url 'tipo-detail' tipo.pk %}">
             <img class = "scale-border" title = "{{tipo.tipo}}" src="{% static tipo.path %}" alt="{{ tipo.tipo }}"
-             style="height: 85%; margin: 2.0% "/> </a>
+             style="height: 80%; margin: 2.0% "/> </a>
         {% endfor %}
     </div>     <!-- lenta-horizont -->
 <br><br><br><br>

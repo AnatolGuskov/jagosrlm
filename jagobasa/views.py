@@ -8,13 +8,14 @@ import time
 
 from .models import (Catalogo, Collezione, Tipo, Prodotto,
                      ProdottoImg, ProdottoDet, ProdottoLuc, ProdottoSchede,
-                     Progetto, TipoStanza)
+                     Progetto, TipoStanza,
+                     CatalogoBook,)
 
 
 
 # ============== INDEX =============================
 def index(request):
-# =============== Index Quantita =============
+# =============== Index Quantita ===================
     num_catalogo = Catalogo.objects.all().count()
     num_collezione = Collezione.objects.all().count()
     num_prodotto = Prodotto.objects.all().count()
@@ -29,19 +30,18 @@ def index(request):
     nome_novita = ["LCS 045", "NCS 298/16", "NCL 187/Amber", "NCS 287/1", "NCS 143/2", "NCS 282/100", "NCS 496/4/90", "NCS 490/4/100"]
     prodotti_nov = []
     order = -1
-    for novita in nome_novita:
+    for nov in novita:
         order += 1
-        prod = Prodotto.objects.get(nome = novita)
+        # prod = Prodotto.objects.get(nome = novita)
         line = []
-        images = ProdottoImg.objects.all().filter(prodotto = prod.id)
-        line = line + [prod.id]                 #0 id
+        images = ProdottoImg.objects.all().filter(prodotto = nov.id)
+        line = line + [nov.id]                  #0 id
         line = line + [images[0].img_nome]      #1 nome_image
         path = str(images[0].image)
         path = path[path.find("static") + 7:]
         line = line + [path]                    #2 image_prodotto
         line = line + [images[0].prodotto]      #3 nome
-        # line = line + [" "]  # 3 nome
-        line = line + [prod.collezione]         #4 collezione
+        line = line + [nov.collezione]          #4 collezione
         prodotti_nov = prodotti_nov + [line]
 
 # =============== Index Collezione Slide =============
@@ -161,6 +161,56 @@ def catalogo(request):
     )
 # ============== END catalogo =======================
 
+# ============== CATALOGO BOOK =============================
+def catalogo_book(request, pk, pagina, book):
+    book_list1 = CatalogoBook.objects.all().filter(catalogo = pk)
+    catalog = Catalogo.objects.get(pk = pk)
+    catalog_nome = catalog.nome
+    catalog_img = str(catalog.image)
+    catalog_img = catalog_img[catalog_img.find("static")+7:]
+    catalog_pk = catalog.pk
+
+    for pag in book_list1:
+        pag.num_pag = pag.pagina[pag.pagina.find(" ") + 0:]  # 0 pagina
+        pag.num_corte = int(pag.num_pag[:4])
+        pag.path = str(pag.image_pag)
+        pag.path = pag.path[pag.path.find("static")+7:]
+
+    book_list = []
+    pagina = int(pagina)
+    for pag in book_list1:
+        if pag.num_corte < pagina: pass
+        else: book_list = book_list + [pag]
+
+
+
+    book_list2 = CatalogoBook.objects.all().filter(catalogo=pk)
+    book_content = []
+    for content in book_list2:
+        if len(content.titolo) > 2:
+            line = []
+            content.path = str(content.image_pag)  # 0 image
+            line = line + [content.path[content.path.find("static")+7:]]
+            line = line + [content.titolo.upper() + "   " + content.pagina[content.pagina.find(" ")+0:]] # 1 page_text
+            num_corte = content.pagina[content.pagina.find(" ")+1:]
+            num_corte = num_corte[:3]
+            line = line + [num_corte]  # 2 num_page
+            book_content = book_content + [line]
+
+
+    return render(
+        request,
+        'catalogo_book.html',
+        context={'book_list': book_list,
+                 'catalog_nome': catalog_nome,
+                 'catalog_img': catalog_img,
+                 'catalog_pk': catalog_pk,
+                 'book_content': book_content,
+
+                 }
+    )
+# ============== END catalogo book =======================
+
 # ============== TIPO =============================
 def tipo(request):
     tiplist = Tipo.objects.all().order_by('tipo')
@@ -258,6 +308,8 @@ def catalogo_detail(request, pk):
         col.path = str(col.image)
         col.path = col.path[col.path.find("static")+7:]
 
+    catalogo_book = CatalogoBook.objects.all().filter(catalogo = pk)
+
     return render(
         request,
         'collezione_list_K.html',
@@ -268,6 +320,7 @@ def catalogo_detail(request, pk):
                  'right_text': catalogo.nome,
                  'url_nome': 'catalogo',
                  'catalogo_pk': catalogo_pk,
+                 'catalogo_book': catalogo_book,
                  }
 
     )
@@ -276,21 +329,21 @@ def catalogo_detail(request, pk):
 
 # ============== CATALOGO Detail Collezione =============================
 
-def catalogo_detail_collezione(request, pk, col):
+def catalogo_detail_collezione(request, pk, coll):
 
     catalogo = Catalogo.objects.get(pk = pk)
     catalogo.img = str(catalogo.image)
     catalogo.img = catalogo.img[catalogo.img.find("static") + 7:]
     catalogo_pk = pk
 
-    collezione = Collezione.objects.get(pk=col)
+    collezione = Collezione.objects.get(pk=coll)
     collezione.img_back = str(collezione.image_back)
     collezione.img_back = collezione.img_back[collezione.img_back.find("static") + 7:]
     collezione.img = str(collezione.image)
     collezione.img = collezione.img[collezione.img.find("static") + 7:]
     collezione_id = collezione.pk
 
-    prodotto = Prodotto.objects.all().filter(collezione=col).order_by('-nome', 'status')
+    prodotto = Prodotto.objects.all().filter(collezione=coll).order_by('-nome', 'status')
     prodotti = []
     prodotti_count = 0
 
@@ -682,7 +735,8 @@ def elenco(request, sort, coll_pk):
         images = ProdottoImg.objects.all().filter(prodotto=prod.id)
         image_count = ProdottoImg.objects.all().filter(prodotto=prod.id).count()
         coll = Collezione.objects.get(nome=prod.collezione)
-        #  ===================================
+
+        #  ================== image =================
         line = []
         # 0 id
         line = line + [prod.id]
@@ -690,40 +744,47 @@ def elenco(request, sort, coll_pk):
         line = line + [prod.nome]
         # 2 nome_coll
         line = line + [coll.nome]
-        if image_count > 0: path = str(images[0].image_ico)
+        if image_count > 0: path = str(images[0].image)
         path = path[path.find("static") + 7:]
         # 3 image_prodotto
         line = line + [path]
-        #  ===================================
+
+        #  ======================== detagli ===========
         detagli = ProdottoDet.objects.all().filter(prodotto=prod.id)
 
-        line[1] = detagli[0].nome         # 1 nome prodotto preis
+        line[1] = detagli[0].nome           # 1 nome prodotto preis
         line = line + [detagli[0].messura]  # 4 misura
-        if detagli[0].altezza_max:
-            if detagli[0].altezza_min:
-                altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max) + " mm"
-            else:
-                altezza = "h= " + str(detagli[0].altezza_max) + " mm"
-        else: altezza = ""
-
-        line = line + [altezza]           # 5 altezza
+        # if detagli[0].altezza_max:
+        #     if detagli[0].altezza_min:
+        #         altezza = "h= " + str(detagli[0].altezza_min) + " ... " + str(detagli[0].altezza_max) + " mm"
+        #     else:
+        #         altezza = "h= " + str(detagli[0].altezza_max) + " mm"
+        # else: altezza = ""
+        if detagli[0].altezza:
+            line = line + [detagli[0].altezza]           # 5 altezza
+        else:
+            line = line + []                             # 5 altezza
         if detagli[0].materiale and detagli[0].materiale != "-": materiale = str(detagli[0].materiale)
         else: materiale = ""
         line = line + [materiale]         # 6 materiale
         line = line + ["'"]               # 7 variante
-        #  ===================================
+
+        #  =================== luci ================
         luci = ProdottoLuc.objects.all().filter(prodotto=prod.id)
         luc_tip = ""
         for luc in luci:
-            if luc_tip == "": luc_tip = luc_tip + str(luc.quantita)+"x "+str(luc.lampadina)
-            else: luc_tip = luc_tip + ", " + str(luc.quantita) + "x " + str(luc.lampadina)
+            if luc.lampadina:
+                if luc_tip == "": luc_tip = luc_tip + str(luc.lampadina)+" x "+str(luc.quantita)
+                else: luc_tip = luc_tip + ", " + str(luc.lampadina) + " x " + str(luc.quantita)
         line = line + [luc_tip]            # 8 luci
 
+        #  =================== tipi ================
         line = line + [coll.id]            # 9 id_coll
         tipi = Prodotto.objects.get(id = prod.id).tipo.all() # ManyToMany Tutti Tipi per Prodotto !!!!!!!!!!!!!
         tipo = tipi[0].tipo
         tipo = tipo.title()
         line = line + [tipo]              # 10 tipo di prodotti
+
         #  ===================================
         prodotti = prodotti + [line]
         #  ===================================
@@ -748,21 +809,3 @@ def elenco(request, sort, coll_pk):
 # ============== END ELENCO_ =======================
 
 
-# ============== Elenco_ ?????? service ===========================
-def elenco_1 (request):
-
-    return render(
-        request,
-        'progetto_list_K.html',
-        context={  }
-    )
-# ============== END elenco_ =======================
-
-def elenco_2 (request, sort):
-
-    return render(
-        request,
-        'progetto_list_K.html',
-        context={  }
-    )
-# ============== END elenco_ =======================

@@ -120,7 +120,7 @@ time_car {
             </td>
             <td style="width:8%">     <!-- image_prodotto -->
                 <a href="{% url 'prodotto' prod.0 1 37 %}">
-                <img class = "scale-size-big"  src="{% static prod.3 %}" alt="{{ prod.3 }}"
+                <img class = "scale-size-big"  title= {{ prod.3 }} src="{% static prod.3 %}" alt="{{ prod.3 }}"
                      style="height: 50px; border: 1px solid white;"/></a>
             </td>
             <td style="width:10%; font-size: 10;">{{prod.10}}</td>  <!-- tipo -->

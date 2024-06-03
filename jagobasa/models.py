@@ -14,6 +14,22 @@ class Catalogo(models.Model):
 
 # End CATALOGO      ===========================================================
 
+# CATALOGO BOOK      Model representing a Catalochi
+class CatalogoBook(models.Model):
+    class Meta:
+        ordering = ["nome", "pagina",]
+
+    nome = models.CharField(max_length=50, null=True)
+    catalogo = models.ForeignKey('Catalogo', on_delete=models.SET_NULL, null=True)
+    pagina = models.CharField(max_length=20, null=True)
+    titolo = models.CharField(max_length=20, null=True)
+    image_pag = models.ImageField(upload_to='jagobasa/static/img_cat_pag', null=True, default = "")
+
+    def __str__(self):
+        return self.nome
+
+# End CATALOGO_BOOK      ===========================================================
+
 # COLLEZIONE        Model representing a Collezione
 class Collezione(models.Model):
     class Meta:

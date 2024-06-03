@@ -216,6 +216,10 @@ body {
  .right-list::-webkit-scrollbar {        /* mobile */
         display: none;
     }
+ .text-elenco {                            /* mobile */
+        display: none;
+    }
+
 .link {                                /* mobile */
     link:  white;
     vlink: white;
@@ -414,6 +418,17 @@ body {  }
     }
     .novita::-webkit-scrollbar {        /* computer */
         display: none;
+    }
+
+    .text-elenco {                            /* computer */
+        display: block;
+        position: absolute;
+        border: 0px solid green;
+        left: 60%;      top:2.5%;
+        width: 38.0%;   height: 5.0%;
+        text-align: right;
+        font-size: 10;  color: white;
+        overflow: none;
     }
 
 .link {                                /* computer */

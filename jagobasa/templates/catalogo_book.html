@@ -1,0 +1,99 @@
+<!--TEMPLATE PROGETTO LIST -->
+
+ <style>
+
+   .image-book {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:1.0%;      top:1.0%;
+        width: 99.0%;   height: 98.0%;
+        padding-left: 0px;
+        overflow-y: auto;
+   }
+
+
+@media (min-width: 500px) {
+
+    .image-book {                         /* computer */
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        vertical-align: top;
+        left:3.0%;      top:8.0%;
+        width: 97.0%;   height: 94.0%;
+        padding-right: 2.5%;
+        overflow-y: auto;
+    }
+
+    .image-book::-webkit-scrollbar {        /* computer */
+        width: 5px;    height: 5px;
+    }
+
+    .image-book::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(200, 200, 200));
+        border-radius: 5px;
+    }
+
+
+}
+
+ </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>CatalogBook</title>{% endblock %}
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class = "tytle-page">
+        <p> Catalogo {{catalog_nome}} </p>
+</div>
+
+<div class = "image-book">
+     {% for page in book_list %}
+       <p>{{ page.num_pag }}
+         <img src="{% static page.path %}" alt="{{ page.1 }}"
+         style="width:100%; height:92%; border: 2px solid gray; vertical-align: top;"/></p>
+       <br><br>
+       <p></p>
+     {% endfor %}
+
+
+
+</div>  <!-- image-book        -->
+
+{% endblock %} <!-- content -->
+
+<!-- ===========  SIDE RIGHT ===================================== -->
+
+{% block side_right %}
+
+   <div class = "right-nome-top">
+            <p> {{ catalog_nome }} </p> </div>
+
+    <div class = "right-image-top">
+            <img src="{% static catalog_img %}" alt=""
+            style="width: 100%; height: 100%; object-fit: fill"/>
+    </div> <!-- right-image-top -->
+
+    <div class = "right-list">
+          {% for page in book_content %}
+               <p>{{ page.1 }}
+               <a href="{% url 'catalogo-book' catalog_pk page.2 1 %}">
+               <img src="{% static page.0 %}" alt="{{ page.0 }}"
+               style="width:80%; border: 1px solid gray; align-horizontal: center"/></a></p>
+               <p></p>
+          {% endfor %}
+    </div>    <!-- right-list -->
+
+
+
+{% endblock %}  <!-- side-right -->
+
+
+</body>
+</html>
+

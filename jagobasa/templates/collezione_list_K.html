@@ -14,11 +14,19 @@
 
 <div class = "tytle-page">
         {% if catalogo_pk %}
-        <p> {{tytle_nome}}  {{right_text}} </p>
+            <p> {{tytle_nome}}  {{right_text}} </p>
         {% else %}
-        <p> {{tytle_nome}}  di Jago </p>
+            <p> {{tytle_nome}}  di Jago </p>
         {% endif %}
 </div>
+
+{% if catalogo_book %}
+<div class = "text-elenco">
+    <a class = "link" style = "font-size: 12px;"
+       href="{% url 'catalogo-book' catalogo_pk 000 1 %}">
+                <b> >> Vedi Catalogo </b> </a>
+</div> <!-- text-elenco -->
+{% endif %}
 
 <div class="collezione-list">
 
