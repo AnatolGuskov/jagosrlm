@@ -69,7 +69,7 @@
 <p>
 {% if user.is_authenticated %}
      <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; {{ user.get_username }}
-<!--     <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>-->
+
 {% else %}
      <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; Unknown
 {% endif %}
