@@ -3,10 +3,6 @@
 
 <style>
 
-.menu-button {
-
-}
-
 .list-detail {                           /* mobile */
         background: none;
         justify-content: space-between;
@@ -56,9 +52,7 @@
 
 /* ================================================================== */
 
-@media (min-width: 500px) {
-
-
+@media (min-width: 400px) {
 
 .list-detail {                             /* computer */
         display: block;
@@ -79,8 +73,7 @@
         left: 3%;        top: 1%;
         width: 93.0%;   height: 8.0%;
         padding-left: 0;
-        font-family: Anton;
-        font-size: 32px;
+        font-family: Anton;   font-size: 32px;
         color: white;
     }
 
@@ -143,7 +136,7 @@
                 <strong>Elenco di Prodotti</strong></a></div>
     </div>  <!-- menu -->
 
-    <div class = "count-jago">
+<div class = "count-jago">
   <ul>
     <li>Catalochi: {{ num_cata }}</li>
     <li>Collezione: {{ num_coll }}</li>
@@ -152,7 +145,25 @@
     <li>Progetti: {{ num_prog }}</li>
     <li>Immagini: {{ num_imag }}</li>
   </ul>
- </div>
+
+</div>  <!-- count-jago -->
+
+<div class = "menu-session">
+<p>
+{% if user.is_authenticated %}
+     <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; {{ user.get_username }}
+<!--     <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>-->
+{% else %}
+     <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; Unknown
+{% endif %}
+
+ <b> &nbsp;&nbsp;Visited: </b> {{ num_visits }} </p>
+ <div class = "menu-button">
+ <a class = "link" href="{% url 'login'%}?next={{request.path}}"><b>Login</b></a>
+ <a class = "link" href="{% url 'register'%}?next={{request.path}}"><b>&nbsp;&nbsp;&nbsp;&nbsp;Register</b></a> </div>
+
+</div>  <!-- menu-session -->
+
 
     <div class = "social">
           <a href="https://facebook.com/jagolampadari" target="_blank">
@@ -168,7 +179,7 @@
 
     <div class="copy-right">
          <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
-                   style="width:95%;"/>
+                   style="width:150px;"/>
     </div>  <!-- copy_right  -->
 
 

@@ -1,0 +1,59 @@
+<!--TEMPLATE PROGETTO LIST -->
+
+ <style>
+
+.login {
+        display: none;
+    }
+
+
+@media (min-width: 500px) {
+
+    .login {                         /* computer */
+        display: block;
+        background: gray;
+        border: 1px solid white;
+        position: absolute;
+        vertical-align: top;
+        left:  29.0%;   top:10.0%;
+        width: 41.0%;   height: 70.0%;
+        padding-left: 1%;
+        color: blue;
+
+    }
+}
+ </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>Create an account</title>{% endblock %}
+
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class="login">
+
+    <h1>Create an account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Create my account"></p>
+    </form>
+
+</div>   <!-- login -->
+
+{% endblock %} <!-- content -->
+
+<!-- ===========  SIDE RIGHT ===================================== -->
+
+{% block side_right %}
+
+{% endblock %}  <!-- side-right -->
+
+
+</body>
+</html>
+

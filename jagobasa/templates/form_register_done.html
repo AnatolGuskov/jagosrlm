@@ -1,0 +1,61 @@
+<!--TEMPLATE PROGETTO LIST -->
+
+ <style>
+
+.login {
+        display: none;
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:1.0%;      top:1.0%;
+        width: 99.0%;   height: 98.0%;
+        padding-left: 0px;
+        overflow-y: auto;
+   }
+
+
+@media (min-width: 500px) {
+
+    .login {                         /* computer */
+        display: block;
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        vertical-align: top;
+        left:30.0%;      top:20.0%;
+        width: 50.0%;   height: 40.0%;
+        padding-right: 0%;
+        overflow-y: auto;
+    }
+
+ </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>Welcome</title>{% endblock %}
+
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class="login">
+
+    <h1>Welcome {{ new_user.first_name }}!</h1>
+        <p>Your account has been successfully created. </p>
+        <p>Now you can <a href="{% url 'login' %}">login</a>.</p>
+
+</div>   <!-- login -->
+
+{% endblock %} <!-- content -->
+
+<!-- ===========  SIDE RIGHT ===================================== -->
+
+{% block side_right %}
+
+{% endblock %}  <!-- side-right -->
+
+
+</body>
+</html>
+

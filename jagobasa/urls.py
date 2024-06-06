@@ -23,4 +23,8 @@ urlpatterns = [
 
     path('elenco/<sort>/<coll_pk>', views.elenco, name='elenco'), # elenco,
 
+    path('register/', views.register, name='register'), # form_register,
+
 ]
+
+

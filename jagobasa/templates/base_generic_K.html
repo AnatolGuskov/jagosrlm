@@ -65,6 +65,23 @@
                 <strong>Elenco di Prodotti</strong></a></div>
     </div>  <!-- menu -->
 
+<div class = "menu-session">
+<p>
+{% if user.is_authenticated %}
+     <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; {{ user.get_username }}
+<!--     <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>-->
+{% else %}
+     <b> &nbsp;&nbsp;User: </b>&nbsp;&nbsp;&nbsp; Unknown
+{% endif %}
+
+ </p>
+ <br>
+ <div class = "menu-button">
+ <a class = "link" href="{% url 'login'%}?next={{request.path}}"><b>Login</b></a>
+ <a class = "link" href="{% url 'register'%}?next={{request.path}}"><b>&nbsp;&nbsp;&nbsp;Register</b></a> </div>
+
+</div>  <!-- menu-session -->
+
     <div class = "social">
           <a href="https://facebook.com/jagolampadari" target="_blank">
           <img class = "scale-size" src="{% static 'img_background/Icone_Facebook.jpg' %}" alt="Jago - Facebook"
@@ -79,7 +96,7 @@
 
     <div class="copy-right">
          <img src="{% static 'img_background/Jago Indirizzi white.jpg' %}" alt="Indirizzi"
-                   style="width:95%;"/>
+                   style="width: 150px;"/>
     </div>  <!-- copy_right  -->
 
 

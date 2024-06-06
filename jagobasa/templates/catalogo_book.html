@@ -3,6 +3,7 @@
  <style>
 
    .image-book {
+        display: none;
         background: none;
         border: 0px solid white;
         position: absolute;
@@ -16,6 +17,7 @@
 @media (min-width: 500px) {
 
     .image-book {                         /* computer */
+        display: block;
         background: none;
         border: 0px solid white;
         position: absolute;
@@ -52,18 +54,24 @@
         <p> Catalogo {{catalog_nome}} </p>
 </div>
 
-<div class = "image-book">
-     {% for page in book_list %}
-       <p>{{ page.num_pag }}
-         <img src="{% static page.path %}" alt="{{ page.1 }}"
-         style="width:100%; height:92%; border: 2px solid gray; vertical-align: top;"/></p>
-       <br><br>
-       <p></p>
-     {% endfor %}
+{% if user.is_authenticated %}
+        <div class = "image-book">
+             {% for page in book_list %}
+               <p>{{ page.num_pag }}
+                 <img src="{% static page.path %}" alt="{{ page.1 }}"
+                 style="width:100%; height:92%; border: 2px solid gray; vertical-align: top;"/></p>
+               <br><br>
+               <p></p>
+             {% endfor %}
+        </div>  <!-- image-book        -->
+{% else %}
+        <div class = "text-elenco">
+                        <p><b> Per visualizzare il catalogo è necessario effettuare </b></p>
+                        <p style = "font-size: 12"><b> <a href="{% url 'login' %}?next={{request.path}}">>>login</a>
+                            o <a href="{% url 'register' %}?next={{request.path}}">>>registrarsi </a></b></p>  </a>
+        </div> <!-- text-elenco -->
+{% endif %}
 
-
-
-</div>  <!-- image-book        -->
 
 {% endblock %} <!-- content -->
 
@@ -79,14 +87,23 @@
             style="width: 100%; height: 100%; object-fit: fill"/>
     </div> <!-- right-image-top -->
 
-    <div class = "right-list">
+    <div class = "right-list" style = "text-align: left;">
+      {% if user.is_authenticated %}
           {% for page in book_content %}
-               <p>{{ page.1 }}
+               <p style = "font-size: 11px;">{{ page.1 }}
                <a href="{% url 'catalogo-book' catalog_pk page.2 1 %}">
                <img src="{% static page.0 %}" alt="{{ page.0 }}"
-               style="width:80%; border: 1px solid gray; align-horizontal: center"/></a></p>
+               style="width:80%; border: 1px solid gray;text-align: center;"/></a></p>
                <p></p>
           {% endfor %}
+      {% else %}
+          {% for page in book_content %}
+               <p style = "font-size: 11px;">{{ page.1 }}
+               <img src="{% static page.0 %}" alt="{{ page.0 }}"
+               style="width:80%; border: 1px solid gray; align-horizontal: center"/></p>
+               <p></p>
+          {% endfor %}
+      {% endif %}
     </div>    <!-- right-list -->
 
 

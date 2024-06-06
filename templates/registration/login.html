@@ -1,0 +1,90 @@
+<!--TEMPLATE PROGETTO LIST -->
+
+ <style>
+
+.login {
+        display: none;
+
+   }
+
+
+@media (min-width: 500px) {
+
+    .login {                         /* computer */
+        display: block;
+        background: gray;
+        border: 1px solid white;
+        position: absolute;
+        vertical-align: top;
+        left:30.0%;      top:10.0%;
+        width: 40.0%;   height: 40.0%;
+        padding-top: 2%; padding-left: 1%;
+
+    }
+
+ </style>
+<!--  ======================================================= -->
+
+{% extends "base_generic_K.html" %}
+{% block title %}<title>CatalogBook</title>{% endblock %}
+
+{% load static %}
+
+<!--  ======================================================= -->
+{% block content %}
+
+<div class="login">
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Please, login with your account.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style = "color: white">{{ form.username.label_tag }}</td>
+    <td>&nbsp;&nbsp;{{ form.username }}</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style = "color: white">{{ form.password.label_tag }}</td>
+    <td>&nbsp;&nbsp;{{ form.password }}</td>
+  </tr>
+  </table>
+<br><br>
+<input style = "color: blue" type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+  </div>    <!-- login -->
+
+{% endblock %} <!-- content -->
+
+<!-- ===========  SIDE RIGHT ===================================== -->
+
+{% block side_right %}
+
+{% endblock %}  <!-- side-right -->
+
+
+</body>
+</html>
+

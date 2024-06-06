@@ -15,6 +15,10 @@ from .models import (Catalogo, Collezione, Tipo, Prodotto,
 
 # ============== INDEX =============================
 def index(request):
+# =============== Visits ===================
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
 # =============== Index Quantita ===================
     num_catalogo = Catalogo.objects.all().count()
     num_collezione = Collezione.objects.all().count()
@@ -100,19 +104,16 @@ def index(request):
     return render(
         request,
         'index_K.html',
-        context={'num_cata': num_catalogo,
-                 'num_coll': num_collezione,
-                 'num_prod': num_prodotto,
-                 'num_tipi': num_tipi,
-                 'num_imag': num_images,
-                 'num_prog': num_progetto,
+        context={'num_cata': num_catalogo,   'num_coll': num_collezione,
+                 'num_prod': num_prodotto,   'num_tipi': num_tipi,
+                 'num_imag': num_images,     'num_prog': num_progetto,
+                 'num_visits': num_visits,
                  'novita': prodotti_nov, 'novita_count': novita_count,
                  'progettolist': progettolist,
                  'collezionelist': collezionelist,
                  'collezioni_tutti': collezioni_tutti,
                  'catalogolist': catalogolist, 'catalogo_colllist': catalogo_colllist,
                  'tiplist': tiplist,
-                 'modo': "mobil1",
 
                  }
     )
@@ -163,13 +164,13 @@ def catalogo(request):
 
 # ============== CATALOGO BOOK =============================
 def catalogo_book(request, pk, pagina, book):
-    book_list1 = CatalogoBook.objects.all().filter(catalogo = pk)
     catalog = Catalogo.objects.get(pk = pk)
     catalog_nome = catalog.nome
     catalog_img = str(catalog.image)
     catalog_img = catalog_img[catalog_img.find("static")+7:]
     catalog_pk = catalog.pk
 
+    book_list1 = CatalogoBook.objects.all().filter(catalogo=pk)
     for pag in book_list1:
         pag.num_pag = pag.pagina[pag.pagina.find(" ") + 0:]  # 0 pagina
         pag.num_corte = int(pag.num_pag[:4])
@@ -182,7 +183,7 @@ def catalogo_book(request, pk, pagina, book):
         if pag.num_corte < pagina: pass
         else: book_list = book_list + [pag]
 
-
+    # ============== content =============================
 
     book_list2 = CatalogoBook.objects.all().filter(catalogo=pk)
     book_content = []
@@ -191,7 +192,7 @@ def catalogo_book(request, pk, pagina, book):
             line = []
             content.path = str(content.image_pag)  # 0 image
             line = line + [content.path[content.path.find("static")+7:]]
-            line = line + [content.titolo.upper() + "   " + content.pagina[content.pagina.find(" ")+0:]] # 1 page_text
+            line = line + [content.pagina[11:] + "..." + content.titolo.upper()] # 1 page_text
             num_corte = content.pagina[content.pagina.find(" ")+1:]
             num_corte = num_corte[:3]
             line = line + [num_corte]  # 2 num_page
@@ -808,4 +809,27 @@ def elenco(request, sort, coll_pk):
     )
 # ============== END ELENCO_ =======================
 
+# ============== FORM Registrazione_ =======================
+from .forms import LoginForm, UserRegistrationForm
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password'])
+            # Save the User object
+            new_user.save()
+            return render(request,
+                         'form_register_done.html',
+                          context = {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
 
+        return render(
+                request,
+                'form_register.html',
+                 context = {'user_form': user_form,}
+    )
+# ============== END FORM Registrazione_ =======================
