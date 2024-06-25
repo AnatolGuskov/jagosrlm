@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib import admin
+
 
 urlpatterns = [
     path('', views.index, name='index'), # prima pagina
@@ -24,6 +26,12 @@ urlpatterns = [
     path('elenco/<sort>/<coll_pk>', views.elenco, name='elenco'), # elenco,
 
     path('register/', views.register, name='register'), # form_register,
+    path('contact/', views.contact, name='contact'), # form_contact,
+    path('success/', views.success, name='success'),
+
+    path('admin/', admin.site.urls),
+
+
 
 ]
 

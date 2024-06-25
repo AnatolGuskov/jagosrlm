@@ -146,6 +146,9 @@ def collezione(request):
 
 # ============== CATALOGO =============================
 def catalogo(request):
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     catlist = Catalogo.objects.all().order_by('status')
     num_catalogo = Catalogo.objects.all().count()
 
@@ -158,6 +161,7 @@ def catalogo(request):
         'catalogo_list_K.html',
         context={'catlist': catlist,
                  'num_catalogo': num_catalogo,
+                 'num_visits': num_visits,
                  }
     )
 # ============== END catalogo =======================
@@ -795,6 +799,8 @@ def elenco(request, sort, coll_pk):
         time_elenco = end_time - start_time
         time_elenco = str(time_elenco)
         time_elenco = time_elenco[:6]
+
+
     return render(
         request,
         'elenco_K.html',
@@ -811,6 +817,7 @@ def elenco(request, sort, coll_pk):
 
 # ============== FORM Registrazione_ =======================
 from .forms import LoginForm, UserRegistrationForm
+
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -833,3 +840,54 @@ def register(request):
                  context = {'user_form': user_form,}
     )
 # ============== END FORM Registrazione_ =======================
+
+# ============== FORM E-Mail =======================
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from jago.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
+
+def homepage(request):
+    return render(request, "index_K.html")
+
+def contact(request):
+    if request.method == 'GET':
+        form = ContactForm()
+
+    elif request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Пробное сообщение"
+            body = {
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'email': form.cleaned_data['email_address'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+            try:
+                send_mail(subject, message,
+                          DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL,
+                         )
+            except BadHeaderError:
+                return HttpResponse('Найден некорректный заголовок')
+            return redirect("success")
+
+    else:
+        return HttpResponse('Неверный запрос.')
+
+    return render(request, "form_contact.html",
+                  {'form': form}
+                  )
+
+
+
+def success(request):
+    return HttpResponse('Приняли! Спасибо за ваш запрос.')
+    #
+    # form = ContactForm()
+    # return render(request, "form_contact.html", {'form': form})
+
+
+# ============== END FORM E-Mail =======================

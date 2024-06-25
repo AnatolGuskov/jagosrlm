@@ -11,14 +11,14 @@
 
     .login {                         /* computer */
         display: block;
-        background: gray;
+        background: rgb(100, 100, 100);
         border: 1px solid white;
         position: absolute;
         vertical-align: top;
-        left:  29.0%;   top:10.0%;
-        width: 41.0%;   height: 70.0%;
-        padding-left: 1%;
-        color: blue;
+        left:  20.0%;   top:10.0%;
+        width: 60.0%;   height: 70.0%;
+        padding-left: 3%;
+        color: white;
 
     }
 }
@@ -40,7 +40,9 @@
     <form action="." method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+        <p style = "color: black; border: 4px solid white; border-radius: 10px; width: 156px">
+            <input type="submit" value="Create my account">
+        </p>
     </form>
 
 </div>   <!-- login -->

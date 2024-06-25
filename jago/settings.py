@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'jagobasa.apps.JagobasaConfig',
     'import_export',
 
+
 ]
 #
 # CACHES = {
@@ -144,8 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ================== HEROKU =========================
-
-
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -167,15 +166,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-# Cache backend is optional, but recommended to speed up user agent parsing
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }
-#
-# # Name of cache backend to cache user agents. If it not specified default
-# # cache alias will be used. Set to `None` to disable caching.
-# USER_AGENTS_CACHE = 'default'
+# ================== E-Mail =========================
+
+RECIPIENTS_EMAIL = ['dkgb@i.ua']   # замените на свою почту
+DEFAULT_FROM_EMAIL = 'dkgb@i.ua'  # замените на свою почту
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.i.ua'
+EMAIL_HOST_USER = 'dkgb@i.ua'
+EMAIL_HOST_PASSWORD = 'dkgb2014'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 

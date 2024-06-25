@@ -107,6 +107,7 @@ body {
 }
 
 .copy-right {                           /* mobile */
+        display: none;
         border: 0px solid white;
         position: absolute;
         left:0.0%;       top:.-20.0%;
@@ -154,7 +155,7 @@ body {
         padding-left: 0px;
         overflow-y: scroll;
     }
-.collezione-list::-webkit-scrollbar {        /* computer */
+.collezione-list::-webkit-scrollbar {        /* mobile */
         width: 5px;    height: 5px;
 }
 .collezione-list::-webkit-scrollbar-thumb {
@@ -238,7 +239,7 @@ body {
 
 body {  }
 
-@media (min-width: 500px) {
+@media (min-width: 400px) {
 
 .maxwidth {                                  /* computer */
     position: absolute;
@@ -271,7 +272,7 @@ body {  }
     position: relative;
     left:2.0%;       top:0%;
     width:96%;    height:23px;
-    font-size: 11px;
+    font-size: 10px;
     vertical-align: middle;
     border: 3px solid black; border-radius: 10px;
     padding-left: 5px;
@@ -281,7 +282,7 @@ body {  }
     position: relative;
     left:2.0%;       top:0%;
     width:96%;    height:23px;
-    font-size: 11px;
+    font-size: 10px;
     background: rgb(50, 50, 50);
     vertical-align: middle;
     border: 3px solid black; border-radius: 10px;
@@ -293,7 +294,7 @@ body {  }
     border: 1px solid black;
     position: absolute;
     left:0.0%;       top:17.0%;
-    width: 100%;      height: 50%;
+    width: 100%;     height: 50%;
 
 }
 .count-jago {                              /* computer */
@@ -303,8 +304,7 @@ body {  }
     left: -5%;     top:40%;
     width: 110.0%;   height: 30.0%;
     padding-left: 0%;
-    color: white;
-    font-size: 11px;
+    color: white;    font-size: 9px;
 }
 .menu-session {                              /* computer */
     border: 1px solid gray; border-radius: 5px;
@@ -314,7 +314,7 @@ body {  }
     left:5%;       top:59%;
     width: 90.0%;    height: 12.0%;
     padding-left: 0px; padding-top: 3px;
-    color: white;
+    color: white; font-size: 10px;
 }
 .social {                                  /* computer */
     background: black;
@@ -328,9 +328,10 @@ body {  }
     -webkit-column-rule: 0px solid #ccc;   -moz-column-rule: 0px solid #ccc;  column-rule: 0px solid #ccc;
 }
 .copy-right {                              /* computer */
+    display: block;
     border: 0px solid white;
     position: absolute;
-    left: 0.0%;      top: 79.0%;
+    left: 0.0%;      top: 78.0%;
     width: 100%;     height:18%;
     padding-left: 4%;
 }
@@ -446,7 +447,7 @@ body {  }
     alink: rgb(220, 220, 220);
     color: rgb(200, 200, 200);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
 }
 .link:hover {
     color: white;
