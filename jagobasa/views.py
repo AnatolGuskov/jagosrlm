@@ -194,12 +194,13 @@ def catalogo_book(request, pk, pagina, book):
     for content in book_list2:
         if len(content.titolo) > 2:
             line = []
+            num_nome = len(content.nome)
             content.path = str(content.image_pag)  # 0 image
             line = line + [content.path[content.path.find("static")+7:]]
-            line = line + [content.pagina[11:] + "..." + content.titolo.upper()] # 1 page_text
+            line = line + [content.pagina[num_nome + 5:] + "..." + content.titolo.upper()] # 1 page_text
             num_corte = content.pagina[content.pagina.find(" ")+1:]
             num_corte = num_corte[:3]
-            line = line + [num_corte]  # 2 num_page
+            line = line + [num_corte]              # 2 num_page
             book_content = book_content + [line]
 
 
